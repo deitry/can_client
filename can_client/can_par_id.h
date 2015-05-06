@@ -85,7 +85,7 @@ union EC_CAN_PAR_ID
 #define EC_T_INJZ		0x12		// int зуб, от которого ведётся отсчёт времени до момента впрыска
 #define EC_T_INJN		0x13		// int количество впрысков в данный цилиндр с момента запуска программы
 #define EC_T_INJT		0x14		// float время до впрыска, отсчитываемое от зуба injZ
-
+#define EC_T_INJCNT		0x15
 
 #define EC_P_M_MODE		0x21                // Флаг - разрешить ручное задание режима работы СКАУД
 #define EC_P_M_QC		0x22                // Флаг manQC - разрешить ручное управление подачей
@@ -120,6 +120,7 @@ union EC_CAN_PAR_ID
 #define EC_P_ERRD		0x46	// float дифференциальная ошибка регулирования
 
 #define EC_P_MUN		0x47	// float коэффициент темпа набора частоты
+#define EC_P_DZONE		0x48	// float зона нечувствительности регулятора
 
 #define EC_P_PTIME		0x51	// int время выполнения основного тела программы в мкс
 #define EC_P_ITIME		0x52

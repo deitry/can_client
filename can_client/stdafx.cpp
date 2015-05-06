@@ -92,7 +92,9 @@ int isParFloat(CAN_DATA* data)
 	case EC_T_INJT:
 	case EC_P_PTIME:
 	case EC_P_ITIME:
+	case EC_P_ITIME1:
 	case EC_P_MUN:
+	case EC_P_DZONE:
 		return 1;
 
 	default:

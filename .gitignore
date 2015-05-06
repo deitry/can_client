@@ -1,0 +1,9 @@
+**/*.txt
+**/*vcproj*
+**/Debug/
+**/*.resx
+**/*.ico
+**/*.rc
+**/*.sln
+**/*.suo
+**/*.ncb
