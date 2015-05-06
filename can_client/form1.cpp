@@ -343,6 +343,12 @@ void can_client::Form1::canWrite(int id1, int id2, int id3, int a)
 	fRet = writeMsg (&TxCanMsg_l);
 }
 
+void can_client::Form1::onVmtSearch() 
+{
+	try { canWrite(EC_P_VMT, 0, 0, System::Decimal::ToSingle(this->numVMTOut->Value)); } catch (Exception^ e) {}
+	for (int i = 0; i < 5000; i++);
+}
+
 void can_client::Form1::onCanTransmit() 
 {
 	// Сейчас - копипаст из демо
@@ -376,44 +382,6 @@ void can_client::Form1::onCanTransmit()
 	try { canWrite(EC_P_M_UOVT, EC_S_M_UOVT, 0, System::Single::Parse(this->textinjUOVTOut->Text)); } catch (Exception^ e) {}
 	try { canWrite(EC_G_QC, EC_S_QC_T, 0, System::Int32::Parse(this->textQCtOut->Text)); } catch (Exception^ e) {}
 	try { canWrite(EC_P_M_FDBK, 0, 0, static_cast<System::Int32>(this->checkManFdbkOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_VMT, 0, 0, System::Decimal::ToSingle(this->numVMTOut->Value)); } catch (Exception^ e) {}
-
-	/*if ((System::Int32) eng->mode != (tmpi = System::Int32::Parse(this->Mode_SKAUD->Text)))
-	{
-		data.f.PARID = 1;
-		data.f.val.i = tmpi;
-		
-		for (int i = 0; i < 8; i++)
-		{
-			TxCanMsg_l.m_bData[i] = data.all[i];
-		}
-		
-		fRet = writeMsg (&TxCanMsg_l);
-	}
-	if ((float) eng->nR = (tmpf = System::Single::Parse(this->RPM->Text)))
-	{
-		data.f.PARID = 2;
-		data.f.val.f = tmpf;
-		
-		for (int i = 0; i < 8; i++)
-		{
-			TxCanMsg_l.m_bData[i] = data.all[i];
-		}
-		
-		fRet = writeMsg (&TxCanMsg_l);
-	}
-	if ((int) eng->QCt != (tmpi = System::Int32::Parse(this->Tvprysk->Text)))
-	{
-		data.f.PARID = 3;
-		data.f.val.i = tmpi;
-		
-		for (int i = 0; i < 8; i++)
-		{
-			TxCanMsg_l.m_bData[i] = data.all[i];
-		}
-		
-		fRet = writeMsg (&TxCanMsg_l);
-	}*/
 }
 
 BOOL can_client::Form1::writeMsg (tCanMsgStruct *pCanMsg_p)

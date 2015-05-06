@@ -560,7 +560,7 @@ private: System::Windows::Forms::CheckBox^  checkManLedIn;
 			this->numVMTOut->Name = L"numVMTOut";
 			this->numVMTOut->Size = System::Drawing::Size(103, 20);
 			this->numVMTOut->TabIndex = 40;
-			this->numVMTOut->ValueChanged += gcnew System::EventHandler(this, &Form1::sendButton_Click);
+			this->numVMTOut->ValueChanged += gcnew System::EventHandler(this, &Form1::numVMTOut_ValueChanged);
 			// 
 			// textId2
 			// 
@@ -1824,6 +1824,7 @@ private: System::Windows::Forms::CheckBox^  checkManLedIn;
 	 BOOL readMsg(tCanMsgStruct* pCanMsg_p);
 	 void printMsg(tCanMsgStruct *pCanMsg_p);
 
+	 void onVmtSearch(); 
 	 void onCanTransmit(); 
 	 BOOL writeMsg(tCanMsgStruct* pCanMsg_p);
 	 void canWrite(int id1, int id2, int id3, float a);
@@ -1879,6 +1880,9 @@ private: System::Void initButton_Click(System::Object^  sender, System::EventArg
 private: System::Void checkmanUOVTIn_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void checkmanUOVTOut_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void numVMTOut_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 onVmtSearch();
 		 }
 };
 }
