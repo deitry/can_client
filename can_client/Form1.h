@@ -256,6 +256,37 @@ private: System::Windows::Forms::CheckBox^  checkCanTimeIn;
 private: System::Windows::Forms::CheckBox^  checkManLedOut;
 
 private: System::Windows::Forms::CheckBox^  checkManLedIn;
+private: System::Windows::Forms::Label^  label31;
+private: System::Windows::Forms::Label^  kI;
+
+private: System::Windows::Forms::Label^  kP;
+private: System::Windows::Forms::TextBox^  KdMultOut;
+
+
+private: System::Windows::Forms::TextBox^  KdValOut;
+
+private: System::Windows::Forms::TextBox^  KiMultOut;
+
+
+private: System::Windows::Forms::TextBox^  KiValOut;
+
+private: System::Windows::Forms::TextBox^  KpMultOut;
+
+
+private: System::Windows::Forms::TextBox^  KpValOut;
+
+private: System::Windows::Forms::TextBox^  KpValIn;
+private: System::Windows::Forms::TextBox^  KdMultIn;
+
+private: System::Windows::Forms::TextBox^  KdValIn;
+
+private: System::Windows::Forms::TextBox^  KiMultIn;
+
+private: System::Windows::Forms::TextBox^  KiValIn;
+
+private: System::Windows::Forms::TextBox^  KpMultIn;
+
+
 
 
 
@@ -278,6 +309,21 @@ private: System::Windows::Forms::CheckBox^  checkManLedIn;
 			this->initButton = (gcnew System::Windows::Forms::Button());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
+			this->KdMultIn = (gcnew System::Windows::Forms::TextBox());
+			this->KdValIn = (gcnew System::Windows::Forms::TextBox());
+			this->KiMultIn = (gcnew System::Windows::Forms::TextBox());
+			this->KiValIn = (gcnew System::Windows::Forms::TextBox());
+			this->KpMultIn = (gcnew System::Windows::Forms::TextBox());
+			this->label31 = (gcnew System::Windows::Forms::Label());
+			this->kI = (gcnew System::Windows::Forms::Label());
+			this->kP = (gcnew System::Windows::Forms::Label());
+			this->KdMultOut = (gcnew System::Windows::Forms::TextBox());
+			this->KdValOut = (gcnew System::Windows::Forms::TextBox());
+			this->KiMultOut = (gcnew System::Windows::Forms::TextBox());
+			this->KiValOut = (gcnew System::Windows::Forms::TextBox());
+			this->KpMultOut = (gcnew System::Windows::Forms::TextBox());
+			this->KpValOut = (gcnew System::Windows::Forms::TextBox());
+			this->KpValIn = (gcnew System::Windows::Forms::TextBox());
 			this->label28 = (gcnew System::Windows::Forms::Label());
 			this->label27 = (gcnew System::Windows::Forms::Label());
 			this->textVMTIn = (gcnew System::Windows::Forms::TextBox());
@@ -467,6 +513,21 @@ private: System::Windows::Forms::CheckBox^  checkManLedIn;
 			// 
 			// tabPage1
 			// 
+			this->tabPage1->Controls->Add(this->KdMultIn);
+			this->tabPage1->Controls->Add(this->KdValIn);
+			this->tabPage1->Controls->Add(this->KiMultIn);
+			this->tabPage1->Controls->Add(this->KiValIn);
+			this->tabPage1->Controls->Add(this->KpMultIn);
+			this->tabPage1->Controls->Add(this->label31);
+			this->tabPage1->Controls->Add(this->kI);
+			this->tabPage1->Controls->Add(this->kP);
+			this->tabPage1->Controls->Add(this->KdMultOut);
+			this->tabPage1->Controls->Add(this->KdValOut);
+			this->tabPage1->Controls->Add(this->KiMultOut);
+			this->tabPage1->Controls->Add(this->KiValOut);
+			this->tabPage1->Controls->Add(this->KpMultOut);
+			this->tabPage1->Controls->Add(this->KpValOut);
+			this->tabPage1->Controls->Add(this->KpValIn);
 			this->tabPage1->Controls->Add(this->label28);
 			this->tabPage1->Controls->Add(this->label27);
 			this->tabPage1->Controls->Add(this->textVMTIn);
@@ -515,6 +576,121 @@ private: System::Windows::Forms::CheckBox^  checkManLedIn;
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"\"Панель приборов\"";
 			this->tabPage1->UseVisualStyleBackColor = true;
+			// 
+			// KdMultIn
+			// 
+			this->KdMultIn->Location = System::Drawing::Point(822, 327);
+			this->KdMultIn->Name = L"KdMultIn";
+			this->KdMultIn->Size = System::Drawing::Size(60, 20);
+			this->KdMultIn->TabIndex = 61;
+			// 
+			// KdValIn
+			// 
+			this->KdValIn->Location = System::Drawing::Point(764, 327);
+			this->KdValIn->Name = L"KdValIn";
+			this->KdValIn->Size = System::Drawing::Size(52, 20);
+			this->KdValIn->TabIndex = 60;
+			// 
+			// KiMultIn
+			// 
+			this->KiMultIn->Location = System::Drawing::Point(698, 326);
+			this->KiMultIn->Name = L"KiMultIn";
+			this->KiMultIn->Size = System::Drawing::Size(60, 20);
+			this->KiMultIn->TabIndex = 59;
+			// 
+			// KiValIn
+			// 
+			this->KiValIn->Location = System::Drawing::Point(640, 326);
+			this->KiValIn->Name = L"KiValIn";
+			this->KiValIn->Size = System::Drawing::Size(52, 20);
+			this->KiValIn->TabIndex = 58;
+			// 
+			// KpMultIn
+			// 
+			this->KpMultIn->Location = System::Drawing::Point(574, 326);
+			this->KpMultIn->Name = L"KpMultIn";
+			this->KpMultIn->Size = System::Drawing::Size(60, 20);
+			this->KpMultIn->TabIndex = 57;
+			// 
+			// label31
+			// 
+			this->label31->AutoSize = true;
+			this->label31->Location = System::Drawing::Point(761, 307);
+			this->label31->Name = L"label31";
+			this->label31->Size = System::Drawing::Size(21, 13);
+			this->label31->TabIndex = 56;
+			this->label31->Text = L"kD";
+			// 
+			// kI
+			// 
+			this->kI->AutoSize = true;
+			this->kI->Location = System::Drawing::Point(637, 307);
+			this->kI->Name = L"kI";
+			this->kI->Size = System::Drawing::Size(16, 13);
+			this->kI->TabIndex = 55;
+			this->kI->Text = L"kI";
+			// 
+			// kP
+			// 
+			this->kP->AutoSize = true;
+			this->kP->Location = System::Drawing::Point(519, 307);
+			this->kP->Name = L"kP";
+			this->kP->Size = System::Drawing::Size(20, 13);
+			this->kP->TabIndex = 54;
+			this->kP->Text = L"kP";
+			this->kP->Click += gcnew System::EventHandler(this, &Form1::label29_Click);
+			// 
+			// KdMultOut
+			// 
+			this->KdMultOut->Location = System::Drawing::Point(822, 353);
+			this->KdMultOut->Name = L"KdMultOut";
+			this->KdMultOut->Size = System::Drawing::Size(60, 20);
+			this->KdMultOut->TabIndex = 53;
+			this->KdMultOut->Text = L"1e-06";
+			// 
+			// KdValOut
+			// 
+			this->KdValOut->Location = System::Drawing::Point(764, 353);
+			this->KdValOut->Name = L"KdValOut";
+			this->KdValOut->Size = System::Drawing::Size(52, 20);
+			this->KdValOut->TabIndex = 52;
+			// 
+			// KiMultOut
+			// 
+			this->KiMultOut->Location = System::Drawing::Point(698, 353);
+			this->KiMultOut->Name = L"KiMultOut";
+			this->KiMultOut->Size = System::Drawing::Size(60, 20);
+			this->KiMultOut->TabIndex = 50;
+			this->KiMultOut->Text = L"1e-06";
+			// 
+			// KiValOut
+			// 
+			this->KiValOut->Location = System::Drawing::Point(640, 353);
+			this->KiValOut->Name = L"KiValOut";
+			this->KiValOut->Size = System::Drawing::Size(52, 20);
+			this->KiValOut->TabIndex = 49;
+			// 
+			// KpMultOut
+			// 
+			this->KpMultOut->Location = System::Drawing::Point(574, 353);
+			this->KpMultOut->Name = L"KpMultOut";
+			this->KpMultOut->Size = System::Drawing::Size(60, 20);
+			this->KpMultOut->TabIndex = 47;
+			this->KpMultOut->Text = L"1e-06";
+			// 
+			// KpValOut
+			// 
+			this->KpValOut->Location = System::Drawing::Point(516, 353);
+			this->KpValOut->Name = L"KpValOut";
+			this->KpValOut->Size = System::Drawing::Size(52, 20);
+			this->KpValOut->TabIndex = 46;
+			// 
+			// KpValIn
+			// 
+			this->KpValIn->Location = System::Drawing::Point(516, 326);
+			this->KpValIn->Name = L"KpValIn";
+			this->KpValIn->Size = System::Drawing::Size(52, 20);
+			this->KpValIn->TabIndex = 45;
 			// 
 			// label28
 			// 
@@ -1774,6 +1950,7 @@ private: System::Windows::Forms::CheckBox^  checkManLedIn;
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->AutoScroll = true;
 			this->ClientSize = System::Drawing::Size(1183, 683);
 			this->Controls->Add(this->logCheck);
 			this->Controls->Add(this->logFileName);
@@ -1876,6 +2053,13 @@ private: System::Void initButton_Click(System::Object^  sender, System::EventArg
 			 this->checkManQCtOut->Checked = this->checkManQCtIn->Checked;
 			 this->checkManFdbkOut->Checked = this->checkManFdbkIn->Checked;
 			 this->numVMTOut->Value = Decimal::Parse(this->textVMTIn->Text);
+
+			 this->KpValOut->Text = this->KpValIn->Text;
+			 this->KiValOut->Text = this->KiValIn->Text;
+			 this->KdValOut->Text = this->KdValIn->Text;
+			 this->KpMultOut->Text = this->KpMultIn->Text;
+			 this->KiMultOut->Text = this->KiMultIn->Text;
+			 this->KdMultOut->Text = this->KdMultIn->Text;
 		 }
 private: System::Void checkmanUOVTIn_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }
@@ -1883,6 +2067,8 @@ private: System::Void checkmanUOVTOut_CheckedChanged(System::Object^  sender, Sy
 		 }
 private: System::Void numVMTOut_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
 			 onVmtSearch();
+		 }
+private: System::Void label29_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }

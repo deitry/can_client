@@ -110,26 +110,17 @@ BOOL can_client::Form1::readMsg(tCanMsgStruct* pCanMsg_p)
 
 void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 {
-	CAN_DATA d;// = { pCanMsg_p->m_bData };
+	CAN_DATA d;
 	for (int counter = 0; counter < 8; counter ++ )
 		d.all[counter] = pCanMsg_p->m_bData[counter];
 	unsigned char id = d.f.PARID;
 	nMessage++;
-	//unsigned char val[4];
 
 	textBox3->Text = Convert::ToString((byte)pCanMsg_p->m_bData[0],16);
-	/*textBox4->Text = Convert::ToString((byte)pCanMsg_p->m_bData[1],16);
-	textBox5->Text = Convert::ToString((byte)pCanMsg_p->m_bData[2],16);
-	textBox6->Text = Convert::ToString((byte)pCanMsg_p->m_bData[3],16);
-	textBox7->Text = Convert::ToString((byte)d.all[4],16);
-	textBox8->Text = Convert::ToString((byte)d.all[5],16);
-	textBox9->Text = Convert::ToString((byte)d.all[6],16);
-	textBox10->Text = Convert::ToString((byte)d.all[7],16);*/
-	//valTextBox->Text = Convert::ToString(d.all);
 
-	// TODO : свич по ид
 	eng_mod a;
-	
+	float tmpf;
+
 	switch (id)
 	{
 	case EC_TIME:
@@ -277,17 +268,44 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 	case EC_P_ITIME1:
 		this->textIntTime1->Text = Convert::ToString(d.f.val.f);
 		break;
-	}
+	case EC_P_KP:
+		this->KpMultIn->Text = this->KpMultOut->Text;
+		if ((this->KpMultOut->Text != "") && (Single::TryParse(this->KpMultIn->Text, tmpf)))
+		{
+			this->KpMultIn->Text = this->KpMultOut->Text;
+			this->KpValIn->Text = Convert::ToString(d.f.val.f / tmpf);
+		}
+		else this->KpValIn->Text = Convert::ToString(d.f.val.f);
+		break;
+	case EC_P_KI:
+		this->KiMultIn->Text = this->KiMultOut->Text;
+		if ((this->KiMultOut->Text != "") && (Single::TryParse(this->KiMultIn->Text, tmpf)))
+		{
+			this->KiMultIn->Text = this->KiMultOut->Text;
+			this->KiValIn->Text = Convert::ToString(d.f.val.f / tmpf);
+		}
+		else this->KiValIn->Text = Convert::ToString(d.f.val.f);
+		break;
+	case EC_P_KD:
+		this->KdMultIn->Text = this->KdMultOut->Text;
+		if ((this->KdMultOut->Text != "") && (Single::TryParse(this->KdMultIn->Text, tmpf)))
+		{
+			this->KdValIn->Text = Convert::ToString(d.f.val.f / tmpf);
+		}
+		else this->KdValIn->Text = Convert::ToString(d.f.val.f);
+		break;	}
 
 	if (isLogWrite)
 	{
 		printMessageToFile(&d,&(SysToStd(logFileName->Text+".txt")));
 	}
 
-	if ((this->textId1->Text != "") && (this->textId2->Text != "") 
-	 && (d.f.PARID == System::Byte::Parse(this->textId1->Text))
+	Byte id0, id1;
+
+	if (Byte::TryParse(this->textId1->Text, id0) && Byte::TryParse(this->textId2->Text, id1) 
+	 && (d.f.PARID == id0)
 		&& ((d.f.PARID == EC_TIME) || (d.f.PARID == EC_TINJ) || (d.f.PARID == EC_TPROG)
-			|| (d.f.R1 == System::Byte::Parse(this->textId2->Text))))
+			|| (d.f.R1 == id1)))
 		{
 			if (isParFloat(&d))
 			{
@@ -362,26 +380,61 @@ void can_client::Form1::onCanTransmit()
 	int tmpi;
 
 	BOOL fRet;
+	float res;
 
-	try { canWrite(EC_P_M_MODE, 0, 0, static_cast<System::Int32>(this->checkManModeOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_MODE, 0, 0, static_cast<System::Int32>(this->comboModeOut->SelectedIndex + 1)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_QC, 0, 0, static_cast<System::Int32>(this->checkmanQCOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_PED, 0, 0, static_cast<System::Int32>(this->checkmanPedOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_LED, 0, 0, static_cast<System::Int32>(this->checkManLedOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_UOVT, 0, 0, static_cast<System::Int32>(this->checkmanUOVTOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_INJ, 0, 0, static_cast<System::Int32>(this->checkmanInjOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_CANS, 0, 0, static_cast<System::Int32>(this->checkCanSendOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_CANS, EC_S_M_CANST, 0, static_cast<System::Int32>(this->checkCanTimeOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_INJ, EC_S_M_IONCE, 0, static_cast<System::Int32>(this->checkinjOnceOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_INJ, EC_S_M_IN, 0, System::Int32::Parse(this->textmanNOut->Text)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_QC, EC_S_M_AN, 0, static_cast<System::Int32>(this->checkmanAngleOut->Checked)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_QC, EC_S_M_IAN, 0, System::Single::Parse(this->textQCAnOut->Text)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_QC, EC_S_M_QCT, 0, static_cast<System::Int32>(this->checkManQCtOut->Checked)); } catch (Exception^ e) {}
-	//try { canWrite(EC_G_QC, EC_S_QC_T, 0, System::Single::Parse(this->textQCtOut->Text)); } catch (Exception^ e) {}
-	try { canWrite(EC_G_N, EC_S_NU, 0, System::Single::Parse(this->textnUOut->Text)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_UOVT, EC_S_M_UOVT, 0, System::Single::Parse(this->textinjUOVTOut->Text)); } catch (Exception^ e) {}
-	try { canWrite(EC_G_QC, EC_S_QC_T, 0, System::Int32::Parse(this->textQCtOut->Text)); } catch (Exception^ e) {}
-	try { canWrite(EC_P_M_FDBK, 0, 0, static_cast<System::Int32>(this->checkManFdbkOut->Checked)); } catch (Exception^ e) {}
+	canWrite(EC_P_M_MODE, 0, 0, static_cast<System::Int32>(this->checkManModeOut->Checked));
+	canWrite(EC_P_MODE, 0, 0, static_cast<System::Int32>(this->comboModeOut->SelectedIndex + 1));
+	canWrite(EC_P_M_QC, 0, 0, static_cast<System::Int32>(this->checkmanQCOut->Checked));
+	canWrite(EC_P_M_PED, 0, 0, static_cast<System::Int32>(this->checkmanPedOut->Checked));
+	canWrite(EC_P_M_LED, 0, 0, static_cast<System::Int32>(this->checkManLedOut->Checked));
+	canWrite(EC_P_M_UOVT, 0, 0, static_cast<System::Int32>(this->checkmanUOVTOut->Checked));
+	canWrite(EC_P_M_INJ, 0, 0, static_cast<System::Int32>(this->checkmanInjOut->Checked));
+	canWrite(EC_P_M_CANS, 0, 0, static_cast<System::Int32>(this->checkCanSendOut->Checked));
+	canWrite(EC_P_M_CANS, EC_S_M_CANST, 0, static_cast<System::Int32>(this->checkCanTimeOut->Checked));
+	canWrite(EC_P_M_INJ, EC_S_M_IONCE, 0, static_cast<System::Int32>(this->checkinjOnceOut->Checked));
+	canWrite(EC_P_M_QC, EC_S_M_AN, 0, static_cast<System::Int32>(this->checkmanAngleOut->Checked));
+	canWrite(EC_P_M_QC, EC_S_M_QCT, 0, static_cast<System::Int32>(this->checkManQCtOut->Checked));
+	canWrite(EC_P_M_FDBK, 0, 0, static_cast<System::Int32>(this->checkManFdbkOut->Checked));
+	canWrite(EC_P_M_FDBK, 0, 0, static_cast<System::Int32>(this->checkManFdbkOut->Checked));
+	
+	if (Single::TryParse(this->textQCAnOut->Text, res))
+		canWrite(EC_P_M_QC, EC_S_M_IAN, 0, res);
+	if (Single::TryParse(this->textnUOut->Text, res))
+		canWrite(EC_G_N, EC_S_NU, 0, res);
+	if (Single::TryParse(this->textinjUOVTOut->Text, res))
+		canWrite(EC_P_M_UOVT, EC_S_M_UOVT, 0, res);
+	Int32 resi;
+	if (Int32::TryParse(this->textQCtOut->Text, resi))
+		canWrite(EC_G_QC, EC_S_QC_T, 0, resi);
+	if (Int32::TryParse(this->textmanNOut->Text, resi))
+		canWrite(EC_P_M_INJ, EC_S_M_IN, 0, resi);
+	
+	float KV;
+	float KM;
+	if (Single::TryParse(this->KpValOut->Text, KV))
+	{
+		if (Single::TryParse(this->KpMultOut->Text,KM))
+		{
+			KV *= KM;
+		}
+		canWrite(EC_P_KP, 0, 0, KV);
+	}
+	if (Single::TryParse(this->KiValOut->Text, KV))
+	{
+		if (Single::TryParse(this->KiMultOut->Text,KM))
+		{
+			KV *= KM;
+		}
+		canWrite(EC_P_KI, 0, 0, KV);
+	}
+	if (Single::TryParse(this->KdValOut->Text, KV))
+	{
+		if (Single::TryParse(this->KdMultOut->Text,KM))
+		{
+			KV *= KM;
+		}
+		canWrite(EC_P_KD, 0, 0, KV);
+	}
 }
 
 BOOL can_client::Form1::writeMsg (tCanMsgStruct *pCanMsg_p)
@@ -468,12 +521,13 @@ System::Void can_client::Form1::sendButton_Click(System::Object^  sender, System
 }
 
 System::Void can_client::Form1::buttonRandIn_Click(System::Object^  sender, System::EventArgs^  e) {
-	try {
-		canWrite(	EC_PREQ,
-					System::Byte::Parse(this->textId1->Text),
-					System::Byte::Parse(this->textId2->Text),
-					0); 
-	} catch (Exception^ e) {}
+	Byte id0;
+	Byte id1;
+
+	System::Byte::TryParse(this->textId1->Text, id0);
+	System::Byte::TryParse(this->textId2->Text, id1);
+
+	canWrite(	EC_PREQ, id0, id1, 0);
 }
 
 System::Void can_client::Form1::buttonRandOut_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -498,162 +552,3 @@ System::Void can_client::Form1::buttonRandOut_Click(System::Object^  sender, Sys
 	} catch (Exception^ e) {}
 }
 
-
-/*void sendCanMsg(PAR_ID_BYTES id)
-{
-	CAN_DATA data;
-
-	for (int i = 0; i < 6; i++)
-	{
-		data.all[i] = 0;
-	}
-
-	data.f.PARID = id.P;
-	data.f.R1 = id.S;
-
-	switch (id.P)
-	{
-	case EC_P_MODE: data.f.val.i = engine->mode; break;
-	case EC_G_N:
-		switch (id.S)
-		{
-		case EC_S_NR: data.f.val.f = EG::nR; break;
-		case EC_S_NU: data.f.val.f = EG::nU; break;
-		case EC_S_OMEGA: data.f.val.f = EG::omegaR; break;
-		case EC_S_DTIME: data.f.val.i = delta_time; break;
-		}
-		break;
-	case EC_G_QC:
-		switch (id.S)
-		{
-		case EC_S_QC_T: data.f.val.f = EG::g_step2Us; break;
-		case EC_S_QC_AN: data.f.val.f = EG::injAngle; break;
-		case EC_S_QC: data.f.val.f = EG::QC; break;
-		}
-		break;
-	case EC_P_NCYL: data.f.val.i = DIESEL_N_CYL; break;
-	case EC_P_PED:
-		switch (id.S)
-		{
-		case EC_P0: data.f.val.f = EG::pedal; break;
-		case EC_S_PEDST: data.f.val.i = EG::pedStep; break;
-		}
-		break;
-	case EC_P_VMT: data.f.val.i = EG::anVMT; break;
-	case EC_G_INJ:
-		switch (id.S)
-		{
-		case EC_S_INJT1: data.f.val.i = EG::g_step1Us; break;
-		case EC_S_INJT2: data.f.val.i = EG::g_step2Us; break;
-		case EC_S_INJD1: data.f.val.i = EG::g_duty1; break;
-		case EC_S_INJD2: data.f.val.i = EG::g_duty2; break;
-		}
-		break;
-	case EC_T_INJPHI: data.f.val.f = EG::injPhi[id.S]; break;
-	case EC_T_INJZ:	data.f.val.f = EG::injZ[id.S]; break;
-	case EC_T_INJN:	data.f.val.f = EG::injN[id.S]; break;
-	case EC_T_INJT:	data.f.val.f = EG::injT[id.S]; break;
-	case EC_P_M_MODE: data.f.val.i = EG::manMode; break;
-	case EC_P_M_QC:
-		switch (id.S)
-		{
-		case EC_P0: data.f.val.i = EG::manQC; break;
-		case EC_S_M_AN: data.f.val.i = EG::manAngle; break;
-		case EC_S_M_IAN: data.f.val.f = EG::injAngle; break;
-		}
-		break;
-	case EC_P_M_INJ:
-		switch (id.S)
-		{
-		case EC_P0: data.f.val.i = EG::manInj; break;
-		case EC_S_M_IONCE: data.f.val.i = EG::injOnce; break;
-		case EC_S_M_IN: data.f.val.i = EG::manN; break;
-		}
-		break;
-	case EC_P_M_PED: data.f.val.i = EG::manPed; break;
-	case EC_P_M_CANS: data.f.val.i = EG::canSend; break;
-	case EC_P_M_UOVT:
-		switch (id.S)
-		{
-		case EC_P0: data.f.val.i = EG::manOUVT; break;
-		case EC_S_M_UOVT: data.f.val.f = EG::injOuvt; break;
-		}
-		break;
-	}
-
-	sendCanMsgX(&data);
-}*/
-
-/*void recieveCanMsg(tCANMsgObject* msg)
-{
-	can_data.all = msg->pucMsgData;
-	switch (msg->pucMsgData[0])
-	{
-	case EC_P_MODE: engine->mode = can_data.f.val.i; break;
-	case EC_G_N:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_S_NR: EG::nR = can_data.f.val.f; break;
-		case EC_S_NU: EG::nU = can_data.f.val.f; break;
-		case EC_S_OMEGA: EG::omegaR = can_data.f.val.f; break;
-		case EC_S_DTIME: delta_time = can_data.f.val.f; break;
-		}
-		break;
-	case EC_G_QC:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_S_QC_T: EG::g_step2Us = can_data.f.val.f; break;
-		case EC_S_QC_AN: EG::injAngle = can_data.f.val.f; break;
-		case EC_S_QC: EG::QC = can_data.f.val.f; break;
-		}
-		break;
-	case EC_P_NCYL: DIESEL_N_CYL = can_data.f.val.i; break;
-	case EC_P_PED:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_P0: EG::pedal = can_data.f.val.f; break;
-		case EC_S_PEDST: EG::pedStep = can_data.f.val.i; break;
-		}
-		break;
-	case EC_P_VMT: EG::anVMT = can_data.f.val.f; break;
-	case EC_G_INJ:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_S_INJT1: EG::g_step1Us = can_data.f.val.i; break;
-		case EC_S_INJT2: EG::g_step2Us = can_data.f.val.i; break;
-		case EC_S_INJD1: EG::g_duty1 = can_data.f.val.i; break;
-		case EC_S_INJD2: EG::g_duty2 = can_data.f.val.i; break;
-		}
-		break;
-	case EC_T_INJPHI: EG::injPhi[msg->pucMsgData[1]] = can_data.f.val.f; break;
-	case EC_T_INJZ:	EG::injZ[msg->pucMsgData[1]] = can_data.f.val.f; break;
-	case EC_T_INJN:	EG::injN[msg->pucMsgData[1]] = can_data.f.val.f; break;
-	case EC_T_INJT:	EG::injT[msg->pucMsgData[1]] = can_data.f.val.f; break;
-	case EC_P_M_MODE: EG::manMode = can_data.f.val.i; break;
-	case EC_P_M_QC:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_P0: EG::manQC = can_data.f.val.i; break;
-		case EC_S_M_AN: EG::manAngle = can_data.f.val.i; break;
-		case EC_S_M_IAN: EG::injAngle = can_data.f.val.f; break;
-		}
-		break;
-	case EC_P_M_INJ:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_P0: EG::manInj = can_data.f.val.i; break;
-		case EC_S_M_IONCE: EG::injOnce = can_data.f.val.i; break;
-		case EC_S_M_IN: EG::manN = can_data.f.val.i; break;
-		}
-		break;
-	case EC_P_M_PED: EG::manPed = can_data.f.val.i; break;
-	case EC_P_M_CANS: EG::canSend = can_data.f.val.i; break;
-	case EC_P_M_UOVT:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_P0: EG::manOUVT = can_data.f.val.i; break;
-		case EC_S_M_UOVT: EG::injOuvt = can_data.f.val.f; break;
-		}
-		break;
-	}
-}*/
