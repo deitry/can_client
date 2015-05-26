@@ -36,6 +36,28 @@ namespace can_client {
 			m_fIsInitialized = FALSE;
 			can_init();
 
+			// чтение таблицы из файла
+			String^ myXMLfile = "can_parameters.xsd";
+			paramDataTable = gcnew DataTable;
+			try
+			{
+				canParametersDataSet->ReadXml(myXMLfile);
+				
+				//paramDataTable = canParametersDataSet->Tables[0];
+				ParametersDataGrid->DataSource = canParametersDataSet->Tables[0];
+				ParametersDataGrid->DataMember = "parameter";
+				//bindingSource1->DataSource = canParametersDataSet;
+				//canParametersDataSet->= "parameter";
+				//bindingSource1->DataSource = paramDataTable;
+				//bindingSource1->DataMember = "parameter";
+				//ParametersDataGrid->DataSource = bindingSource1;
+				//GetData("select * from Customers");
+			}
+			catch (Exception^ ex)
+			{
+				MessageBox::Show(ex->ToString());
+			}
+
 			eng = new CC_VEngine;
 			nMessage = 0;
 			isLogWrite = 0;
@@ -53,6 +75,7 @@ namespace can_client {
 				delete components;
 			}
 		}
+	private: DataTable^ paramDataTable;
 	private: System::Windows::Forms::Button^  initButton;
 	private: System::Windows::Forms::TabControl^  tabControl1;
 	private: System::Windows::Forms::TabPage^  tabPage1;
@@ -285,6 +308,28 @@ private: System::Windows::Forms::TextBox^  KiMultIn;
 private: System::Windows::Forms::TextBox^  KiValIn;
 
 private: System::Windows::Forms::TextBox^  KpMultIn;
+private: System::Windows::Forms::TabPage^  tabPage4;
+private: System::Windows::Forms::DataGridView^  ParametersDataGrid;
+private: System::Data::DataSet^  canParametersDataSet;
+private: System::Windows::Forms::BindingSource^  bindingSource1;
+private: System::ComponentModel::IContainer^  components;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -297,7 +342,7 @@ private: System::Windows::Forms::TextBox^  KpMultIn;
 		/// <summary>
 		/// Требуется переменная конструктора.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -306,6 +351,7 @@ private: System::Windows::Forms::TextBox^  KpMultIn;
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->initButton = (gcnew System::Windows::Forms::Button());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
@@ -478,6 +524,10 @@ private: System::Windows::Forms::TextBox^  KpMultIn;
 			this->label15 = (gcnew System::Windows::Forms::Label());
 			this->textInjT1In = (gcnew System::Windows::Forms::TextBox());
 			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
+			this->ParametersDataGrid = (gcnew System::Windows::Forms::DataGridView());
+			this->bindingSource1 = (gcnew System::Windows::Forms::BindingSource(this->components));
+			this->canParametersDataSet = (gcnew System::Data::DataSet());
 			this->sendButton = (gcnew System::Windows::Forms::Button());
 			this->writeLogButton = (gcnew System::Windows::Forms::Button());
 			this->logFileName = (gcnew System::Windows::Forms::TextBox());
@@ -488,6 +538,10 @@ private: System::Windows::Forms::TextBox^  KpMultIn;
 			this->tabPage2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gridFdbk))->BeginInit();
 			this->tabPage3->SuspendLayout();
+			this->tabPage4->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// initButton
@@ -505,6 +559,7 @@ private: System::Windows::Forms::TextBox^  KpMultIn;
 			this->tabControl1->Controls->Add(this->tabPage1);
 			this->tabControl1->Controls->Add(this->tabPage2);
 			this->tabControl1->Controls->Add(this->tabPage3);
+			this->tabControl1->Controls->Add(this->tabPage4);
 			this->tabControl1->Location = System::Drawing::Point(119, 7);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
@@ -1908,6 +1963,37 @@ private: System::Windows::Forms::TextBox^  KpMultIn;
 			this->label14->TabIndex = 0;
 			this->label14->Text = L"Продолжительность Ф";
 			// 
+			// tabPage4
+			// 
+			this->tabPage4->Controls->Add(this->ParametersDataGrid);
+			this->tabPage4->Location = System::Drawing::Point(4, 22);
+			this->tabPage4->Name = L"tabPage4";
+			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage4->Size = System::Drawing::Size(988, 638);
+			this->tabPage4->TabIndex = 3;
+			this->tabPage4->Text = L"tabPage4";
+			this->tabPage4->UseVisualStyleBackColor = true;
+			// 
+			// ParametersDataGrid
+			// 
+			this->ParametersDataGrid->AutoGenerateColumns = false;
+			this->ParametersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->ParametersDataGrid->DataSource = this->bindingSource1;
+			this->ParametersDataGrid->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->ParametersDataGrid->Location = System::Drawing::Point(3, 3);
+			this->ParametersDataGrid->Name = L"ParametersDataGrid";
+			this->ParametersDataGrid->Size = System::Drawing::Size(982, 632);
+			this->ParametersDataGrid->TabIndex = 0;
+			// 
+			// bindingSource1
+			// 
+			this->bindingSource1->DataSource = this->canParametersDataSet;
+			this->bindingSource1->Position = 0;
+			// 
+			// canParametersDataSet
+			// 
+			this->canParametersDataSet->DataSetName = L"can_parameters";
+			// 
 			// sendButton
 			// 
 			this->sendButton->Location = System::Drawing::Point(18, 255);
@@ -1970,6 +2056,10 @@ private: System::Windows::Forms::TextBox^  KpMultIn;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gridFdbk))->EndInit();
 			this->tabPage3->ResumeLayout(false);
 			this->tabPage3->PerformLayout();
+			this->tabPage4->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

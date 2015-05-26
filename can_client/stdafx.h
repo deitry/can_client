@@ -83,4 +83,3 @@ System::String^ StdToSys(std::string StdStr);
 std::string SysToStd(System::String^ SysStr);
 int isParFloat(CAN_DATA* data);
 
-

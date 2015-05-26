@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<can_parameters>
+  <xs:schema id="can_parameters"
+      targetNamespace="http://tempuri.org/can_parameters.xsd"
+      elementFormDefault="qualified"
+      xmlns="http://tempuri.org/can_parameters.xsd"
+      xmlns:mstns="http://tempuri.org/can_parameters.xsd"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
+>
+    
+    <xs:element name="parameter">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="idp" type="xs:byte" minOccurs="0" />
+          <xs:element name="ids1" type="xs:byte" minOccurs="0" />
+          <xs:element name="ids2" type="xs:byte" minOccurs="0" />
+          <xs:element name="ids3" type="xs:byte" minOccurs="0" />
+          <xs:element name="isFloat" type="xs:boolean" minOccurs="0" />
+          <xs:element name="units" type="xs:string" minOccurs="0" />
+          <xs:element name="description" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="can_parameters" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="parameter" />
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+
+  <parameter>
+    <idp>1</idp>
+    <ids1>0</ids1>
+    <ids2>0</ids2>
+    <ids3>0</ids3>
+    <isFloat>false</isFloat>
+    <units>-</units>
+    <description>Режим работы устройства</description>
+  </parameter>
+
+  <parameter>
+    <idp>2</idp>
+    <ids1>0</ids1>
+    <ids2>0</ids2>
+    <ids3>=0</ids3>
+    <isFloat>1</isFloat>
+    <units>об/мин</units>
+    <description>Текущая частота вращения двигателя</description>
+  </parameter>
+
+  <parameter>
+    <idp>2</idp>
+    <ids1>1</ids1>
+    <ids2></ids2>
+    <ids3></ids3>
+    <isFloat>true</isFloat>
+    <units>об/мин</units>
+    <description>Текущая уставка частоты вращения</description>
+  </parameter>
+
+  <parameter>
+    <idp>2</idp>
+    <ids1>2</ids1>
+    <isFloat>true</isFloat>
+    <units>рад/с</units>
+    <description>Текущая частота вращения двигателя</description>
+  </parameter>
+
+</can_parameters>
