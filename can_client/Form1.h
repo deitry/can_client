@@ -37,21 +37,12 @@ namespace can_client {
 			can_init();
 
 			// чтение таблицы из файла
-			String^ myXMLfile = "can_parameters.xsd";
-			paramDataTable = gcnew DataTable;
+			String^ myXMLfile = "can_parameters.xml";
+			DataSet^ ds = gcnew DataSet("can_parameters");
 			try
 			{
-				canParametersDataSet->ReadXml(myXMLfile);
-				
-				//paramDataTable = canParametersDataSet->Tables[0];
-				ParametersDataGrid->DataSource = canParametersDataSet->Tables[0];
-				ParametersDataGrid->DataMember = "parameter";
-				//bindingSource1->DataSource = canParametersDataSet;
-				//canParametersDataSet->= "parameter";
-				//bindingSource1->DataSource = paramDataTable;
-				//bindingSource1->DataMember = "parameter";
-				//ParametersDataGrid->DataSource = bindingSource1;
-				//GetData("select * from Customers");
+				ds->ReadXml(myXMLfile);
+				ParametersDataGrid->DataSource = ds->Tables[0];
 			}
 			catch (Exception^ ex)
 			{
@@ -311,7 +302,7 @@ private: System::Windows::Forms::TextBox^  KpMultIn;
 private: System::Windows::Forms::TabPage^  tabPage4;
 private: System::Windows::Forms::DataGridView^  ParametersDataGrid;
 private: System::Data::DataSet^  canParametersDataSet;
-private: System::Windows::Forms::BindingSource^  bindingSource1;
+
 private: System::ComponentModel::IContainer^  components;
 
 
@@ -351,7 +342,6 @@ private: System::ComponentModel::IContainer^  components;
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = (gcnew System::ComponentModel::Container());
 			this->initButton = (gcnew System::Windows::Forms::Button());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
@@ -526,7 +516,6 @@ private: System::ComponentModel::IContainer^  components;
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
 			this->ParametersDataGrid = (gcnew System::Windows::Forms::DataGridView());
-			this->bindingSource1 = (gcnew System::Windows::Forms::BindingSource(this->components));
 			this->canParametersDataSet = (gcnew System::Data::DataSet());
 			this->sendButton = (gcnew System::Windows::Forms::Button());
 			this->writeLogButton = (gcnew System::Windows::Forms::Button());
@@ -540,7 +529,6 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabPage3->SuspendLayout();
 			this->tabPage4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -1976,19 +1964,15 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// ParametersDataGrid
 			// 
-			this->ParametersDataGrid->AutoGenerateColumns = false;
+			this->ParametersDataGrid->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::DisplayedCells;
 			this->ParametersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->ParametersDataGrid->DataSource = this->bindingSource1;
 			this->ParametersDataGrid->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->ParametersDataGrid->Location = System::Drawing::Point(3, 3);
 			this->ParametersDataGrid->Name = L"ParametersDataGrid";
+			this->ParametersDataGrid->ReadOnly = true;
 			this->ParametersDataGrid->Size = System::Drawing::Size(982, 632);
 			this->ParametersDataGrid->TabIndex = 0;
-			// 
-			// bindingSource1
-			// 
-			this->bindingSource1->DataSource = this->canParametersDataSet;
-			this->bindingSource1->Position = 0;
+			this->ParametersDataGrid->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::ParametersDataGrid_CellClick);
 			// 
 			// canParametersDataSet
 			// 
@@ -2058,7 +2042,6 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabPage3->PerformLayout();
 			this->tabPage4->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -2159,6 +2142,36 @@ private: System::Void numVMTOut_ValueChanged(System::Object^  sender, System::Ev
 			 onVmtSearch();
 		 }
 private: System::Void label29_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void ParametersDataGrid_CellClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+			 if ((e->RowIndex >= ParametersDataGrid->NewRowIndex) || (e->RowIndex <= 0))
+				 return;
+			 
+			 int idp;
+			 System::Globalization::CultureInfo^ provider = System::Globalization::CultureInfo::InvariantCulture;
+
+			 String^ tmp = (String^)ParametersDataGrid->Rows[e->RowIndex]->Cells[2]->Value;
+			 tmp = tmp->Replace("0x","");
+			 if (Int32::TryParse(tmp, System::Globalization::NumberStyles::HexNumber, provider, idp))
+			 {
+				 this->textId1->Text = "" + idp;
+			 }
+			 else
+			 {
+				 this->textId2->Text = "0";
+			 }
+			 
+			 int ids1;
+			 tmp = (String^)ParametersDataGrid->Rows[e->RowIndex]->Cells[3]->Value;
+			 tmp->Replace("0x","");
+			 if (Int32::TryParse(tmp, System::Globalization::NumberStyles::HexNumber, provider, ids1))
+			 {
+				 this->textId2->Text = "" + ids1;
+			 }
+			 else
+			 {
+				 this->textId2->Text = "0";
+			 }
 		 }
 };
 }

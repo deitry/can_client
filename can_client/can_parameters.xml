@@ -1,0 +1,391 @@
+﻿<!--<?xml version="1.0" encoding="utf-8"?>-->
+<can_parameters>
+  <!--<xs:schema id="can_parameters"
+      targetNamespace="http://tempuri.org/can_parameters.xsd"
+      elementFormDefault="qualified"
+      xmlns="http://tempuri.org/can_parameters.xsd"
+      xmlns:mstns="http://tempuri.org/can_parameters.xsd"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
+>
+    
+    <xs:element name="parameter">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="idp" type="xs:byte" minOccurs="0" />
+          <xs:element name="ids1" type="xs:byte" minOccurs="0" />
+          <xs:element name="ids2" type="xs:byte" minOccurs="0" />
+          <xs:element name="ids3" type="xs:byte" minOccurs="0" />
+          <xs:element name="isFloat" type="xs:boolean" minOccurs="0" />
+          <xs:element name="units" type="xs:string" minOccurs="0" />
+          <xs:element name="description" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="can_parameters" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="parameter" />
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>-->
+
+  <parameter idp="0x01" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Режим работы устройства</description>
+  </parameter>
+
+  <parameter idp="0x02" ids1="0" ids2="0" ids3="0" isFloat="1">
+    <units>об/мин</units>
+    <description>Текущая частота вращения двигателя</description>
+  </parameter>
+
+  <parameter idp="0x02" ids1="1" ids2="0" ids3="0" isFloat="1">
+    <units>об/мин</units>
+    <description>Текущая уставка частоты вращения</description>
+  </parameter>
+
+  <parameter idp="0x02" ids1="2" ids2="0" ids3="0" isFloat="1">
+    <units>рад/с</units>
+    <description>Текущая частота вращения двигателя</description>
+  </parameter>
+
+  <parameter idp="0x02" ids1="3" ids2="0" ids3="0" isFloat="1">
+    <units>с</units>
+    <description>Время между соседними зубьями (между прерываниями от датчика Холла)</description>
+  </parameter>
+
+  <parameter idp="0x03" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>мкс</units>
+    <description>Продолжительность удерживающего импульса</description>
+  </parameter>
+
+  <parameter idp="0x03" ids1="1" ids2="0" ids3="0" isFloat="1">
+    <units>градусы</units>
+    <description>Продолжительность впрыска в градусах</description>
+  </parameter>
+
+  <parameter idp="0x03" ids1="2" ids2="0" ids3="0" isFloat="1">
+    <units>кг/цикл</units>
+    <description>Цикловая подача топлива</description>
+  </parameter>
+
+  <parameter idp="0x03" ids1="3" ids2="0" ids3="0" isFloat="1">
+    <units>-</units>
+    <description>Ограничение по альфе</description>
+  </parameter>
+
+  <parameter idp="0x03" ids1="4" ids2="0" ids3="0" isFloat="1">
+    <units>кг/цикл</units>
+    <description>Ограничение подачи по альфе</description>
+  </parameter>
+
+  <parameter idp="0x03" ids1="5" ids2="0" ids3="0" isFloat="1">
+    <units>кг/цикл</units>
+    <description>Максимальное значение подачи</description>
+  </parameter>
+
+  <parameter idp="0x03" ids1="6" ids2="0" ids3="0" isFloat="1">
+    <units>кг/цикл</units>
+    <description>Минимальное значение подачи</description>
+  </parameter>
+
+  <parameter idp="0x03" ids1="7" ids2="0" ids3="0" isFloat="1">
+    <units>?</units>
+    <description>Переводной коэффициент подачи кг/л -> мкс</description>
+  </parameter>
+
+  <parameter idp="0x04" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Количество цилиндров</description>
+  </parameter>
+
+  <parameter idp="0x05" ids1="0" ids2="0" ids3="0" isFloat="1">
+    <units>-</units>
+    <description>Положение педали</description>
+  </parameter>
+
+  <parameter idp="0x05" ids1="1" ids2="0" ids3="0" isFloat="1">
+    <units>-</units>
+    <description>Шаг изменения значения педали</description>
+  </parameter>
+  
+  <parameter idp="0x06" ids1="0" ids2="0" ids3="0" isFloat="1">
+    <units>градусы</units>
+    <description>Смещение верхней мёртвой точки нулевого цилиндра относительно начала отсчёта зубьев по датчику Холла</description>
+  </parameter>
+
+  <parameter idp="0x10" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>мкс</units>
+    <description>Продолжительность форсирующего импульса</description>
+  </parameter>
+
+  <parameter idp="0x10" ids1="1" ids2="0" ids3="0" isFloat="0">
+    <units>мкс</units>
+    <description>Продолжительность удерживающего импульса</description>
+  </parameter>
+
+  <parameter idp="0x10" ids1="2" ids2="0" ids3="0" isFloat="0">
+    <units>%</units>
+    <description>Скважность форсирующего импульса</description>
+  </parameter>
+
+  <parameter idp="0x10" ids1="3" ids2="0" ids3="0" isFloat="0">
+    <units>%</units>
+    <description>Скважность удерживающего импульса</description>
+  </parameter>
+
+  <parameter idp="0x11" ids1="0..NCYL-1" ids2="0" ids3="0" isFloat="1">
+    <units>градусы</units>
+    <description>Угол поворота, соответствующего моменту начала впрыска в н-й цилиндр</description>
+  </parameter>
+
+  <parameter idp="0x12" ids1="0..NCYL-1" ids2="0" ids3="0" isFloat="0">
+    <units>номер зуба</units>
+    <description>Номер зуба, от которого отсчитывается впрыск в н-й цилиндр</description>
+  </parameter>
+
+  <parameter idp="0x13" ids1="0..NCYL" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Количество впрысков в соответствующий цилиндр</description>
+  </parameter>
+
+  <parameter idp="0x14" ids1="0..NCYL" ids2="0" ids3="0" isFloat="0">
+    <units>мкс</units>
+    <description>Задержка по времени, отсчитываемая от зуба, указанного в injZ для соответствующего цилиндра</description>
+  </parameter>
+
+  <parameter idp="0x15" ids1="0..NCYL" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Количество отсчётов таймера с момента установки флага на впрыск (мкс*100)</description>
+  </parameter>
+
+  <parameter idp="0x21" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Ручной режим работы блока</description>
+  </parameter>
+
+  <parameter idp="0x22" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Ручной режим установки подачи</description>
+  </parameter>
+
+  <parameter idp="0x22" ids1="1" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Ручная установка подачи в градусах</description>
+  </parameter>
+
+  <parameter idp="0x22" ids1="2" ids2="0" ids3="0" isFloat="0">
+    <units>градусы</units>
+    <description>Угол, определяющий  продолжительность впрыска</description>
+  </parameter>
+
+  <parameter idp="0x22" ids1="3" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Ручная установка подачи в мкс</description>
+  </parameter>
+
+  <parameter idp="0x23" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Ручной режим впрыска</description>
+  </parameter>
+
+  <parameter idp="0x23" ids1="1" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Флаг для единичного впрыска или запуск впрысков с заданной частотой</description>
+  </parameter>
+
+  <parameter idp="0x23" ids1="2" ids2="0" ids3="0" isFloat="0">
+    <units>? мкс*10</units>
+    <description>Частота впрысков в ручном режиме</description>
+  </parameter>
+
+  <parameter idp="0x23" ids1="3" ids2="0" ids3="0" isFloat="0">
+    <units>№ цилиндра</units>
+    <description>Номер цилиндра, в который будет осуществляться впрыск</description>
+  </parameter>
+
+  <parameter idp="0x23" ids1="4" ids2="0" ids3="0" isFloat="0">
+    <units>№ цилиндра</units>
+    <description>Номер цилиндра, с которого будет считываться обратная связь</description>
+  </parameter>
+
+  <parameter idp="0x24" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Ручной режим задания педали</description>
+  </parameter>
+
+  <parameter idp="0x25" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Передача параметров по CAN</description>
+  </parameter>
+
+  <parameter idp="0x25" ids1="1" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Передача временных меток по CAN</description>
+  </parameter>
+
+  <parameter idp="0x26" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Ручной режим установки угла опережения впрыска</description>
+  </parameter>
+
+  <parameter idp="0x26" ids1="1" ids2="0" ids3="0" isFloat="0">
+    <units>градусы</units>
+    <description>Угол опережения впрыска топлива</description>
+  </parameter>
+
+  <parameter idp="0x27" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Режим снятия обратной связи</description>
+  </parameter>
+
+  <parameter idp="0x27" ids1="1..50" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Массив точек со значениями обратной связи по току</description>
+  </parameter>
+
+  <parameter idp="0x28" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Включение светодиодов</description>
+  </parameter>
+
+  <parameter idp="0x29" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Включение оцифровки данных с датчиков</description>
+  </parameter>
+
+  <parameter idp="0x29" ids1="1" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Положение педали</description>
+  </parameter>
+
+  <parameter idp="0x29" ids1="2" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Положение ключа (сейчас: определение режима работы)</description>
+  </parameter>
+
+  <parameter idp="0x29" ids1="3" ids2="0" ids3="0" isFloat="0">
+    <units>КПа</units>
+    <description>Давление наддува</description>
+  </parameter>
+
+  <parameter idp="0x29" ids1="4" ids2="0" ids3="0" isFloat="0">
+    <units>КПа</units>
+    <description>Давление впрыска</description>
+  </parameter>
+
+  <parameter idp="0x29" ids1="5" ids2="0" ids3="0" isFloat="0">
+    <units>К</units>
+    <description>Температура воздуха</description>
+  </parameter>
+
+  <parameter idp="0x31" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>(пока не передаётся) Таблица - Угол опережения впрыска топлива</description>
+  </parameter>
+
+  <parameter idp="0x32" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>(пока не передаётся) Таблица - Скоростная характеристика</description>
+  </parameter>
+
+  <parameter idp="0x33" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>(пока не передаётся) Таблица - Зависимость частоты холостого хода от (?)</description>
+  </parameter>
+
+  <parameter idp="0x34" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>(пока не передаётся) Таблица - Зависимость стартовой подачи от ?</description>
+  </parameter>
+
+  <parameter idp="0x41" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Коэффициент при пропорциональной составляющей ПИД-регулятора</description>
+  </parameter>
+
+  <parameter idp="0x42" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Коэффициент при интегральной составляющей ПИД-регулятора</description>
+  </parameter>
+
+  <parameter idp="0x43" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Коэффициент при дифференциальной составляющей ПИД-регулятора</description>
+  </parameter>
+
+  <parameter idp="0x44" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>кг/л</units>
+    <description>Пропорциональная составляющая управляющего сигнала ПИД-регулятора
+      (errP*Kp)
+    </description>
+  </parameter>
+  
+  <parameter idp="0x45" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>кг/л</units>
+    <description>Интегральная составляющая управляющего сигнала ПИД-регулятора
+      (errI*Ki)
+    </description>
+  </parameter>
+
+  <parameter idp="0x46" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>кг/л</units>
+    <description>Дифференциальная составляющая управляющего сигнала ПИД-регулятора
+      (errD*Kd)
+    </description>
+  </parameter>
+  
+  <parameter idp="0x47" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Коээфициент темпа набора частоты вращения</description>
+  </parameter>
+
+  <parameter idp="0x48" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>float</units>
+    <description>Зона нечувствительности ПИД-регулятора</description>
+  </parameter>
+
+  <parameter idp="0x51" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>с</units>
+    <description>Продолжительность работы основного цикла программы</description>
+  </parameter>
+
+  <parameter idp="0x52" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>с</units>
+    <description>Продолжительность прерывания XINT1 (датчик Холла)</description>
+  </parameter>
+
+  <parameter idp="0x53" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>с</units>
+    <description>Продолжительность прерывания TIM1 (впрыск)</description>
+  </parameter>
+
+  <parameter idp="0x61" ids1="0" ids2="0" ids3="0" isFloat="0">
+    <units>float</units>
+    <description>Значение на установленном канале
+      (датчики - read, исполнительные устройства - write)
+    </description>
+  </parameter>
+
+  <parameter idp="0x61" ids1="1" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Номер канала датчика (определены в diesel_drv.h)</description>
+  </parameter>
+
+  <parameter idp="0x61" ids1="2" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Тип датчика (определены в diesel_drv.h)</description>
+  </parameter>
+
+  <parameter idp="0x61" ids1="3" ids2="0" ids3="0" isFloat="0">
+    <units>-</units>
+    <description>Режим работы с произвольными каналами.
+      0 - считывание с датчиков,
+      1 - установка на исполнительные устройства
+      default - работа с произвольными каналами выключена
+    </description>
+  </parameter>
+
+</can_parameters>
