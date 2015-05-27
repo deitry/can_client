@@ -95,6 +95,8 @@ union EC_CAN_PAR_ID
 #define EC_P_M_INJ		0x23                // Флаг manInj - ручное управление впрыском в нулевой цилиндр 
 #define 	EC_S_M_IONCE		0x01        // Флаг injOnce - осуществить однократный или периодический (если manN != 0) впрыск в цилиндр
 #define 	EC_S_M_IN			0x02        // Число manN - частота впрысков в сотнях микросекунд
+#define 	EC_S_M_INJCYL		0x03		// цилиндр, в который осуществляется впрыск
+#define 	EC_S_FDBKCYL		0x04		// цилиндр, с которого будет считываться обратная связь
 #define EC_P_M_PED		0x24                // Флаг manPed - ручная установка значения педали
 #define EC_P_M_CANS		0x25                // Флаг CanSend - пересылка параметров
 #define		EC_S_M_CANST		0x01		// Флаг CanTime - пересылка временных меток

@@ -37,11 +37,12 @@ namespace can_client {
 			can_init();
 
 			// чтение таблицы из файла
-			String^ myXMLfile = "can_parameters.xml";
+			String^ myXMLfile = "C:/workspace/can_client/can_client/can_parameters.xml";
 			DataSet^ ds = gcnew DataSet("can_parameters");
 			try
 			{
 				ds->ReadXml(myXMLfile);
+				//bindingSource1->DataSource = ds->Tables[0];
 				ParametersDataGrid->DataSource = ds->Tables[0];
 			}
 			catch (Exception^ ex)
@@ -192,7 +193,7 @@ private: System::Windows::Forms::TextBox^  textId2;
 private: System::Windows::Forms::TextBox^  textId1;
 private: System::Windows::Forms::TextBox^  textRandOut;
 private: System::Windows::Forms::TextBox^  textRandIn;
-private: System::Windows::Forms::CheckBox^  checkAutoScan;
+
 private: System::Windows::Forms::Button^  buttonRandOut;
 private: System::Windows::Forms::Button^  buttonRandIn;
 
@@ -302,6 +303,10 @@ private: System::Windows::Forms::TextBox^  KpMultIn;
 private: System::Windows::Forms::TabPage^  tabPage4;
 private: System::Windows::Forms::DataGridView^  ParametersDataGrid;
 private: System::Data::DataSet^  canParametersDataSet;
+private: System::Windows::Forms::TextBox^  FilterTextBox;
+
+private: System::Windows::Forms::Label^  label29;
+private: System::Windows::Forms::BindingSource^  bindingSource1;
 
 private: System::ComponentModel::IContainer^  components;
 
@@ -342,6 +347,7 @@ private: System::ComponentModel::IContainer^  components;
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->initButton = (gcnew System::Windows::Forms::Button());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
@@ -360,18 +366,9 @@ private: System::ComponentModel::IContainer^  components;
 			this->KpMultOut = (gcnew System::Windows::Forms::TextBox());
 			this->KpValOut = (gcnew System::Windows::Forms::TextBox());
 			this->KpValIn = (gcnew System::Windows::Forms::TextBox());
-			this->label28 = (gcnew System::Windows::Forms::Label());
-			this->label27 = (gcnew System::Windows::Forms::Label());
 			this->textVMTIn = (gcnew System::Windows::Forms::TextBox());
 			this->label23 = (gcnew System::Windows::Forms::Label());
 			this->numVMTOut = (gcnew System::Windows::Forms::NumericUpDown());
-			this->textId2 = (gcnew System::Windows::Forms::TextBox());
-			this->textId1 = (gcnew System::Windows::Forms::TextBox());
-			this->textRandOut = (gcnew System::Windows::Forms::TextBox());
-			this->textRandIn = (gcnew System::Windows::Forms::TextBox());
-			this->checkAutoScan = (gcnew System::Windows::Forms::CheckBox());
-			this->buttonRandOut = (gcnew System::Windows::Forms::Button());
-			this->buttonRandIn = (gcnew System::Windows::Forms::Button());
 			this->comboModeOut = (gcnew System::Windows::Forms::ComboBox());
 			this->comboMode = (gcnew System::Windows::Forms::ComboBox());
 			this->textnUIn = (gcnew System::Windows::Forms::TextBox());
@@ -516,11 +513,22 @@ private: System::ComponentModel::IContainer^  components;
 			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
 			this->ParametersDataGrid = (gcnew System::Windows::Forms::DataGridView());
+			this->bindingSource1 = (gcnew System::Windows::Forms::BindingSource(this->components));
+			this->label28 = (gcnew System::Windows::Forms::Label());
+			this->label27 = (gcnew System::Windows::Forms::Label());
+			this->textId2 = (gcnew System::Windows::Forms::TextBox());
+			this->textId1 = (gcnew System::Windows::Forms::TextBox());
+			this->textRandOut = (gcnew System::Windows::Forms::TextBox());
+			this->textRandIn = (gcnew System::Windows::Forms::TextBox());
+			this->buttonRandOut = (gcnew System::Windows::Forms::Button());
+			this->buttonRandIn = (gcnew System::Windows::Forms::Button());
 			this->canParametersDataSet = (gcnew System::Data::DataSet());
 			this->sendButton = (gcnew System::Windows::Forms::Button());
 			this->writeLogButton = (gcnew System::Windows::Forms::Button());
 			this->logFileName = (gcnew System::Windows::Forms::TextBox());
 			this->logCheck = (gcnew System::Windows::Forms::CheckBox());
+			this->FilterTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->label29 = (gcnew System::Windows::Forms::Label());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numVMTOut))->BeginInit();
@@ -529,6 +537,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabPage3->SuspendLayout();
 			this->tabPage4->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -536,7 +545,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			this->initButton->Location = System::Drawing::Point(18, 46);
 			this->initButton->Name = L"initButton";
-			this->initButton->Size = System::Drawing::Size(75, 23);
+			this->initButton->Size = System::Drawing::Size(91, 30);
 			this->initButton->TabIndex = 0;
 			this->initButton->Text = L"Инициализировать";
 			this->initButton->UseVisualStyleBackColor = true;
@@ -548,10 +557,10 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabControl1->Controls->Add(this->tabPage2);
 			this->tabControl1->Controls->Add(this->tabPage3);
 			this->tabControl1->Controls->Add(this->tabPage4);
-			this->tabControl1->Location = System::Drawing::Point(119, 7);
+			this->tabControl1->Location = System::Drawing::Point(216, 7);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
-			this->tabControl1->Size = System::Drawing::Size(996, 664);
+			this->tabControl1->Size = System::Drawing::Size(955, 664);
 			this->tabControl1->TabIndex = 1;
 			// 
 			// tabPage1
@@ -571,18 +580,9 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabPage1->Controls->Add(this->KpMultOut);
 			this->tabPage1->Controls->Add(this->KpValOut);
 			this->tabPage1->Controls->Add(this->KpValIn);
-			this->tabPage1->Controls->Add(this->label28);
-			this->tabPage1->Controls->Add(this->label27);
 			this->tabPage1->Controls->Add(this->textVMTIn);
 			this->tabPage1->Controls->Add(this->label23);
 			this->tabPage1->Controls->Add(this->numVMTOut);
-			this->tabPage1->Controls->Add(this->textId2);
-			this->tabPage1->Controls->Add(this->textId1);
-			this->tabPage1->Controls->Add(this->textRandOut);
-			this->tabPage1->Controls->Add(this->textRandIn);
-			this->tabPage1->Controls->Add(this->checkAutoScan);
-			this->tabPage1->Controls->Add(this->buttonRandOut);
-			this->tabPage1->Controls->Add(this->buttonRandIn);
 			this->tabPage1->Controls->Add(this->comboModeOut);
 			this->tabPage1->Controls->Add(this->comboMode);
 			this->tabPage1->Controls->Add(this->textnUIn);
@@ -615,7 +615,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabPage1->Location = System::Drawing::Point(4, 22);
 			this->tabPage1->Name = L"tabPage1";
 			this->tabPage1->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage1->Size = System::Drawing::Size(988, 638);
+			this->tabPage1->Size = System::Drawing::Size(947, 638);
 			this->tabPage1->TabIndex = 0;
 			this->tabPage1->Text = L"\"Панель приборов\"";
 			this->tabPage1->UseVisualStyleBackColor = true;
@@ -735,24 +735,6 @@ private: System::ComponentModel::IContainer^  components;
 			this->KpValIn->Size = System::Drawing::Size(52, 20);
 			this->KpValIn->TabIndex = 45;
 			// 
-			// label28
-			// 
-			this->label28->AutoSize = true;
-			this->label28->Location = System::Drawing::Point(746, 184);
-			this->label28->Name = L"label28";
-			this->label28->Size = System::Drawing::Size(91, 13);
-			this->label28->TabIndex = 44;
-			this->label28->Text = L"id подпараметра";
-			// 
-			// label27
-			// 
-			this->label27->AutoSize = true;
-			this->label27->Location = System::Drawing::Point(746, 158);
-			this->label27->Name = L"label27";
-			this->label27->Size = System::Drawing::Size(73, 13);
-			this->label27->TabIndex = 43;
-			this->label27->Text = L"id параметра";
-			// 
 			// textVMTIn
 			// 
 			this->textVMTIn->Location = System::Drawing::Point(23, 270);
@@ -780,68 +762,6 @@ private: System::ComponentModel::IContainer^  components;
 			this->numVMTOut->Size = System::Drawing::Size(103, 20);
 			this->numVMTOut->TabIndex = 40;
 			this->numVMTOut->ValueChanged += gcnew System::EventHandler(this, &Form1::numVMTOut_ValueChanged);
-			// 
-			// textId2
-			// 
-			this->textId2->Location = System::Drawing::Point(699, 181);
-			this->textId2->Name = L"textId2";
-			this->textId2->Size = System::Drawing::Size(41, 20);
-			this->textId2->TabIndex = 38;
-			this->textId2->Text = L"0";
-			// 
-			// textId1
-			// 
-			this->textId1->Location = System::Drawing::Point(700, 155);
-			this->textId1->Name = L"textId1";
-			this->textId1->Size = System::Drawing::Size(40, 20);
-			this->textId1->TabIndex = 37;
-			this->textId1->Text = L"0";
-			// 
-			// textRandOut
-			// 
-			this->textRandOut->Location = System::Drawing::Point(699, 238);
-			this->textRandOut->Name = L"textRandOut";
-			this->textRandOut->Size = System::Drawing::Size(100, 20);
-			this->textRandOut->TabIndex = 36;
-			this->textRandOut->Text = L"0";
-			// 
-			// textRandIn
-			// 
-			this->textRandIn->Location = System::Drawing::Point(699, 208);
-			this->textRandIn->Name = L"textRandIn";
-			this->textRandIn->Size = System::Drawing::Size(100, 20);
-			this->textRandIn->TabIndex = 35;
-			this->textRandIn->Text = L"0";
-			// 
-			// checkAutoScan
-			// 
-			this->checkAutoScan->AutoSize = true;
-			this->checkAutoScan->Location = System::Drawing::Point(817, 264);
-			this->checkAutoScan->Name = L"checkAutoScan";
-			this->checkAutoScan->Size = System::Drawing::Size(119, 17);
-			this->checkAutoScan->TabIndex = 34;
-			this->checkAutoScan->Text = L"(ничего не делает)";
-			this->checkAutoScan->UseVisualStyleBackColor = true;
-			// 
-			// buttonRandOut
-			// 
-			this->buttonRandOut->Location = System::Drawing::Point(817, 235);
-			this->buttonRandOut->Name = L"buttonRandOut";
-			this->buttonRandOut->Size = System::Drawing::Size(75, 23);
-			this->buttonRandOut->TabIndex = 33;
-			this->buttonRandOut->Text = L"Отправить";
-			this->buttonRandOut->UseVisualStyleBackColor = true;
-			this->buttonRandOut->Click += gcnew System::EventHandler(this, &Form1::buttonRandOut_Click);
-			// 
-			// buttonRandIn
-			// 
-			this->buttonRandIn->Location = System::Drawing::Point(817, 206);
-			this->buttonRandIn->Name = L"buttonRandIn";
-			this->buttonRandIn->Size = System::Drawing::Size(75, 23);
-			this->buttonRandIn->TabIndex = 32;
-			this->buttonRandIn->Text = L"Запрос";
-			this->buttonRandIn->UseVisualStyleBackColor = true;
-			this->buttonRandIn->Click += gcnew System::EventHandler(this, &Form1::buttonRandIn_Click);
 			// 
 			// comboModeOut
 			// 
@@ -1132,7 +1052,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage2->Size = System::Drawing::Size(988, 638);
+			this->tabPage2->Size = System::Drawing::Size(947, 638);
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Ручной режим";
 			this->tabPage2->UseVisualStyleBackColor = true;
@@ -1179,7 +1099,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// dT_ms
 			// 
-			this->dT_ms->Location = System::Drawing::Point(574, 470);
+			this->dT_ms->Location = System::Drawing::Point(463, 471);
 			this->dT_ms->Name = L"dT_ms";
 			this->dT_ms->Size = System::Drawing::Size(100, 20);
 			this->dT_ms->TabIndex = 44;
@@ -1187,7 +1107,7 @@ private: System::ComponentModel::IContainer^  components;
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(682, 473);
+			this->label2->Location = System::Drawing::Point(571, 474);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(226, 13);
 			this->label2->TabIndex = 43;
@@ -1196,7 +1116,7 @@ private: System::ComponentModel::IContainer^  components;
 			// label26
 			// 
 			this->label26->AutoSize = true;
-			this->label26->Location = System::Drawing::Point(682, 526);
+			this->label26->Location = System::Drawing::Point(571, 527);
 			this->label26->Name = L"label26";
 			this->label26->Size = System::Drawing::Size(269, 13);
 			this->label26->TabIndex = 42;
@@ -1205,7 +1125,7 @@ private: System::ComponentModel::IContainer^  components;
 			// label25
 			// 
 			this->label25->AutoSize = true;
-			this->label25->Location = System::Drawing::Point(682, 499);
+			this->label25->Location = System::Drawing::Point(571, 500);
 			this->label25->Name = L"label25";
 			this->label25->Size = System::Drawing::Size(177, 13);
 			this->label25->TabIndex = 41;
@@ -1214,7 +1134,7 @@ private: System::ComponentModel::IContainer^  components;
 			// label24
 			// 
 			this->label24->AutoSize = true;
-			this->label24->Location = System::Drawing::Point(682, 447);
+			this->label24->Location = System::Drawing::Point(571, 448);
 			this->label24->Name = L"label24";
 			this->label24->Size = System::Drawing::Size(142, 13);
 			this->label24->TabIndex = 40;
@@ -1222,14 +1142,14 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// textIntTime1
 			// 
-			this->textIntTime1->Location = System::Drawing::Point(574, 522);
+			this->textIntTime1->Location = System::Drawing::Point(463, 523);
 			this->textIntTime1->Name = L"textIntTime1";
 			this->textIntTime1->Size = System::Drawing::Size(100, 20);
 			this->textIntTime1->TabIndex = 39;
 			// 
 			// textIntTime
 			// 
-			this->textIntTime->Location = System::Drawing::Point(574, 496);
+			this->textIntTime->Location = System::Drawing::Point(463, 497);
 			this->textIntTime->Name = L"textIntTime";
 			this->textIntTime->Size = System::Drawing::Size(100, 20);
 			this->textIntTime->TabIndex = 38;
@@ -1528,7 +1448,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// textProgTime
 			// 
-			this->textProgTime->Location = System::Drawing::Point(574, 444);
+			this->textProgTime->Location = System::Drawing::Point(463, 445);
 			this->textProgTime->Name = L"textProgTime";
 			this->textProgTime->Size = System::Drawing::Size(100, 20);
 			this->textProgTime->TabIndex = 34;
@@ -1854,7 +1774,7 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
 			this->tabPage3->Name = L"tabPage3";
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage3->Size = System::Drawing::Size(988, 638);
+			this->tabPage3->Size = System::Drawing::Size(947, 638);
 			this->tabPage3->TabIndex = 2;
 			this->tabPage3->Text = L"Системные настройки";
 			this->tabPage3->UseVisualStyleBackColor = true;
@@ -1953,11 +1873,13 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// tabPage4
 			// 
+			this->tabPage4->Controls->Add(this->label29);
+			this->tabPage4->Controls->Add(this->FilterTextBox);
 			this->tabPage4->Controls->Add(this->ParametersDataGrid);
 			this->tabPage4->Location = System::Drawing::Point(4, 22);
 			this->tabPage4->Name = L"tabPage4";
 			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage4->Size = System::Drawing::Size(988, 638);
+			this->tabPage4->Size = System::Drawing::Size(947, 638);
 			this->tabPage4->TabIndex = 3;
 			this->tabPage4->Text = L"tabPage4";
 			this->tabPage4->UseVisualStyleBackColor = true;
@@ -1966,13 +1888,83 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			this->ParametersDataGrid->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::DisplayedCells;
 			this->ParametersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->ParametersDataGrid->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->ParametersDataGrid->Location = System::Drawing::Point(3, 3);
+			this->ParametersDataGrid->Dock = System::Windows::Forms::DockStyle::Bottom;
+			this->ParametersDataGrid->Location = System::Drawing::Point(3, 49);
 			this->ParametersDataGrid->Name = L"ParametersDataGrid";
 			this->ParametersDataGrid->ReadOnly = true;
-			this->ParametersDataGrid->Size = System::Drawing::Size(982, 632);
+			this->ParametersDataGrid->Size = System::Drawing::Size(941, 586);
 			this->ParametersDataGrid->TabIndex = 0;
 			this->ParametersDataGrid->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::ParametersDataGrid_CellClick);
+			// 
+			// label28
+			// 
+			this->label28->AutoSize = true;
+			this->label28->Location = System::Drawing::Point(64, 133);
+			this->label28->Name = L"label28";
+			this->label28->Size = System::Drawing::Size(91, 13);
+			this->label28->TabIndex = 44;
+			this->label28->Text = L"id подпараметра";
+			// 
+			// label27
+			// 
+			this->label27->AutoSize = true;
+			this->label27->Location = System::Drawing::Point(64, 107);
+			this->label27->Name = L"label27";
+			this->label27->Size = System::Drawing::Size(73, 13);
+			this->label27->TabIndex = 43;
+			this->label27->Text = L"id параметра";
+			// 
+			// textId2
+			// 
+			this->textId2->Location = System::Drawing::Point(17, 130);
+			this->textId2->Name = L"textId2";
+			this->textId2->Size = System::Drawing::Size(41, 20);
+			this->textId2->TabIndex = 38;
+			this->textId2->Text = L"0";
+			// 
+			// textId1
+			// 
+			this->textId1->Location = System::Drawing::Point(18, 104);
+			this->textId1->Name = L"textId1";
+			this->textId1->Size = System::Drawing::Size(40, 20);
+			this->textId1->TabIndex = 37;
+			this->textId1->Text = L"0";
+			// 
+			// textRandOut
+			// 
+			this->textRandOut->Location = System::Drawing::Point(17, 187);
+			this->textRandOut->Name = L"textRandOut";
+			this->textRandOut->Size = System::Drawing::Size(100, 20);
+			this->textRandOut->TabIndex = 36;
+			this->textRandOut->Text = L"0";
+			// 
+			// textRandIn
+			// 
+			this->textRandIn->Location = System::Drawing::Point(17, 157);
+			this->textRandIn->Name = L"textRandIn";
+			this->textRandIn->Size = System::Drawing::Size(100, 20);
+			this->textRandIn->TabIndex = 35;
+			this->textRandIn->Text = L"0";
+			// 
+			// buttonRandOut
+			// 
+			this->buttonRandOut->Location = System::Drawing::Point(135, 184);
+			this->buttonRandOut->Name = L"buttonRandOut";
+			this->buttonRandOut->Size = System::Drawing::Size(75, 23);
+			this->buttonRandOut->TabIndex = 33;
+			this->buttonRandOut->Text = L"Отправить";
+			this->buttonRandOut->UseVisualStyleBackColor = true;
+			this->buttonRandOut->Click += gcnew System::EventHandler(this, &Form1::buttonRandOut_Click);
+			// 
+			// buttonRandIn
+			// 
+			this->buttonRandIn->Location = System::Drawing::Point(135, 155);
+			this->buttonRandIn->Name = L"buttonRandIn";
+			this->buttonRandIn->Size = System::Drawing::Size(75, 23);
+			this->buttonRandIn->TabIndex = 32;
+			this->buttonRandIn->Text = L"Запрос";
+			this->buttonRandIn->UseVisualStyleBackColor = true;
+			this->buttonRandIn->Click += gcnew System::EventHandler(this, &Form1::buttonRandIn_Click);
 			// 
 			// canParametersDataSet
 			// 
@@ -1980,7 +1972,7 @@ private: System::ComponentModel::IContainer^  components;
 			// 
 			// sendButton
 			// 
-			this->sendButton->Location = System::Drawing::Point(18, 255);
+			this->sendButton->Location = System::Drawing::Point(117, 46);
 			this->sendButton->Name = L"sendButton";
 			this->sendButton->Size = System::Drawing::Size(82, 30);
 			this->sendButton->TabIndex = 27;
@@ -2016,6 +2008,24 @@ private: System::ComponentModel::IContainer^  components;
 			this->logCheck->Text = L"Лог пишется";
 			this->logCheck->UseVisualStyleBackColor = true;
 			// 
+			// FilterTextBox
+			// 
+			this->FilterTextBox->Location = System::Drawing::Point(10, 23);
+			this->FilterTextBox->Name = L"FilterTextBox";
+			this->FilterTextBox->Size = System::Drawing::Size(101, 20);
+			this->FilterTextBox->TabIndex = 45;
+			this->FilterTextBox->TextChanged += gcnew System::EventHandler(this, &Form1::textBox2_TextChanged);
+			// 
+			// label29
+			// 
+			this->label29->AutoSize = true;
+			this->label29->Location = System::Drawing::Point(126, 26);
+			this->label29->Name = L"label29";
+			this->label29->Size = System::Drawing::Size(47, 13);
+			this->label29->TabIndex = 46;
+			this->label29->Text = L"Фильтр";
+			this->label29->Click += gcnew System::EventHandler(this, &Form1::label29_Click_1);
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -2028,6 +2038,14 @@ private: System::ComponentModel::IContainer^  components;
 			this->Controls->Add(this->sendButton);
 			this->Controls->Add(this->tabControl1);
 			this->Controls->Add(this->initButton);
+			this->Controls->Add(this->textId1);
+			this->Controls->Add(this->buttonRandIn);
+			this->Controls->Add(this->buttonRandOut);
+			this->Controls->Add(this->textRandIn);
+			this->Controls->Add(this->textRandOut);
+			this->Controls->Add(this->textId2);
+			this->Controls->Add(this->label27);
+			this->Controls->Add(this->label28);
 			this->Name = L"Form1";
 			this->Text = L"Form1";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Form1::form1_FormClosing);
@@ -2041,7 +2059,9 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabPage3->ResumeLayout(false);
 			this->tabPage3->PerformLayout();
 			this->tabPage4->ResumeLayout(false);
+			this->tabPage4->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -2173,6 +2193,16 @@ private: System::Void ParametersDataGrid_CellClick(System::Object^  sender, Syst
 				 this->textId2->Text = "0";
 			 }
 		 }
+private: System::Void label29_Click_1(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+			 ParametersDataGrid->CurrentCell = nullptr;
+			 for (int i = 0; i < ParametersDataGrid->Rows->Count - 1; i++)
+			 {
+				 ParametersDataGrid->Rows[i]->Visible = ParametersDataGrid[0, i]->Value->ToString()->ToLower()->Contains(FilterTextBox->Text->ToString()->ToLower())
+					 || ParametersDataGrid[1, i]->Value->ToString()->ToLower()->Contains(FilterTextBox->Text->ToString()->ToLower())
+					 || ParametersDataGrid[2, i]->Value->ToString()->ToLower()->Contains(FilterTextBox->Text->ToString()->ToLower()); 
+			 }
+		 }
 };
 }
-
