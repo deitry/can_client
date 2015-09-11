@@ -110,6 +110,7 @@ BOOL can_client::Form1::readMsg(tCanMsgStruct* pCanMsg_p)
 
 void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 {
+	/*
 	CAN_DATA d;
 	for (int counter = 0; counter < 8; counter ++ )
 		d.all[counter] = pCanMsg_p->m_bData[counter];
@@ -314,6 +315,7 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 				this->textRandIn->Text = Convert::ToString(d.f.val.i);
 			}
 		}
+		*/
 }
 
 void can_client::Form1::canWrite(int id1, int id2, int id3, float a)
@@ -363,8 +365,10 @@ void can_client::Form1::canWrite(int id1, int id2, int id3, int a)
 
 void can_client::Form1::onVmtSearch() 
 {
+	/*
 	try { canWrite(EC_P_VMT, 0, 0, System::Decimal::ToSingle(this->numVMTOut->Value)); } catch (Exception^ e) {}
 	for (int i = 0; i < 5000; i++);
+	*/
 }
 
 void can_client::Form1::onCanTransmit() 
@@ -376,6 +380,7 @@ void can_client::Form1::onCanTransmit()
 	// значениях параметров работы СКАУД
 	// - отправка всех изменившихся значений
 
+	/*
 	float tmpf;
 	int tmpi;
 
@@ -435,6 +440,7 @@ void can_client::Form1::onCanTransmit()
 		}
 		canWrite(EC_P_KD, 0, 0, KV);
 	}
+	*/
 }
 
 BOOL can_client::Form1::writeMsg (tCanMsgStruct *pCanMsg_p)
