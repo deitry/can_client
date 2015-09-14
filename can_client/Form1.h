@@ -460,7 +460,8 @@ private: System::Windows::Forms::ComboBox^  comboBox2;
 private: System::Windows::Forms::ComboBox^  comboBox3;
 private: System::Windows::Forms::ComboBox^  comboBox1;
 private: System::Windows::Forms::ComboBox^  comboBox4;
-private: System::Windows::Forms::ListView^  listView1;
+
+
 
 
 
@@ -505,9 +506,6 @@ private: System::ComponentModel::IContainer^  components;
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Form1::typeid));
-			System::Windows::Forms::ListViewItem^  listViewItem1 = (gcnew System::Windows::Forms::ListViewItem(L"с"));
-			System::Windows::Forms::ListViewItem^  listViewItem2 = (gcnew System::Windows::Forms::ListViewItem(L"мс"));
-			System::Windows::Forms::ListViewItem^  listViewItem3 = (gcnew System::Windows::Forms::ListViewItem(L"мкс"));
 			this->initButton = (gcnew System::Windows::Forms::Button());
 			this->bindingSource1 = (gcnew System::Windows::Forms::BindingSource(this->components));
 			this->label28 = (gcnew System::Windows::Forms::Label());
@@ -530,33 +528,20 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabControlPage = (gcnew System::Windows::Forms::TabPage());
 			this->groupBox4 = (gcnew System::Windows::Forms::GroupBox());
-			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
-			this->tctrlModeParameters = (gcnew System::Windows::Forms::TabControl());
-			this->tab1_Standby = (gcnew System::Windows::Forms::TabPage());
-			this->tab2_Period = (gcnew System::Windows::Forms::TabPage());
-			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
-			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
-			this->butApplyMode = (gcnew System::Windows::Forms::Button());
-			this->ApplyPID = (gcnew System::Windows::Forms::Button());
-			this->tab3_TimeSet = (gcnew System::Windows::Forms::TabPage());
-			this->tab4_PID = (gcnew System::Windows::Forms::TabPage());
-			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->tbCurrentMode = (gcnew System::Windows::Forms::TextBox());
-			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label3 = (gcnew System::Windows::Forms::Label());
-			this->NCurrentProgress = (gcnew System::Windows::Forms::ProgressBar());
-			this->Nmin = (gcnew System::Windows::Forms::NumericUpDown());
-			this->Nmax = (gcnew System::Windows::Forms::NumericUpDown());
-			this->NCurrentValue = (gcnew System::Windows::Forms::TextBox());
-			this->NFailureCheck = (gcnew System::Windows::Forms::CheckBox());
-			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->checkBox6 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox5 = (gcnew System::Windows::Forms::CheckBox());
+			this->checkBox4 = (gcnew System::Windows::Forms::CheckBox());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
+			this->QCCurrentValue = (gcnew System::Windows::Forms::TextBox());
+			this->QCmax = (gcnew System::Windows::Forms::NumericUpDown());
+			this->QCmin = (gcnew System::Windows::Forms::NumericUpDown());
+			this->QCCurrentProgress = (gcnew System::Windows::Forms::ProgressBar());
+			this->label17 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
@@ -567,77 +552,89 @@ private: System::ComponentModel::IContainer^  components;
 			this->PMmin = (gcnew System::Windows::Forms::NumericUpDown());
 			this->PMCurrentProgress = (gcnew System::Windows::Forms::ProgressBar());
 			this->label12 = (gcnew System::Windows::Forms::Label());
-			this->label14 = (gcnew System::Windows::Forms::Label());
-			this->label15 = (gcnew System::Windows::Forms::Label());
-			this->label16 = (gcnew System::Windows::Forms::Label());
-			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
-			this->QCCurrentValue = (gcnew System::Windows::Forms::TextBox());
-			this->QCmax = (gcnew System::Windows::Forms::NumericUpDown());
-			this->QCmin = (gcnew System::Windows::Forms::NumericUpDown());
-			this->QCCurrentProgress = (gcnew System::Windows::Forms::ProgressBar());
-			this->label17 = (gcnew System::Windows::Forms::Label());
-			this->numericUpDown7 = (gcnew System::Windows::Forms::NumericUpDown());
-			this->numericUpDown8 = (gcnew System::Windows::Forms::NumericUpDown());
-			this->label18 = (gcnew System::Windows::Forms::Label());
-			this->label19 = (gcnew System::Windows::Forms::Label());
-			this->numericUpDown9 = (gcnew System::Windows::Forms::NumericUpDown());
-			this->numericUpDown10 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->NFailureCheck = (gcnew System::Windows::Forms::CheckBox());
+			this->NCurrentValue = (gcnew System::Windows::Forms::TextBox());
+			this->Nmax = (gcnew System::Windows::Forms::NumericUpDown());
+			this->Nmin = (gcnew System::Windows::Forms::NumericUpDown());
+			this->NCurrentProgress = (gcnew System::Windows::Forms::ProgressBar());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->tctrlModeParameters = (gcnew System::Windows::Forms::TabControl());
+			this->tab1_Standby = (gcnew System::Windows::Forms::TabPage());
+			this->label33 = (gcnew System::Windows::Forms::Label());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->tab2_Period = (gcnew System::Windows::Forms::TabPage());
+			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->label48 = (gcnew System::Windows::Forms::Label());
+			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
+			this->label47 = (gcnew System::Windows::Forms::Label());
+			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+			this->ApplyPeriodic = (gcnew System::Windows::Forms::Button());
+			this->label34 = (gcnew System::Windows::Forms::Label());
+			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
+			this->tab3_TimeSet = (gcnew System::Windows::Forms::TabPage());
+			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
+			this->label46 = (gcnew System::Windows::Forms::Label());
+			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
+			this->ApplyTimeSet = (gcnew System::Windows::Forms::Button());
+			this->label35 = (gcnew System::Windows::Forms::Label());
+			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
+			this->tab4_PID = (gcnew System::Windows::Forms::TabPage());
+			this->ApplyPID = (gcnew System::Windows::Forms::Button());
+			this->label45 = (gcnew System::Windows::Forms::Label());
+			this->label44 = (gcnew System::Windows::Forms::Label());
+			this->label43 = (gcnew System::Windows::Forms::Label());
+			this->label42 = (gcnew System::Windows::Forms::Label());
+			this->NCurrent = (gcnew System::Windows::Forms::TextBox());
+			this->label41 = (gcnew System::Windows::Forms::Label());
+			this->label40 = (gcnew System::Windows::Forms::Label());
+			this->label39 = (gcnew System::Windows::Forms::Label());
+			this->label38 = (gcnew System::Windows::Forms::Label());
+			this->label37 = (gcnew System::Windows::Forms::Label());
+			this->NSetpoint = (gcnew System::Windows::Forms::TextBox());
+			this->KdMult = (gcnew System::Windows::Forms::TextBox());
+			this->KdVal = (gcnew System::Windows::Forms::TextBox());
+			this->KiMult = (gcnew System::Windows::Forms::TextBox());
+			this->KiVal = (gcnew System::Windows::Forms::TextBox());
+			this->KpMult = (gcnew System::Windows::Forms::TextBox());
+			this->KpVal = (gcnew System::Windows::Forms::TextBox());
+			this->label36 = (gcnew System::Windows::Forms::Label());
+			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
+			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->label50 = (gcnew System::Windows::Forms::Label());
+			this->label49 = (gcnew System::Windows::Forms::Label());
+			this->label31 = (gcnew System::Windows::Forms::Label());
+			this->label32 = (gcnew System::Windows::Forms::Label());
+			this->label30 = (gcnew System::Windows::Forms::Label());
+			this->label26 = (gcnew System::Windows::Forms::Label());
+			this->label25 = (gcnew System::Windows::Forms::Label());
+			this->label24 = (gcnew System::Windows::Forms::Label());
+			this->label23 = (gcnew System::Windows::Forms::Label());
+			this->label22 = (gcnew System::Windows::Forms::Label());
+			this->label21 = (gcnew System::Windows::Forms::Label());
 			this->label20 = (gcnew System::Windows::Forms::Label());
 			this->numericUpDown11 = (gcnew System::Windows::Forms::NumericUpDown());
 			this->numericUpDown12 = (gcnew System::Windows::Forms::NumericUpDown());
-			this->label21 = (gcnew System::Windows::Forms::Label());
-			this->label22 = (gcnew System::Windows::Forms::Label());
-			this->label23 = (gcnew System::Windows::Forms::Label());
-			this->label24 = (gcnew System::Windows::Forms::Label());
-			this->label25 = (gcnew System::Windows::Forms::Label());
-			this->label26 = (gcnew System::Windows::Forms::Label());
-			this->label30 = (gcnew System::Windows::Forms::Label());
-			this->label31 = (gcnew System::Windows::Forms::Label());
-			this->label32 = (gcnew System::Windows::Forms::Label());
-			this->checkBox4 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox5 = (gcnew System::Windows::Forms::CheckBox());
-			this->checkBox6 = (gcnew System::Windows::Forms::CheckBox());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
-			this->label33 = (gcnew System::Windows::Forms::Label());
-			this->label34 = (gcnew System::Windows::Forms::Label());
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->label35 = (gcnew System::Windows::Forms::Label());
-			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
-			this->label36 = (gcnew System::Windows::Forms::Label());
-			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
-			this->KpVal = (gcnew System::Windows::Forms::TextBox());
-			this->KpMult = (gcnew System::Windows::Forms::TextBox());
-			this->KiVal = (gcnew System::Windows::Forms::TextBox());
-			this->KiMult = (gcnew System::Windows::Forms::TextBox());
-			this->KdVal = (gcnew System::Windows::Forms::TextBox());
-			this->KdMult = (gcnew System::Windows::Forms::TextBox());
-			this->NSetpoint = (gcnew System::Windows::Forms::TextBox());
-			this->label37 = (gcnew System::Windows::Forms::Label());
-			this->label38 = (gcnew System::Windows::Forms::Label());
-			this->label39 = (gcnew System::Windows::Forms::Label());
-			this->label40 = (gcnew System::Windows::Forms::Label());
-			this->label41 = (gcnew System::Windows::Forms::Label());
-			this->label42 = (gcnew System::Windows::Forms::Label());
-			this->NCurrent = (gcnew System::Windows::Forms::TextBox());
-			this->label43 = (gcnew System::Windows::Forms::Label());
-			this->label44 = (gcnew System::Windows::Forms::Label());
-			this->label45 = (gcnew System::Windows::Forms::Label());
-			this->ApplyTimeSet = (gcnew System::Windows::Forms::Button());
-			this->ApplyPeriodic = (gcnew System::Windows::Forms::Button());
-			this->textBox8 = (gcnew System::Windows::Forms::TextBox());
-			this->label46 = (gcnew System::Windows::Forms::Label());
-			this->label47 = (gcnew System::Windows::Forms::Label());
-			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
-			this->label48 = (gcnew System::Windows::Forms::Label());
-			this->textBox10 = (gcnew System::Windows::Forms::TextBox());
-			this->label13 = (gcnew System::Windows::Forms::Label());
-			this->label49 = (gcnew System::Windows::Forms::Label());
-			this->label50 = (gcnew System::Windows::Forms::Label());
-			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
-			this->comboBox3 = (gcnew System::Windows::Forms::ComboBox());
-			this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
-			this->listView1 = (gcnew System::Windows::Forms::ListView());
+			this->label19 = (gcnew System::Windows::Forms::Label());
+			this->numericUpDown9 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numericUpDown10 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->label18 = (gcnew System::Windows::Forms::Label());
+			this->numericUpDown8 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->numericUpDown7 = (gcnew System::Windows::Forms::NumericUpDown());
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->tbCurrentMode = (gcnew System::Windows::Forms::TextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->butApplyMode = (gcnew System::Windows::Forms::Button());
+			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
+			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
 			this->tabParameters->SuspendLayout();
@@ -645,26 +642,26 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabControl1->SuspendLayout();
 			this->tabControlPage->SuspendLayout();
 			this->groupBox4->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmax))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmin))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmax))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmin))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmax))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmin))->BeginInit();
 			this->groupBox3->SuspendLayout();
 			this->tctrlModeParameters->SuspendLayout();
 			this->tab1_Standby->SuspendLayout();
 			this->tab2_Period->SuspendLayout();
-			this->groupBox2->SuspendLayout();
-			this->groupBox1->SuspendLayout();
 			this->tab3_TimeSet->SuspendLayout();
 			this->tab4_PID->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmin))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmax))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmax))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmin))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmax))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmin))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown7))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown8))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown9))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown10))->BeginInit();
+			this->groupBox2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown11))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown12))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown9))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown10))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown8))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown7))->BeginInit();
+			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// initButton
@@ -898,325 +895,135 @@ private: System::ComponentModel::IContainer^  components;
 			this->groupBox4->TabStop = false;
 			this->groupBox4->Text = L"Графические индикаторы";
 			// 
-			// groupBox3
+			// comboBox2
 			// 
-			this->groupBox3->Controls->Add(this->tctrlModeParameters);
-			this->groupBox3->Location = System::Drawing::Point(277, 17);
-			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(625, 216);
-			this->groupBox3->TabIndex = 2;
-			this->groupBox3->TabStop = false;
-			this->groupBox3->Text = L"Настройка режима работы";
+			this->comboBox2->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->comboBox2->FormattingEnabled = true;
+			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
+			this->comboBox2->Location = System::Drawing::Point(232, 121);
+			this->comboBox2->Name = L"comboBox2";
+			this->comboBox2->Size = System::Drawing::Size(65, 21);
+			this->comboBox2->TabIndex = 15;
 			// 
-			// tctrlModeParameters
+			// label13
 			// 
-			this->tctrlModeParameters->Controls->Add(this->tab1_Standby);
-			this->tctrlModeParameters->Controls->Add(this->tab2_Period);
-			this->tctrlModeParameters->Controls->Add(this->tab3_TimeSet);
-			this->tctrlModeParameters->Controls->Add(this->tab4_PID);
-			this->tctrlModeParameters->Location = System::Drawing::Point(9, 19);
-			this->tctrlModeParameters->Name = L"tctrlModeParameters";
-			this->tctrlModeParameters->SelectedIndex = 0;
-			this->tctrlModeParameters->Size = System::Drawing::Size(592, 185);
-			this->tctrlModeParameters->TabIndex = 0;
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(6, 206);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(70, 13);
+			this->label13->TabIndex = 34;
+			this->label13->Text = L"Индикаторы";
 			// 
-			// tab1_Standby
+			// checkBox6
 			// 
-			this->tab1_Standby->Controls->Add(this->label33);
-			this->tab1_Standby->Controls->Add(this->textBox4);
-			this->tab1_Standby->Location = System::Drawing::Point(4, 22);
-			this->tab1_Standby->Name = L"tab1_Standby";
-			this->tab1_Standby->Padding = System::Windows::Forms::Padding(3);
-			this->tab1_Standby->Size = System::Drawing::Size(584, 159);
-			this->tab1_Standby->TabIndex = 0;
-			this->tab1_Standby->Text = L"Ожидание";
-			this->tab1_Standby->UseVisualStyleBackColor = true;
+			this->checkBox6->AutoSize = true;
+			this->checkBox6->CheckAlign = System::Drawing::ContentAlignment::BottomCenter;
+			this->checkBox6->Enabled = false;
+			this->checkBox6->Location = System::Drawing::Point(173, 189);
+			this->checkBox6->Name = L"checkBox6";
+			this->checkBox6->Size = System::Drawing::Size(50, 31);
+			this->checkBox6->TabIndex = 32;
+			this->checkBox6->Text = L"Впрыск";
+			this->checkBox6->UseVisualStyleBackColor = true;
 			// 
-			// tab2_Period
+			// checkBox5
 			// 
-			this->tab2_Period->Controls->Add(this->comboBox3);
-			this->tab2_Period->Controls->Add(this->comboBox1);
-			this->tab2_Period->Controls->Add(this->label48);
-			this->tab2_Period->Controls->Add(this->textBox10);
-			this->tab2_Period->Controls->Add(this->label47);
-			this->tab2_Period->Controls->Add(this->textBox9);
-			this->tab2_Period->Controls->Add(this->ApplyPeriodic);
-			this->tab2_Period->Controls->Add(this->label34);
-			this->tab2_Period->Controls->Add(this->textBox5);
-			this->tab2_Period->Location = System::Drawing::Point(4, 22);
-			this->tab2_Period->Name = L"tab2_Period";
-			this->tab2_Period->Padding = System::Windows::Forms::Padding(3);
-			this->tab2_Period->Size = System::Drawing::Size(584, 159);
-			this->tab2_Period->TabIndex = 1;
-			this->tab2_Period->Text = L"Периодический впрыск";
-			this->tab2_Period->UseVisualStyleBackColor = true;
+			this->checkBox5->AutoSize = true;
+			this->checkBox5->CheckAlign = System::Drawing::ContentAlignment::BottomCenter;
+			this->checkBox5->Enabled = false;
+			this->checkBox5->Location = System::Drawing::Point(138, 189);
+			this->checkBox5->Name = L"checkBox5";
+			this->checkBox5->Size = System::Drawing::Size(36, 31);
+			this->checkBox5->TabIndex = 31;
+			this->checkBox5->Text = L"Холл";
+			this->checkBox5->UseVisualStyleBackColor = true;
 			// 
-			// groupBox2
+			// checkBox4
 			// 
-			this->groupBox2->Controls->Add(this->label50);
-			this->groupBox2->Controls->Add(this->label49);
-			this->groupBox2->Controls->Add(this->label31);
-			this->groupBox2->Controls->Add(this->label32);
-			this->groupBox2->Controls->Add(this->label30);
-			this->groupBox2->Controls->Add(this->label26);
-			this->groupBox2->Controls->Add(this->label25);
-			this->groupBox2->Controls->Add(this->label24);
-			this->groupBox2->Controls->Add(this->label23);
-			this->groupBox2->Controls->Add(this->label22);
-			this->groupBox2->Controls->Add(this->label21);
-			this->groupBox2->Controls->Add(this->label20);
-			this->groupBox2->Controls->Add(this->numericUpDown11);
-			this->groupBox2->Controls->Add(this->numericUpDown12);
-			this->groupBox2->Controls->Add(this->label19);
-			this->groupBox2->Controls->Add(this->numericUpDown9);
-			this->groupBox2->Controls->Add(this->numericUpDown10);
-			this->groupBox2->Controls->Add(this->label18);
-			this->groupBox2->Controls->Add(this->numericUpDown8);
-			this->groupBox2->Controls->Add(this->numericUpDown7);
-			this->groupBox2->Location = System::Drawing::Point(17, 239);
-			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(239, 231);
-			this->groupBox2->TabIndex = 1;
-			this->groupBox2->TabStop = false;
-			this->groupBox2->Text = L"Параметры впрыска";
+			this->checkBox4->AutoSize = true;
+			this->checkBox4->CheckAlign = System::Drawing::ContentAlignment::BottomCenter;
+			this->checkBox4->Enabled = false;
+			this->checkBox4->Location = System::Drawing::Point(92, 188);
+			this->checkBox4->Name = L"checkBox4";
+			this->checkBox4->Size = System::Drawing::Size(42, 31);
+			this->checkBox4->TabIndex = 30;
+			this->checkBox4->Text = L"Связь";
+			this->checkBox4->UseVisualStyleBackColor = true;
 			// 
-			// groupBox1
+			// label14
 			// 
-			this->groupBox1->Controls->Add(this->label2);
-			this->groupBox1->Controls->Add(this->tbCurrentMode);
-			this->groupBox1->Controls->Add(this->label1);
-			this->groupBox1->Controls->Add(this->butApplyMode);
-			this->groupBox1->Controls->Add(this->radioButton4);
-			this->groupBox1->Controls->Add(this->radioButton3);
-			this->groupBox1->Controls->Add(this->radioButton2);
-			this->groupBox1->Controls->Add(this->radioButton1);
-			this->groupBox1->Location = System::Drawing::Point(17, 17);
-			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(239, 216);
-			this->groupBox1->TabIndex = 0;
-			this->groupBox1->TabStop = false;
-			this->groupBox1->Text = L"Режим работы";
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(374, 124);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(41, 13);
+			this->label14->TabIndex = 28;
+			this->label14->Text = L"label14";
 			// 
-			// radioButton4
+			// label15
 			// 
-			this->radioButton4->AutoSize = true;
-			this->radioButton4->Location = System::Drawing::Point(19, 154);
-			this->radioButton4->Name = L"radioButton4";
-			this->radioButton4->Size = System::Drawing::Size(130, 17);
-			this->radioButton4->TabIndex = 3;
-			this->radioButton4->TabStop = true;
-			this->radioButton4->Text = L"Управление по ПИД";
-			this->radioButton4->UseVisualStyleBackColor = true;
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(307, 124);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(33, 13);
+			this->label15->TabIndex = 27;
+			this->label15->Text = L"макс";
 			// 
-			// radioButton3
+			// label16
 			// 
-			this->radioButton3->AutoSize = true;
-			this->radioButton3->Location = System::Drawing::Point(19, 133);
-			this->radioButton3->Name = L"radioButton3";
-			this->radioButton3->Size = System::Drawing::Size(173, 17);
-			this->radioButton3->TabIndex = 2;
-			this->radioButton3->TabStop = true;
-			this->radioButton3->Text = L"Задание продолжительности";
-			this->radioButton3->UseVisualStyleBackColor = true;
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(116, 124);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(27, 13);
+			this->label16->TabIndex = 26;
+			this->label16->Text = L"мин";
 			// 
-			// radioButton2
+			// checkBox3
 			// 
-			this->radioButton2->AutoSize = true;
-			this->radioButton2->Location = System::Drawing::Point(19, 110);
-			this->radioButton2->Name = L"radioButton2";
-			this->radioButton2->Size = System::Drawing::Size(145, 17);
-			this->radioButton2->TabIndex = 1;
-			this->radioButton2->TabStop = true;
-			this->radioButton2->Text = L"Периодический впрыск";
-			this->radioButton2->UseVisualStyleBackColor = true;
+			this->checkBox3->AutoSize = true;
+			this->checkBox3->Location = System::Drawing::Point(377, 142);
+			this->checkBox3->Name = L"checkBox3";
+			this->checkBox3->Size = System::Drawing::Size(15, 14);
+			this->checkBox3->TabIndex = 25;
+			this->checkBox3->UseVisualStyleBackColor = true;
 			// 
-			// radioButton1
+			// QCCurrentValue
 			// 
-			this->radioButton1->AutoSize = true;
-			this->radioButton1->Location = System::Drawing::Point(19, 87);
-			this->radioButton1->Name = L"radioButton1";
-			this->radioButton1->Size = System::Drawing::Size(187, 17);
-			this->radioButton1->TabIndex = 0;
-			this->radioButton1->TabStop = true;
-			this->radioButton1->Text = L"Ожидание (впрыск отсутствует)";
-			this->radioButton1->UseVisualStyleBackColor = true;
+			this->QCCurrentValue->Enabled = false;
+			this->QCCurrentValue->Location = System::Drawing::Point(176, 121);
+			this->QCCurrentValue->Name = L"QCCurrentValue";
+			this->QCCurrentValue->Size = System::Drawing::Size(47, 20);
+			this->QCCurrentValue->TabIndex = 24;
 			// 
-			// butApplyMode
+			// QCmax
 			// 
-			this->butApplyMode->Location = System::Drawing::Point(19, 177);
-			this->butApplyMode->Name = L"butApplyMode";
-			this->butApplyMode->Size = System::Drawing::Size(75, 27);
-			this->butApplyMode->TabIndex = 4;
-			this->butApplyMode->Text = L"Применить";
-			this->butApplyMode->UseVisualStyleBackColor = true;
+			this->QCmax->Location = System::Drawing::Point(303, 140);
+			this->QCmax->Name = L"QCmax";
+			this->QCmax->Size = System::Drawing::Size(39, 20);
+			this->QCmax->TabIndex = 23;
 			// 
-			// ApplyPID
+			// QCmin
 			// 
-			this->ApplyPID->Location = System::Drawing::Point(259, 128);
-			this->ApplyPID->Name = L"ApplyPID";
-			this->ApplyPID->Size = System::Drawing::Size(86, 25);
-			this->ApplyPID->TabIndex = 1;
-			this->ApplyPID->Text = L"Применить";
-			this->ApplyPID->UseVisualStyleBackColor = true;
+			this->QCmin->Location = System::Drawing::Point(112, 140);
+			this->QCmin->Name = L"QCmin";
+			this->QCmin->Size = System::Drawing::Size(39, 20);
+			this->QCmin->TabIndex = 22;
 			// 
-			// tab3_TimeSet
+			// QCCurrentProgress
 			// 
-			this->tab3_TimeSet->Controls->Add(this->listView1);
-			this->tab3_TimeSet->Controls->Add(this->comboBox4);
-			this->tab3_TimeSet->Controls->Add(this->label46);
-			this->tab3_TimeSet->Controls->Add(this->textBox8);
-			this->tab3_TimeSet->Controls->Add(this->ApplyTimeSet);
-			this->tab3_TimeSet->Controls->Add(this->label35);
-			this->tab3_TimeSet->Controls->Add(this->textBox6);
-			this->tab3_TimeSet->Location = System::Drawing::Point(4, 22);
-			this->tab3_TimeSet->Name = L"tab3_TimeSet";
-			this->tab3_TimeSet->Padding = System::Windows::Forms::Padding(3);
-			this->tab3_TimeSet->Size = System::Drawing::Size(584, 159);
-			this->tab3_TimeSet->TabIndex = 2;
-			this->tab3_TimeSet->Text = L"Задание продолжительности";
-			this->tab3_TimeSet->UseVisualStyleBackColor = true;
+			this->QCCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
+			this->QCCurrentProgress->Location = System::Drawing::Point(157, 145);
+			this->QCCurrentProgress->Name = L"QCCurrentProgress";
+			this->QCCurrentProgress->Size = System::Drawing::Size(140, 10);
+			this->QCCurrentProgress->TabIndex = 21;
 			// 
-			// tab4_PID
+			// label17
 			// 
-			this->tab4_PID->Controls->Add(this->ApplyPID);
-			this->tab4_PID->Controls->Add(this->label45);
-			this->tab4_PID->Controls->Add(this->label44);
-			this->tab4_PID->Controls->Add(this->label43);
-			this->tab4_PID->Controls->Add(this->label42);
-			this->tab4_PID->Controls->Add(this->NCurrent);
-			this->tab4_PID->Controls->Add(this->label41);
-			this->tab4_PID->Controls->Add(this->label40);
-			this->tab4_PID->Controls->Add(this->label39);
-			this->tab4_PID->Controls->Add(this->label38);
-			this->tab4_PID->Controls->Add(this->label37);
-			this->tab4_PID->Controls->Add(this->NSetpoint);
-			this->tab4_PID->Controls->Add(this->KdMult);
-			this->tab4_PID->Controls->Add(this->KdVal);
-			this->tab4_PID->Controls->Add(this->KiMult);
-			this->tab4_PID->Controls->Add(this->KiVal);
-			this->tab4_PID->Controls->Add(this->KpMult);
-			this->tab4_PID->Controls->Add(this->KpVal);
-			this->tab4_PID->Controls->Add(this->label36);
-			this->tab4_PID->Controls->Add(this->textBox7);
-			this->tab4_PID->Location = System::Drawing::Point(4, 22);
-			this->tab4_PID->Name = L"tab4_PID";
-			this->tab4_PID->Padding = System::Windows::Forms::Padding(3);
-			this->tab4_PID->Size = System::Drawing::Size(584, 159);
-			this->tab4_PID->TabIndex = 3;
-			this->tab4_PID->Text = L"Управление по ПИД";
-			this->tab4_PID->UseVisualStyleBackColor = true;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(16, 34);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(89, 13);
-			this->label1->TabIndex = 5;
-			this->label1->Text = L"Текущий режим";
-			// 
-			// tbCurrentMode
-			// 
-			this->tbCurrentMode->Enabled = false;
-			this->tbCurrentMode->Location = System::Drawing::Point(122, 31);
-			this->tbCurrentMode->Name = L"tbCurrentMode";
-			this->tbCurrentMode->Size = System::Drawing::Size(100, 20);
-			this->tbCurrentMode->TabIndex = 6;
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(16, 71);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(149, 13);
-			this->label2->TabIndex = 7;
-			this->label2->Text = L"Доступные режимы работы";
-			this->label2->Click += gcnew System::EventHandler(this, &Form1::label2_Click);
-			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(6, 41);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(109, 13);
-			this->label3->TabIndex = 0;
-			this->label3->Text = L"Скорость вращения";
-			// 
-			// NCurrentProgress
-			// 
-			this->NCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
-			this->NCurrentProgress->Location = System::Drawing::Point(157, 43);
-			this->NCurrentProgress->Name = L"NCurrentProgress";
-			this->NCurrentProgress->Size = System::Drawing::Size(140, 10);
-			this->NCurrentProgress->TabIndex = 1;
-			this->NCurrentProgress->Value = 70;
-			// 
-			// Nmin
-			// 
-			this->Nmin->Location = System::Drawing::Point(112, 38);
-			this->Nmin->Name = L"Nmin";
-			this->Nmin->Size = System::Drawing::Size(39, 20);
-			this->Nmin->TabIndex = 2;
-			// 
-			// Nmax
-			// 
-			this->Nmax->Location = System::Drawing::Point(303, 38);
-			this->Nmax->Name = L"Nmax";
-			this->Nmax->Size = System::Drawing::Size(39, 20);
-			this->Nmax->TabIndex = 3;
-			// 
-			// NCurrentValue
-			// 
-			this->NCurrentValue->Enabled = false;
-			this->NCurrentValue->Location = System::Drawing::Point(176, 19);
-			this->NCurrentValue->Name = L"NCurrentValue";
-			this->NCurrentValue->Size = System::Drawing::Size(47, 20);
-			this->NCurrentValue->TabIndex = 4;
-			// 
-			// NFailureCheck
-			// 
-			this->NFailureCheck->AutoSize = true;
-			this->NFailureCheck->Location = System::Drawing::Point(377, 40);
-			this->NFailureCheck->Name = L"NFailureCheck";
-			this->NFailureCheck->Size = System::Drawing::Size(15, 14);
-			this->NFailureCheck->TabIndex = 5;
-			this->NFailureCheck->UseVisualStyleBackColor = true;
-			// 
-			// label4
-			// 
-			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(116, 22);
-			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(27, 13);
-			this->label4->TabIndex = 6;
-			this->label4->Text = L"мин";
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(307, 22);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(33, 13);
-			this->label5->TabIndex = 7;
-			this->label5->Text = L"макс";
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(356, 22);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(125, 13);
-			this->label6->TabIndex = 8;
-			this->label6->Text = L"Аварийное отключение";
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(229, 22);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(50, 13);
-			this->label7->TabIndex = 9;
-			this->label7->Text = L"(об/мин)";
+			this->label17->AutoSize = true;
+			this->label17->Location = System::Drawing::Point(6, 142);
+			this->label17->Name = L"label17";
+			this->label17->Size = System::Drawing::Size(46, 13);
+			this->label17->TabIndex = 20;
+			this->label17->Text = L"Впрыск";
 			// 
 			// label8
 			// 
@@ -1303,136 +1110,642 @@ private: System::ComponentModel::IContainer^  components;
 			this->label12->TabIndex = 10;
 			this->label12->Text = L"Давление масла";
 			// 
-			// label14
+			// label7
 			// 
-			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(374, 124);
-			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(41, 13);
-			this->label14->TabIndex = 28;
-			this->label14->Text = L"label14";
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(229, 22);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(50, 13);
+			this->label7->TabIndex = 9;
+			this->label7->Text = L"(об/мин)";
 			// 
-			// label15
+			// label6
 			// 
-			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(307, 124);
-			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(33, 13);
-			this->label15->TabIndex = 27;
-			this->label15->Text = L"макс";
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(356, 22);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(125, 13);
+			this->label6->TabIndex = 8;
+			this->label6->Text = L"Аварийное отключение";
 			// 
-			// label16
+			// label5
 			// 
-			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(116, 124);
-			this->label16->Name = L"label16";
-			this->label16->Size = System::Drawing::Size(27, 13);
-			this->label16->TabIndex = 26;
-			this->label16->Text = L"мин";
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(307, 22);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(33, 13);
+			this->label5->TabIndex = 7;
+			this->label5->Text = L"макс";
 			// 
-			// checkBox3
+			// label4
 			// 
-			this->checkBox3->AutoSize = true;
-			this->checkBox3->Location = System::Drawing::Point(377, 142);
-			this->checkBox3->Name = L"checkBox3";
-			this->checkBox3->Size = System::Drawing::Size(15, 14);
-			this->checkBox3->TabIndex = 25;
-			this->checkBox3->UseVisualStyleBackColor = true;
+			this->label4->AutoSize = true;
+			this->label4->Location = System::Drawing::Point(116, 22);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(27, 13);
+			this->label4->TabIndex = 6;
+			this->label4->Text = L"мин";
 			// 
-			// QCCurrentValue
+			// NFailureCheck
 			// 
-			this->QCCurrentValue->Enabled = false;
-			this->QCCurrentValue->Location = System::Drawing::Point(176, 121);
-			this->QCCurrentValue->Name = L"QCCurrentValue";
-			this->QCCurrentValue->Size = System::Drawing::Size(47, 20);
-			this->QCCurrentValue->TabIndex = 24;
+			this->NFailureCheck->AutoSize = true;
+			this->NFailureCheck->Location = System::Drawing::Point(377, 40);
+			this->NFailureCheck->Name = L"NFailureCheck";
+			this->NFailureCheck->Size = System::Drawing::Size(15, 14);
+			this->NFailureCheck->TabIndex = 5;
+			this->NFailureCheck->UseVisualStyleBackColor = true;
 			// 
-			// QCmax
+			// NCurrentValue
 			// 
-			this->QCmax->Location = System::Drawing::Point(303, 140);
-			this->QCmax->Name = L"QCmax";
-			this->QCmax->Size = System::Drawing::Size(39, 20);
-			this->QCmax->TabIndex = 23;
+			this->NCurrentValue->Enabled = false;
+			this->NCurrentValue->Location = System::Drawing::Point(176, 19);
+			this->NCurrentValue->Name = L"NCurrentValue";
+			this->NCurrentValue->Size = System::Drawing::Size(47, 20);
+			this->NCurrentValue->TabIndex = 4;
 			// 
-			// QCmin
+			// Nmax
 			// 
-			this->QCmin->Location = System::Drawing::Point(112, 140);
-			this->QCmin->Name = L"QCmin";
-			this->QCmin->Size = System::Drawing::Size(39, 20);
-			this->QCmin->TabIndex = 22;
+			this->Nmax->Location = System::Drawing::Point(303, 38);
+			this->Nmax->Name = L"Nmax";
+			this->Nmax->Size = System::Drawing::Size(39, 20);
+			this->Nmax->TabIndex = 3;
 			// 
-			// QCCurrentProgress
+			// Nmin
 			// 
-			this->QCCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
-			this->QCCurrentProgress->Location = System::Drawing::Point(157, 145);
-			this->QCCurrentProgress->Name = L"QCCurrentProgress";
-			this->QCCurrentProgress->Size = System::Drawing::Size(140, 10);
-			this->QCCurrentProgress->TabIndex = 21;
+			this->Nmin->Location = System::Drawing::Point(112, 38);
+			this->Nmin->Name = L"Nmin";
+			this->Nmin->Size = System::Drawing::Size(39, 20);
+			this->Nmin->TabIndex = 2;
 			// 
-			// label17
+			// NCurrentProgress
 			// 
-			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(6, 142);
-			this->label17->Name = L"label17";
-			this->label17->Size = System::Drawing::Size(46, 13);
-			this->label17->TabIndex = 20;
-			this->label17->Text = L"Впрыск";
+			this->NCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
+			this->NCurrentProgress->Location = System::Drawing::Point(157, 43);
+			this->NCurrentProgress->Name = L"NCurrentProgress";
+			this->NCurrentProgress->Size = System::Drawing::Size(140, 10);
+			this->NCurrentProgress->TabIndex = 1;
+			this->NCurrentProgress->Value = 70;
 			// 
-			// numericUpDown7
+			// label3
 			// 
-			this->numericUpDown7->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {100, 0, 0, 0});
-			this->numericUpDown7->Location = System::Drawing::Point(19, 61);
-			this->numericUpDown7->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {10000, 0, 0, 0});
-			this->numericUpDown7->Name = L"numericUpDown7";
-			this->numericUpDown7->Size = System::Drawing::Size(75, 20);
-			this->numericUpDown7->TabIndex = 0;
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(6, 41);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(109, 13);
+			this->label3->TabIndex = 0;
+			this->label3->Text = L"Скорость вращения";
 			// 
-			// numericUpDown8
+			// groupBox3
 			// 
-			this->numericUpDown8->Location = System::Drawing::Point(140, 61);
-			this->numericUpDown8->Name = L"numericUpDown8";
-			this->numericUpDown8->Size = System::Drawing::Size(52, 20);
-			this->numericUpDown8->TabIndex = 1;
+			this->groupBox3->Controls->Add(this->tctrlModeParameters);
+			this->groupBox3->Location = System::Drawing::Point(277, 17);
+			this->groupBox3->Name = L"groupBox3";
+			this->groupBox3->Size = System::Drawing::Size(625, 216);
+			this->groupBox3->TabIndex = 2;
+			this->groupBox3->TabStop = false;
+			this->groupBox3->Text = L"Настройка режима работы";
 			// 
-			// label18
+			// tctrlModeParameters
 			// 
-			this->label18->AutoSize = true;
-			this->label18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point, 
-				static_cast<System::Byte>(204)));
-			this->label18->Location = System::Drawing::Point(16, 26);
-			this->label18->Name = L"label18";
-			this->label18->Size = System::Drawing::Size(128, 13);
-			this->label18->TabIndex = 2;
-			this->label18->Text = L"Форсирующий импульс";
-			this->label18->Click += gcnew System::EventHandler(this, &Form1::label18_Click);
+			this->tctrlModeParameters->Controls->Add(this->tab1_Standby);
+			this->tctrlModeParameters->Controls->Add(this->tab2_Period);
+			this->tctrlModeParameters->Controls->Add(this->tab3_TimeSet);
+			this->tctrlModeParameters->Controls->Add(this->tab4_PID);
+			this->tctrlModeParameters->Location = System::Drawing::Point(9, 19);
+			this->tctrlModeParameters->Name = L"tctrlModeParameters";
+			this->tctrlModeParameters->SelectedIndex = 0;
+			this->tctrlModeParameters->Size = System::Drawing::Size(592, 185);
+			this->tctrlModeParameters->TabIndex = 0;
 			// 
-			// label19
+			// tab1_Standby
 			// 
-			this->label19->AutoSize = true;
-			this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point, 
-				static_cast<System::Byte>(204)));
-			this->label19->Location = System::Drawing::Point(16, 101);
-			this->label19->Name = L"label19";
-			this->label19->Size = System::Drawing::Size(134, 13);
-			this->label19->TabIndex = 5;
-			this->label19->Text = L"Удерживающий импульс";
+			this->tab1_Standby->Controls->Add(this->label33);
+			this->tab1_Standby->Controls->Add(this->textBox4);
+			this->tab1_Standby->Location = System::Drawing::Point(4, 22);
+			this->tab1_Standby->Name = L"tab1_Standby";
+			this->tab1_Standby->Padding = System::Windows::Forms::Padding(3);
+			this->tab1_Standby->Size = System::Drawing::Size(584, 159);
+			this->tab1_Standby->TabIndex = 0;
+			this->tab1_Standby->Text = L"Ожидание";
+			this->tab1_Standby->UseVisualStyleBackColor = true;
 			// 
-			// numericUpDown9
+			// label33
 			// 
-			this->numericUpDown9->Location = System::Drawing::Point(140, 135);
-			this->numericUpDown9->Name = L"numericUpDown9";
-			this->numericUpDown9->Size = System::Drawing::Size(52, 20);
-			this->numericUpDown9->TabIndex = 4;
+			this->label33->AutoSize = true;
+			this->label33->Location = System::Drawing::Point(6, 9);
+			this->label33->Name = L"label33";
+			this->label33->Size = System::Drawing::Size(128, 13);
+			this->label33->TabIndex = 1;
+			this->label33->Text = L"Информация о режиме:";
 			// 
-			// numericUpDown10
+			// textBox4
 			// 
-			this->numericUpDown10->Enabled = false;
-			this->numericUpDown10->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {100, 0, 0, 0});
-			this->numericUpDown10->Location = System::Drawing::Point(19, 135);
-			this->numericUpDown10->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {50000, 0, 0, 0});
-			this->numericUpDown10->Name = L"numericUpDown10";
-			this->numericUpDown10->Size = System::Drawing::Size(75, 20);
-			this->numericUpDown10->TabIndex = 3;
+			this->textBox4->Enabled = false;
+			this->textBox4->Location = System::Drawing::Point(9, 25);
+			this->textBox4->Multiline = true;
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(223, 128);
+			this->textBox4->TabIndex = 0;
+			this->textBox4->Text = L"В режиме ожидания блок не осуществляет подачу импульсов на форсунки, однако отсле" 
+				L"живает все сигналы датчиков и выводит различную информацию.";
+			// 
+			// tab2_Period
+			// 
+			this->tab2_Period->Controls->Add(this->comboBox3);
+			this->tab2_Period->Controls->Add(this->comboBox1);
+			this->tab2_Period->Controls->Add(this->label48);
+			this->tab2_Period->Controls->Add(this->textBox10);
+			this->tab2_Period->Controls->Add(this->label47);
+			this->tab2_Period->Controls->Add(this->textBox9);
+			this->tab2_Period->Controls->Add(this->ApplyPeriodic);
+			this->tab2_Period->Controls->Add(this->label34);
+			this->tab2_Period->Controls->Add(this->textBox5);
+			this->tab2_Period->Location = System::Drawing::Point(4, 22);
+			this->tab2_Period->Name = L"tab2_Period";
+			this->tab2_Period->Padding = System::Windows::Forms::Padding(3);
+			this->tab2_Period->Size = System::Drawing::Size(584, 159);
+			this->tab2_Period->TabIndex = 1;
+			this->tab2_Period->Text = L"Периодический впрыск";
+			this->tab2_Period->UseVisualStyleBackColor = true;
+			// 
+			// comboBox3
+			// 
+			this->comboBox3->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->comboBox3->FormattingEnabled = true;
+			this->comboBox3->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(сек)", L"(мс)", L"(мкс)"});
+			this->comboBox3->Location = System::Drawing::Point(337, 88);
+			this->comboBox3->Name = L"comboBox3";
+			this->comboBox3->Size = System::Drawing::Size(77, 21);
+			this->comboBox3->TabIndex = 16;
+			// 
+			// comboBox1
+			// 
+			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
+			this->comboBox1->Location = System::Drawing::Point(338, 38);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(75, 21);
+			this->comboBox1->TabIndex = 14;
+			// 
+			// label48
+			// 
+			this->label48->AutoSize = true;
+			this->label48->Location = System::Drawing::Point(256, 73);
+			this->label48->Name = L"label48";
+			this->label48->Size = System::Drawing::Size(132, 13);
+			this->label48->TabIndex = 13;
+			this->label48->Text = L"Периодичность впрыска";
+			// 
+			// textBox10
+			// 
+			this->textBox10->Location = System::Drawing::Point(259, 89);
+			this->textBox10->Name = L"textBox10";
+			this->textBox10->Size = System::Drawing::Size(62, 20);
+			this->textBox10->TabIndex = 12;
+			// 
+			// label47
+			// 
+			this->label47->AutoSize = true;
+			this->label47->Location = System::Drawing::Point(256, 22);
+			this->label47->Name = L"label47";
+			this->label47->Size = System::Drawing::Size(158, 13);
+			this->label47->TabIndex = 10;
+			this->label47->Text = L"Продолжительность впрыска";
+			// 
+			// textBox9
+			// 
+			this->textBox9->Location = System::Drawing::Point(259, 38);
+			this->textBox9->Name = L"textBox9";
+			this->textBox9->Size = System::Drawing::Size(62, 20);
+			this->textBox9->TabIndex = 9;
+			// 
+			// ApplyPeriodic
+			// 
+			this->ApplyPeriodic->Location = System::Drawing::Point(259, 128);
+			this->ApplyPeriodic->Name = L"ApplyPeriodic";
+			this->ApplyPeriodic->Size = System::Drawing::Size(86, 25);
+			this->ApplyPeriodic->TabIndex = 4;
+			this->ApplyPeriodic->Text = L"Применить";
+			this->ApplyPeriodic->UseVisualStyleBackColor = true;
+			// 
+			// label34
+			// 
+			this->label34->AutoSize = true;
+			this->label34->Location = System::Drawing::Point(6, 9);
+			this->label34->Name = L"label34";
+			this->label34->Size = System::Drawing::Size(128, 13);
+			this->label34->TabIndex = 3;
+			this->label34->Text = L"Информация о режиме:";
+			// 
+			// textBox5
+			// 
+			this->textBox5->Enabled = false;
+			this->textBox5->Location = System::Drawing::Point(9, 25);
+			this->textBox5->Multiline = true;
+			this->textBox5->Name = L"textBox5";
+			this->textBox5->Size = System::Drawing::Size(223, 128);
+			this->textBox5->TabIndex = 2;
+			this->textBox5->Text = resources->GetString(L"textBox5.Text");
+			this->textBox5->TextChanged += gcnew System::EventHandler(this, &Form1::textBox5_TextChanged);
+			// 
+			// tab3_TimeSet
+			// 
+			this->tab3_TimeSet->Controls->Add(this->comboBox4);
+			this->tab3_TimeSet->Controls->Add(this->label46);
+			this->tab3_TimeSet->Controls->Add(this->textBox8);
+			this->tab3_TimeSet->Controls->Add(this->ApplyTimeSet);
+			this->tab3_TimeSet->Controls->Add(this->label35);
+			this->tab3_TimeSet->Controls->Add(this->textBox6);
+			this->tab3_TimeSet->Location = System::Drawing::Point(4, 22);
+			this->tab3_TimeSet->Name = L"tab3_TimeSet";
+			this->tab3_TimeSet->Padding = System::Windows::Forms::Padding(3);
+			this->tab3_TimeSet->Size = System::Drawing::Size(584, 159);
+			this->tab3_TimeSet->TabIndex = 2;
+			this->tab3_TimeSet->Text = L"Задание продолжительности";
+			this->tab3_TimeSet->UseVisualStyleBackColor = true;
+			// 
+			// comboBox4
+			// 
+			this->comboBox4->DisplayMember = L"1";
+			this->comboBox4->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->comboBox4->FormattingEnabled = true;
+			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
+			this->comboBox4->Location = System::Drawing::Point(338, 37);
+			this->comboBox4->Name = L"comboBox4";
+			this->comboBox4->Size = System::Drawing::Size(77, 21);
+			this->comboBox4->TabIndex = 17;
+			this->comboBox4->ValueMember = L"1";
+			// 
+			// label46
+			// 
+			this->label46->AutoSize = true;
+			this->label46->Location = System::Drawing::Point(256, 22);
+			this->label46->Name = L"label46";
+			this->label46->Size = System::Drawing::Size(158, 13);
+			this->label46->TabIndex = 7;
+			this->label46->Text = L"Продолжительность впрыска";
+			// 
+			// textBox8
+			// 
+			this->textBox8->Location = System::Drawing::Point(259, 38);
+			this->textBox8->Name = L"textBox8";
+			this->textBox8->Size = System::Drawing::Size(62, 20);
+			this->textBox8->TabIndex = 6;
+			// 
+			// ApplyTimeSet
+			// 
+			this->ApplyTimeSet->Location = System::Drawing::Point(259, 128);
+			this->ApplyTimeSet->Name = L"ApplyTimeSet";
+			this->ApplyTimeSet->Size = System::Drawing::Size(86, 25);
+			this->ApplyTimeSet->TabIndex = 4;
+			this->ApplyTimeSet->Text = L"Применить";
+			this->ApplyTimeSet->UseVisualStyleBackColor = true;
+			// 
+			// label35
+			// 
+			this->label35->AutoSize = true;
+			this->label35->Location = System::Drawing::Point(6, 9);
+			this->label35->Name = L"label35";
+			this->label35->Size = System::Drawing::Size(128, 13);
+			this->label35->TabIndex = 3;
+			this->label35->Text = L"Информация о режиме:";
+			// 
+			// textBox6
+			// 
+			this->textBox6->Enabled = false;
+			this->textBox6->Location = System::Drawing::Point(9, 25);
+			this->textBox6->Multiline = true;
+			this->textBox6->Name = L"textBox6";
+			this->textBox6->ScrollBars = System::Windows::Forms::ScrollBars::Both;
+			this->textBox6->Size = System::Drawing::Size(223, 128);
+			this->textBox6->TabIndex = 2;
+			this->textBox6->Text = resources->GetString(L"textBox6.Text");
+			// 
+			// tab4_PID
+			// 
+			this->tab4_PID->Controls->Add(this->ApplyPID);
+			this->tab4_PID->Controls->Add(this->label45);
+			this->tab4_PID->Controls->Add(this->label44);
+			this->tab4_PID->Controls->Add(this->label43);
+			this->tab4_PID->Controls->Add(this->label42);
+			this->tab4_PID->Controls->Add(this->NCurrent);
+			this->tab4_PID->Controls->Add(this->label41);
+			this->tab4_PID->Controls->Add(this->label40);
+			this->tab4_PID->Controls->Add(this->label39);
+			this->tab4_PID->Controls->Add(this->label38);
+			this->tab4_PID->Controls->Add(this->label37);
+			this->tab4_PID->Controls->Add(this->NSetpoint);
+			this->tab4_PID->Controls->Add(this->KdMult);
+			this->tab4_PID->Controls->Add(this->KdVal);
+			this->tab4_PID->Controls->Add(this->KiMult);
+			this->tab4_PID->Controls->Add(this->KiVal);
+			this->tab4_PID->Controls->Add(this->KpMult);
+			this->tab4_PID->Controls->Add(this->KpVal);
+			this->tab4_PID->Controls->Add(this->label36);
+			this->tab4_PID->Controls->Add(this->textBox7);
+			this->tab4_PID->Location = System::Drawing::Point(4, 22);
+			this->tab4_PID->Name = L"tab4_PID";
+			this->tab4_PID->Padding = System::Windows::Forms::Padding(3);
+			this->tab4_PID->Size = System::Drawing::Size(584, 159);
+			this->tab4_PID->TabIndex = 3;
+			this->tab4_PID->Text = L"Управление по ПИД";
+			this->tab4_PID->UseVisualStyleBackColor = true;
+			// 
+			// ApplyPID
+			// 
+			this->ApplyPID->Location = System::Drawing::Point(259, 128);
+			this->ApplyPID->Name = L"ApplyPID";
+			this->ApplyPID->Size = System::Drawing::Size(86, 25);
+			this->ApplyPID->TabIndex = 1;
+			this->ApplyPID->Text = L"Применить";
+			this->ApplyPID->UseVisualStyleBackColor = true;
+			// 
+			// label45
+			// 
+			this->label45->AutoSize = true;
+			this->label45->Location = System::Drawing::Point(512, 8);
+			this->label45->Name = L"label45";
+			this->label45->Size = System::Drawing::Size(64, 13);
+			this->label45->TabIndex = 20;
+			this->label45->Text = L"множитель";
+			// 
+			// label44
+			// 
+			this->label44->AutoSize = true;
+			this->label44->Location = System::Drawing::Point(479, 8);
+			this->label44->Name = L"label44";
+			this->label44->Size = System::Drawing::Size(36, 13);
+			this->label44->TabIndex = 19;
+			this->label44->Text = L"число";
+			// 
+			// label43
+			// 
+			this->label43->AutoSize = true;
+			this->label43->Location = System::Drawing::Point(394, 25);
+			this->label43->Name = L"label43";
+			this->label43->Size = System::Drawing::Size(44, 13);
+			this->label43->TabIndex = 18;
+			this->label43->Text = L"об/мин";
+			// 
+			// label42
+			// 
+			this->label42->AutoSize = true;
+			this->label42->Location = System::Drawing::Point(250, 27);
+			this->label42->Name = L"label42";
+			this->label42->Size = System::Drawing::Size(94, 13);
+			this->label42->TabIndex = 17;
+			this->label42->Text = L"Текущая частота";
+			// 
+			// NCurrent
+			// 
+			this->NCurrent->Enabled = false;
+			this->NCurrent->Location = System::Drawing::Point(350, 22);
+			this->NCurrent->Name = L"NCurrent";
+			this->NCurrent->Size = System::Drawing::Size(38, 20);
+			this->NCurrent->TabIndex = 16;
+			// 
+			// label41
+			// 
+			this->label41->AutoSize = true;
+			this->label41->Location = System::Drawing::Point(394, 50);
+			this->label41->Name = L"label41";
+			this->label41->Size = System::Drawing::Size(44, 13);
+			this->label41->TabIndex = 15;
+			this->label41->Text = L"об/мин";
+			// 
+			// label40
+			// 
+			this->label40->AutoSize = true;
+			this->label40->Location = System::Drawing::Point(448, 78);
+			this->label40->Name = L"label40";
+			this->label40->Size = System::Drawing::Size(20, 13);
+			this->label40->TabIndex = 14;
+			this->label40->Text = L"Кд";
+			// 
+			// label39
+			// 
+			this->label39->AutoSize = true;
+			this->label39->Location = System::Drawing::Point(448, 53);
+			this->label39->Name = L"label39";
+			this->label39->Size = System::Drawing::Size(20, 13);
+			this->label39->TabIndex = 13;
+			this->label39->Text = L"Ки";
+			// 
+			// label38
+			// 
+			this->label38->AutoSize = true;
+			this->label38->Location = System::Drawing::Point(448, 27);
+			this->label38->Name = L"label38";
+			this->label38->Size = System::Drawing::Size(20, 13);
+			this->label38->TabIndex = 12;
+			this->label38->Text = L"Кп";
+			// 
+			// label37
+			// 
+			this->label37->AutoSize = true;
+			this->label37->Location = System::Drawing::Point(250, 52);
+			this->label37->Name = L"label37";
+			this->label37->Size = System::Drawing::Size(94, 13);
+			this->label37->TabIndex = 11;
+			this->label37->Text = L"Уставка частоты";
+			// 
+			// NSetpoint
+			// 
+			this->NSetpoint->Location = System::Drawing::Point(350, 47);
+			this->NSetpoint->Name = L"NSetpoint";
+			this->NSetpoint->Size = System::Drawing::Size(38, 20);
+			this->NSetpoint->TabIndex = 10;
+			// 
+			// KdMult
+			// 
+			this->KdMult->Location = System::Drawing::Point(521, 75);
+			this->KdMult->Name = L"KdMult";
+			this->KdMult->Size = System::Drawing::Size(38, 20);
+			this->KdMult->TabIndex = 9;
+			// 
+			// KdVal
+			// 
+			this->KdVal->Location = System::Drawing::Point(477, 75);
+			this->KdVal->Name = L"KdVal";
+			this->KdVal->Size = System::Drawing::Size(38, 20);
+			this->KdVal->TabIndex = 8;
+			// 
+			// KiMult
+			// 
+			this->KiMult->Location = System::Drawing::Point(521, 50);
+			this->KiMult->Name = L"KiMult";
+			this->KiMult->Size = System::Drawing::Size(38, 20);
+			this->KiMult->TabIndex = 7;
+			// 
+			// KiVal
+			// 
+			this->KiVal->Location = System::Drawing::Point(477, 50);
+			this->KiVal->Name = L"KiVal";
+			this->KiVal->Size = System::Drawing::Size(38, 20);
+			this->KiVal->TabIndex = 6;
+			// 
+			// KpMult
+			// 
+			this->KpMult->Location = System::Drawing::Point(521, 24);
+			this->KpMult->Name = L"KpMult";
+			this->KpMult->Size = System::Drawing::Size(38, 20);
+			this->KpMult->TabIndex = 5;
+			// 
+			// KpVal
+			// 
+			this->KpVal->Location = System::Drawing::Point(477, 24);
+			this->KpVal->Name = L"KpVal";
+			this->KpVal->Size = System::Drawing::Size(38, 20);
+			this->KpVal->TabIndex = 4;
+			// 
+			// label36
+			// 
+			this->label36->AutoSize = true;
+			this->label36->Location = System::Drawing::Point(6, 9);
+			this->label36->Name = L"label36";
+			this->label36->Size = System::Drawing::Size(128, 13);
+			this->label36->TabIndex = 3;
+			this->label36->Text = L"Информация о режиме:";
+			// 
+			// textBox7
+			// 
+			this->textBox7->Enabled = false;
+			this->textBox7->Location = System::Drawing::Point(9, 25);
+			this->textBox7->Multiline = true;
+			this->textBox7->Name = L"textBox7";
+			this->textBox7->ScrollBars = System::Windows::Forms::ScrollBars::Both;
+			this->textBox7->Size = System::Drawing::Size(223, 128);
+			this->textBox7->TabIndex = 2;
+			this->textBox7->Text = resources->GetString(L"textBox7.Text");
+			// 
+			// groupBox2
+			// 
+			this->groupBox2->Controls->Add(this->label50);
+			this->groupBox2->Controls->Add(this->label49);
+			this->groupBox2->Controls->Add(this->label31);
+			this->groupBox2->Controls->Add(this->label32);
+			this->groupBox2->Controls->Add(this->label30);
+			this->groupBox2->Controls->Add(this->label26);
+			this->groupBox2->Controls->Add(this->label25);
+			this->groupBox2->Controls->Add(this->label24);
+			this->groupBox2->Controls->Add(this->label23);
+			this->groupBox2->Controls->Add(this->label22);
+			this->groupBox2->Controls->Add(this->label21);
+			this->groupBox2->Controls->Add(this->label20);
+			this->groupBox2->Controls->Add(this->numericUpDown11);
+			this->groupBox2->Controls->Add(this->numericUpDown12);
+			this->groupBox2->Controls->Add(this->label19);
+			this->groupBox2->Controls->Add(this->numericUpDown9);
+			this->groupBox2->Controls->Add(this->numericUpDown10);
+			this->groupBox2->Controls->Add(this->label18);
+			this->groupBox2->Controls->Add(this->numericUpDown8);
+			this->groupBox2->Controls->Add(this->numericUpDown7);
+			this->groupBox2->Location = System::Drawing::Point(17, 239);
+			this->groupBox2->Name = L"groupBox2";
+			this->groupBox2->Size = System::Drawing::Size(239, 231);
+			this->groupBox2->TabIndex = 1;
+			this->groupBox2->TabStop = false;
+			this->groupBox2->Text = L"Параметры впрыска";
+			// 
+			// label50
+			// 
+			this->label50->AutoSize = true;
+			this->label50->Location = System::Drawing::Point(198, 203);
+			this->label50->Name = L"label50";
+			this->label50->Size = System::Drawing::Size(33, 13);
+			this->label50->TabIndex = 19;
+			this->label50->Text = L"град.";
+			// 
+			// label49
+			// 
+			this->label49->AutoSize = true;
+			this->label49->Location = System::Drawing::Point(100, 203);
+			this->label49->Name = L"label49";
+			this->label49->Size = System::Drawing::Size(33, 13);
+			this->label49->TabIndex = 18;
+			this->label49->Text = L"град.";
+			// 
+			// label31
+			// 
+			this->label31->AutoSize = true;
+			this->label31->Location = System::Drawing::Point(133, 119);
+			this->label31->Name = L"label31";
+			this->label31->Size = System::Drawing::Size(69, 13);
+			this->label31->TabIndex = 17;
+			this->label31->Text = L"Скважность";
+			// 
+			// label32
+			// 
+			this->label32->AutoSize = true;
+			this->label32->Location = System::Drawing::Point(16, 119);
+			this->label32->Name = L"label32";
+			this->label32->Size = System::Drawing::Size(111, 13);
+			this->label32->TabIndex = 16;
+			this->label32->Text = L"Продолжительность";
+			// 
+			// label30
+			// 
+			this->label30->AutoSize = true;
+			this->label30->Location = System::Drawing::Point(133, 45);
+			this->label30->Name = L"label30";
+			this->label30->Size = System::Drawing::Size(69, 13);
+			this->label30->TabIndex = 15;
+			this->label30->Text = L"Скважность";
+			// 
+			// label26
+			// 
+			this->label26->AutoSize = true;
+			this->label26->Location = System::Drawing::Point(16, 45);
+			this->label26->Name = L"label26";
+			this->label26->Size = System::Drawing::Size(111, 13);
+			this->label26->TabIndex = 14;
+			this->label26->Text = L"Продолжительность";
+			// 
+			// label25
+			// 
+			this->label25->AutoSize = true;
+			this->label25->Location = System::Drawing::Point(198, 137);
+			this->label25->Name = L"label25";
+			this->label25->Size = System::Drawing::Size(15, 13);
+			this->label25->TabIndex = 13;
+			this->label25->Text = L"%";
+			// 
+			// label24
+			// 
+			this->label24->AutoSize = true;
+			this->label24->Location = System::Drawing::Point(198, 63);
+			this->label24->Name = L"label24";
+			this->label24->Size = System::Drawing::Size(15, 13);
+			this->label24->TabIndex = 12;
+			this->label24->Text = L"%";
+			// 
+			// label23
+			// 
+			this->label23->AutoSize = true;
+			this->label23->Location = System::Drawing::Point(100, 137);
+			this->label23->Name = L"label23";
+			this->label23->Size = System::Drawing::Size(27, 13);
+			this->label23->TabIndex = 11;
+			this->label23->Text = L"мкс";
+			// 
+			// label22
+			// 
+			this->label22->AutoSize = true;
+			this->label22->Location = System::Drawing::Point(100, 63);
+			this->label22->Name = L"label22";
+			this->label22->Size = System::Drawing::Size(27, 13);
+			this->label22->TabIndex = 10;
+			this->label22->Text = L"мкс";
+			// 
+			// label21
+			// 
+			this->label21->AutoSize = true;
+			this->label21->Location = System::Drawing::Point(129, 171);
+			this->label21->Name = L"label21";
+			this->label21->Size = System::Drawing::Size(93, 26);
+			this->label21->TabIndex = 9;
+			this->label21->Text = L"Запаздывание / \r\nопережение";
 			// 
 			// label20
 			// 
@@ -1463,475 +1776,158 @@ private: System::ComponentModel::IContainer^  components;
 			this->numericUpDown12->Size = System::Drawing::Size(75, 20);
 			this->numericUpDown12->TabIndex = 6;
 			// 
-			// label21
-			// 
-			this->label21->AutoSize = true;
-			this->label21->Location = System::Drawing::Point(129, 171);
-			this->label21->Name = L"label21";
-			this->label21->Size = System::Drawing::Size(93, 26);
-			this->label21->TabIndex = 9;
-			this->label21->Text = L"Запаздывание / \r\nопережение";
-			// 
-			// label22
-			// 
-			this->label22->AutoSize = true;
-			this->label22->Location = System::Drawing::Point(100, 63);
-			this->label22->Name = L"label22";
-			this->label22->Size = System::Drawing::Size(27, 13);
-			this->label22->TabIndex = 10;
-			this->label22->Text = L"мкс";
-			// 
-			// label23
-			// 
-			this->label23->AutoSize = true;
-			this->label23->Location = System::Drawing::Point(100, 137);
-			this->label23->Name = L"label23";
-			this->label23->Size = System::Drawing::Size(27, 13);
-			this->label23->TabIndex = 11;
-			this->label23->Text = L"мкс";
-			// 
-			// label24
-			// 
-			this->label24->AutoSize = true;
-			this->label24->Location = System::Drawing::Point(198, 63);
-			this->label24->Name = L"label24";
-			this->label24->Size = System::Drawing::Size(15, 13);
-			this->label24->TabIndex = 12;
-			this->label24->Text = L"%";
-			// 
-			// label25
-			// 
-			this->label25->AutoSize = true;
-			this->label25->Location = System::Drawing::Point(198, 137);
-			this->label25->Name = L"label25";
-			this->label25->Size = System::Drawing::Size(15, 13);
-			this->label25->TabIndex = 13;
-			this->label25->Text = L"%";
-			// 
-			// label26
-			// 
-			this->label26->AutoSize = true;
-			this->label26->Location = System::Drawing::Point(16, 45);
-			this->label26->Name = L"label26";
-			this->label26->Size = System::Drawing::Size(111, 13);
-			this->label26->TabIndex = 14;
-			this->label26->Text = L"Продолжительность";
-			// 
-			// label30
-			// 
-			this->label30->AutoSize = true;
-			this->label30->Location = System::Drawing::Point(133, 45);
-			this->label30->Name = L"label30";
-			this->label30->Size = System::Drawing::Size(69, 13);
-			this->label30->TabIndex = 15;
-			this->label30->Text = L"Скважность";
-			// 
-			// label31
-			// 
-			this->label31->AutoSize = true;
-			this->label31->Location = System::Drawing::Point(133, 119);
-			this->label31->Name = L"label31";
-			this->label31->Size = System::Drawing::Size(69, 13);
-			this->label31->TabIndex = 17;
-			this->label31->Text = L"Скважность";
-			// 
-			// label32
-			// 
-			this->label32->AutoSize = true;
-			this->label32->Location = System::Drawing::Point(16, 119);
-			this->label32->Name = L"label32";
-			this->label32->Size = System::Drawing::Size(111, 13);
-			this->label32->TabIndex = 16;
-			this->label32->Text = L"Продолжительность";
-			// 
-			// checkBox4
-			// 
-			this->checkBox4->AutoSize = true;
-			this->checkBox4->CheckAlign = System::Drawing::ContentAlignment::BottomCenter;
-			this->checkBox4->Enabled = false;
-			this->checkBox4->Location = System::Drawing::Point(92, 188);
-			this->checkBox4->Name = L"checkBox4";
-			this->checkBox4->Size = System::Drawing::Size(42, 31);
-			this->checkBox4->TabIndex = 30;
-			this->checkBox4->Text = L"Связь";
-			this->checkBox4->UseVisualStyleBackColor = true;
-			// 
-			// checkBox5
-			// 
-			this->checkBox5->AutoSize = true;
-			this->checkBox5->CheckAlign = System::Drawing::ContentAlignment::BottomCenter;
-			this->checkBox5->Enabled = false;
-			this->checkBox5->Location = System::Drawing::Point(138, 189);
-			this->checkBox5->Name = L"checkBox5";
-			this->checkBox5->Size = System::Drawing::Size(36, 31);
-			this->checkBox5->TabIndex = 31;
-			this->checkBox5->Text = L"Холл";
-			this->checkBox5->UseVisualStyleBackColor = true;
-			// 
-			// checkBox6
-			// 
-			this->checkBox6->AutoSize = true;
-			this->checkBox6->CheckAlign = System::Drawing::ContentAlignment::BottomCenter;
-			this->checkBox6->Enabled = false;
-			this->checkBox6->Location = System::Drawing::Point(173, 189);
-			this->checkBox6->Name = L"checkBox6";
-			this->checkBox6->Size = System::Drawing::Size(50, 31);
-			this->checkBox6->TabIndex = 32;
-			this->checkBox6->Text = L"Впрыск";
-			this->checkBox6->UseVisualStyleBackColor = true;
-			// 
-			// textBox4
-			// 
-			this->textBox4->Location = System::Drawing::Point(9, 25);
-			this->textBox4->Multiline = true;
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(223, 128);
-			this->textBox4->TabIndex = 0;
-			this->textBox4->Text = L"В режиме ожидания блок не осуществляет подачу импульсов на форсунки, однако отсле" 
-				L"живает все сигналы датчиков и выводит различную информацию.";
-			// 
-			// label33
-			// 
-			this->label33->AutoSize = true;
-			this->label33->Location = System::Drawing::Point(6, 9);
-			this->label33->Name = L"label33";
-			this->label33->Size = System::Drawing::Size(128, 13);
-			this->label33->TabIndex = 1;
-			this->label33->Text = L"Информация о режиме:";
-			// 
-			// label34
-			// 
-			this->label34->AutoSize = true;
-			this->label34->Location = System::Drawing::Point(6, 9);
-			this->label34->Name = L"label34";
-			this->label34->Size = System::Drawing::Size(128, 13);
-			this->label34->TabIndex = 3;
-			this->label34->Text = L"Информация о режиме:";
-			// 
-			// textBox5
-			// 
-			this->textBox5->Location = System::Drawing::Point(9, 25);
-			this->textBox5->Multiline = true;
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(223, 128);
-			this->textBox5->TabIndex = 2;
-			this->textBox5->Text = resources->GetString(L"textBox5.Text");
-			this->textBox5->TextChanged += gcnew System::EventHandler(this, &Form1::textBox5_TextChanged);
-			// 
-			// label35
-			// 
-			this->label35->AutoSize = true;
-			this->label35->Location = System::Drawing::Point(6, 9);
-			this->label35->Name = L"label35";
-			this->label35->Size = System::Drawing::Size(128, 13);
-			this->label35->TabIndex = 3;
-			this->label35->Text = L"Информация о режиме:";
-			// 
-			// textBox6
-			// 
-			this->textBox6->Location = System::Drawing::Point(9, 25);
-			this->textBox6->Multiline = true;
-			this->textBox6->Name = L"textBox6";
-			this->textBox6->ScrollBars = System::Windows::Forms::ScrollBars::Both;
-			this->textBox6->Size = System::Drawing::Size(223, 128);
-			this->textBox6->TabIndex = 2;
-			this->textBox6->Text = resources->GetString(L"textBox6.Text");
-			// 
-			// label36
-			// 
-			this->label36->AutoSize = true;
-			this->label36->Location = System::Drawing::Point(6, 9);
-			this->label36->Name = L"label36";
-			this->label36->Size = System::Drawing::Size(128, 13);
-			this->label36->TabIndex = 3;
-			this->label36->Text = L"Информация о режиме:";
-			// 
-			// textBox7
-			// 
-			this->textBox7->Location = System::Drawing::Point(9, 25);
-			this->textBox7->Multiline = true;
-			this->textBox7->Name = L"textBox7";
-			this->textBox7->ScrollBars = System::Windows::Forms::ScrollBars::Both;
-			this->textBox7->Size = System::Drawing::Size(223, 128);
-			this->textBox7->TabIndex = 2;
-			this->textBox7->Text = resources->GetString(L"textBox7.Text");
-			// 
-			// KpVal
-			// 
-			this->KpVal->Location = System::Drawing::Point(477, 24);
-			this->KpVal->Name = L"KpVal";
-			this->KpVal->Size = System::Drawing::Size(38, 20);
-			this->KpVal->TabIndex = 4;
-			// 
-			// KpMult
-			// 
-			this->KpMult->Location = System::Drawing::Point(521, 24);
-			this->KpMult->Name = L"KpMult";
-			this->KpMult->Size = System::Drawing::Size(38, 20);
-			this->KpMult->TabIndex = 5;
-			// 
-			// KiVal
-			// 
-			this->KiVal->Location = System::Drawing::Point(477, 50);
-			this->KiVal->Name = L"KiVal";
-			this->KiVal->Size = System::Drawing::Size(38, 20);
-			this->KiVal->TabIndex = 6;
-			// 
-			// KiMult
-			// 
-			this->KiMult->Location = System::Drawing::Point(521, 50);
-			this->KiMult->Name = L"KiMult";
-			this->KiMult->Size = System::Drawing::Size(38, 20);
-			this->KiMult->TabIndex = 7;
-			// 
-			// KdVal
-			// 
-			this->KdVal->Location = System::Drawing::Point(477, 75);
-			this->KdVal->Name = L"KdVal";
-			this->KdVal->Size = System::Drawing::Size(38, 20);
-			this->KdVal->TabIndex = 8;
-			// 
-			// KdMult
-			// 
-			this->KdMult->Location = System::Drawing::Point(521, 75);
-			this->KdMult->Name = L"KdMult";
-			this->KdMult->Size = System::Drawing::Size(38, 20);
-			this->KdMult->TabIndex = 9;
-			// 
-			// NSetpoint
-			// 
-			this->NSetpoint->Location = System::Drawing::Point(350, 47);
-			this->NSetpoint->Name = L"NSetpoint";
-			this->NSetpoint->Size = System::Drawing::Size(38, 20);
-			this->NSetpoint->TabIndex = 10;
-			// 
-			// label37
-			// 
-			this->label37->AutoSize = true;
-			this->label37->Location = System::Drawing::Point(250, 52);
-			this->label37->Name = L"label37";
-			this->label37->Size = System::Drawing::Size(94, 13);
-			this->label37->TabIndex = 11;
-			this->label37->Text = L"Уставка частоты";
-			// 
-			// label38
-			// 
-			this->label38->AutoSize = true;
-			this->label38->Location = System::Drawing::Point(448, 27);
-			this->label38->Name = L"label38";
-			this->label38->Size = System::Drawing::Size(20, 13);
-			this->label38->TabIndex = 12;
-			this->label38->Text = L"Кп";
-			// 
-			// label39
-			// 
-			this->label39->AutoSize = true;
-			this->label39->Location = System::Drawing::Point(448, 53);
-			this->label39->Name = L"label39";
-			this->label39->Size = System::Drawing::Size(20, 13);
-			this->label39->TabIndex = 13;
-			this->label39->Text = L"Ки";
-			// 
-			// label40
-			// 
-			this->label40->AutoSize = true;
-			this->label40->Location = System::Drawing::Point(448, 78);
-			this->label40->Name = L"label40";
-			this->label40->Size = System::Drawing::Size(20, 13);
-			this->label40->TabIndex = 14;
-			this->label40->Text = L"Кд";
-			// 
-			// label41
-			// 
-			this->label41->AutoSize = true;
-			this->label41->Location = System::Drawing::Point(394, 50);
-			this->label41->Name = L"label41";
-			this->label41->Size = System::Drawing::Size(44, 13);
-			this->label41->TabIndex = 15;
-			this->label41->Text = L"об/мин";
-			// 
-			// label42
-			// 
-			this->label42->AutoSize = true;
-			this->label42->Location = System::Drawing::Point(250, 27);
-			this->label42->Name = L"label42";
-			this->label42->Size = System::Drawing::Size(94, 13);
-			this->label42->TabIndex = 17;
-			this->label42->Text = L"Текущая частота";
-			// 
-			// NCurrent
-			// 
-			this->NCurrent->Enabled = false;
-			this->NCurrent->Location = System::Drawing::Point(350, 22);
-			this->NCurrent->Name = L"NCurrent";
-			this->NCurrent->Size = System::Drawing::Size(38, 20);
-			this->NCurrent->TabIndex = 16;
-			// 
-			// label43
-			// 
-			this->label43->AutoSize = true;
-			this->label43->Location = System::Drawing::Point(394, 25);
-			this->label43->Name = L"label43";
-			this->label43->Size = System::Drawing::Size(44, 13);
-			this->label43->TabIndex = 18;
-			this->label43->Text = L"об/мин";
-			// 
-			// label44
-			// 
-			this->label44->AutoSize = true;
-			this->label44->Location = System::Drawing::Point(479, 8);
-			this->label44->Name = L"label44";
-			this->label44->Size = System::Drawing::Size(36, 13);
-			this->label44->TabIndex = 19;
-			this->label44->Text = L"число";
-			// 
-			// label45
-			// 
-			this->label45->AutoSize = true;
-			this->label45->Location = System::Drawing::Point(512, 8);
-			this->label45->Name = L"label45";
-			this->label45->Size = System::Drawing::Size(64, 13);
-			this->label45->TabIndex = 20;
-			this->label45->Text = L"множитель";
-			// 
-			// ApplyTimeSet
-			// 
-			this->ApplyTimeSet->Location = System::Drawing::Point(259, 128);
-			this->ApplyTimeSet->Name = L"ApplyTimeSet";
-			this->ApplyTimeSet->Size = System::Drawing::Size(86, 25);
-			this->ApplyTimeSet->TabIndex = 4;
-			this->ApplyTimeSet->Text = L"Применить";
-			this->ApplyTimeSet->UseVisualStyleBackColor = true;
-			// 
-			// ApplyPeriodic
-			// 
-			this->ApplyPeriodic->Location = System::Drawing::Point(259, 128);
-			this->ApplyPeriodic->Name = L"ApplyPeriodic";
-			this->ApplyPeriodic->Size = System::Drawing::Size(86, 25);
-			this->ApplyPeriodic->TabIndex = 4;
-			this->ApplyPeriodic->Text = L"Применить";
-			this->ApplyPeriodic->UseVisualStyleBackColor = true;
-			// 
-			// textBox8
-			// 
-			this->textBox8->Location = System::Drawing::Point(259, 38);
-			this->textBox8->Name = L"textBox8";
-			this->textBox8->Size = System::Drawing::Size(62, 20);
-			this->textBox8->TabIndex = 6;
-			// 
-			// label46
-			// 
-			this->label46->AutoSize = true;
-			this->label46->Location = System::Drawing::Point(256, 22);
-			this->label46->Name = L"label46";
-			this->label46->Size = System::Drawing::Size(158, 13);
-			this->label46->TabIndex = 7;
-			this->label46->Text = L"Продолжительность впрыска";
-			// 
-			// label47
-			// 
-			this->label47->AutoSize = true;
-			this->label47->Location = System::Drawing::Point(256, 22);
-			this->label47->Name = L"label47";
-			this->label47->Size = System::Drawing::Size(158, 13);
-			this->label47->TabIndex = 10;
-			this->label47->Text = L"Продолжительность впрыска";
-			// 
-			// textBox9
-			// 
-			this->textBox9->Location = System::Drawing::Point(259, 38);
-			this->textBox9->Name = L"textBox9";
-			this->textBox9->Size = System::Drawing::Size(62, 20);
-			this->textBox9->TabIndex = 9;
-			// 
-			// label48
-			// 
-			this->label48->AutoSize = true;
-			this->label48->Location = System::Drawing::Point(256, 73);
-			this->label48->Name = L"label48";
-			this->label48->Size = System::Drawing::Size(132, 13);
-			this->label48->TabIndex = 13;
-			this->label48->Text = L"Периодичность впрыска";
-			// 
-			// textBox10
-			// 
-			this->textBox10->Location = System::Drawing::Point(259, 89);
-			this->textBox10->Name = L"textBox10";
-			this->textBox10->Size = System::Drawing::Size(62, 20);
-			this->textBox10->TabIndex = 12;
-			// 
-			// label13
-			// 
-			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(6, 206);
-			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(70, 13);
-			this->label13->TabIndex = 34;
-			this->label13->Text = L"Индикаторы";
-			// 
-			// label49
-			// 
-			this->label49->AutoSize = true;
-			this->label49->Location = System::Drawing::Point(100, 203);
-			this->label49->Name = L"label49";
-			this->label49->Size = System::Drawing::Size(33, 13);
-			this->label49->TabIndex = 18;
-			this->label49->Text = L"град.";
-			// 
-			// label50
-			// 
-			this->label50->AutoSize = true;
-			this->label50->Location = System::Drawing::Point(198, 203);
-			this->label50->Name = L"label50";
-			this->label50->Size = System::Drawing::Size(33, 13);
-			this->label50->TabIndex = 19;
-			this->label50->Text = L"град.";
-			// 
-			// comboBox1
-			// 
-			this->comboBox1->FormattingEnabled = true;
-			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
-			this->comboBox1->Location = System::Drawing::Point(338, 38);
-			this->comboBox1->Name = L"comboBox1";
-			this->comboBox1->Size = System::Drawing::Size(75, 21);
-			this->comboBox1->TabIndex = 14;
-			// 
-			// comboBox2
-			// 
-			this->comboBox2->FormattingEnabled = true;
-			this->comboBox2->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
-			this->comboBox2->Location = System::Drawing::Point(232, 121);
-			this->comboBox2->Name = L"comboBox2";
-			this->comboBox2->Size = System::Drawing::Size(65, 21);
-			this->comboBox2->TabIndex = 15;
-			// 
-			// comboBox3
-			// 
-			this->comboBox3->FormattingEnabled = true;
-			this->comboBox3->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(сек)", L"(мс)", L"(мкс)"});
-			this->comboBox3->Location = System::Drawing::Point(337, 88);
-			this->comboBox3->Name = L"comboBox3";
-			this->comboBox3->Size = System::Drawing::Size(77, 21);
-			this->comboBox3->TabIndex = 16;
-			// 
-			// comboBox4
-			// 
-			this->comboBox4->FormattingEnabled = true;
-			this->comboBox4->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
-			this->comboBox4->Location = System::Drawing::Point(327, 38);
-			this->comboBox4->Name = L"comboBox4";
-			this->comboBox4->Size = System::Drawing::Size(77, 21);
-			this->comboBox4->TabIndex = 17;
-			// 
-			// listView1
-			// 
-			this->listView1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ListViewItem^  >(3) {listViewItem1, listViewItem2, 
-				listViewItem3});
-			this->listView1->Location = System::Drawing::Point(346, 82);
-			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(102, 27);
-			this->listView1->TabIndex = 18;
-			this->listView1->UseCompatibleStateImageBehavior = false;
+			// label19
+			// 
+			this->label19->AutoSize = true;
+			this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(204)));
+			this->label19->Location = System::Drawing::Point(16, 101);
+			this->label19->Name = L"label19";
+			this->label19->Size = System::Drawing::Size(134, 13);
+			this->label19->TabIndex = 5;
+			this->label19->Text = L"Удерживающий импульс";
+			// 
+			// numericUpDown9
+			// 
+			this->numericUpDown9->Location = System::Drawing::Point(140, 135);
+			this->numericUpDown9->Name = L"numericUpDown9";
+			this->numericUpDown9->Size = System::Drawing::Size(52, 20);
+			this->numericUpDown9->TabIndex = 4;
+			// 
+			// numericUpDown10
+			// 
+			this->numericUpDown10->Enabled = false;
+			this->numericUpDown10->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {100, 0, 0, 0});
+			this->numericUpDown10->Location = System::Drawing::Point(19, 135);
+			this->numericUpDown10->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {50000, 0, 0, 0});
+			this->numericUpDown10->Name = L"numericUpDown10";
+			this->numericUpDown10->Size = System::Drawing::Size(75, 20);
+			this->numericUpDown10->TabIndex = 3;
+			// 
+			// label18
+			// 
+			this->label18->AutoSize = true;
+			this->label18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point, 
+				static_cast<System::Byte>(204)));
+			this->label18->Location = System::Drawing::Point(16, 26);
+			this->label18->Name = L"label18";
+			this->label18->Size = System::Drawing::Size(128, 13);
+			this->label18->TabIndex = 2;
+			this->label18->Text = L"Форсирующий импульс";
+			this->label18->Click += gcnew System::EventHandler(this, &Form1::label18_Click);
+			// 
+			// numericUpDown8
+			// 
+			this->numericUpDown8->Location = System::Drawing::Point(140, 61);
+			this->numericUpDown8->Name = L"numericUpDown8";
+			this->numericUpDown8->Size = System::Drawing::Size(52, 20);
+			this->numericUpDown8->TabIndex = 1;
+			// 
+			// numericUpDown7
+			// 
+			this->numericUpDown7->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {100, 0, 0, 0});
+			this->numericUpDown7->Location = System::Drawing::Point(19, 61);
+			this->numericUpDown7->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {10000, 0, 0, 0});
+			this->numericUpDown7->Name = L"numericUpDown7";
+			this->numericUpDown7->Size = System::Drawing::Size(75, 20);
+			this->numericUpDown7->TabIndex = 0;
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Controls->Add(this->label2);
+			this->groupBox1->Controls->Add(this->tbCurrentMode);
+			this->groupBox1->Controls->Add(this->label1);
+			this->groupBox1->Controls->Add(this->butApplyMode);
+			this->groupBox1->Controls->Add(this->radioButton4);
+			this->groupBox1->Controls->Add(this->radioButton3);
+			this->groupBox1->Controls->Add(this->radioButton2);
+			this->groupBox1->Controls->Add(this->radioButton1);
+			this->groupBox1->Location = System::Drawing::Point(17, 17);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(239, 216);
+			this->groupBox1->TabIndex = 0;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"Режим работы";
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Location = System::Drawing::Point(16, 71);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(149, 13);
+			this->label2->TabIndex = 7;
+			this->label2->Text = L"Доступные режимы работы";
+			this->label2->Click += gcnew System::EventHandler(this, &Form1::label2_Click);
+			// 
+			// tbCurrentMode
+			// 
+			this->tbCurrentMode->Enabled = false;
+			this->tbCurrentMode->Location = System::Drawing::Point(122, 31);
+			this->tbCurrentMode->Name = L"tbCurrentMode";
+			this->tbCurrentMode->Size = System::Drawing::Size(100, 20);
+			this->tbCurrentMode->TabIndex = 6;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(16, 34);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(89, 13);
+			this->label1->TabIndex = 5;
+			this->label1->Text = L"Текущий режим";
+			// 
+			// butApplyMode
+			// 
+			this->butApplyMode->Location = System::Drawing::Point(19, 177);
+			this->butApplyMode->Name = L"butApplyMode";
+			this->butApplyMode->Size = System::Drawing::Size(75, 27);
+			this->butApplyMode->TabIndex = 4;
+			this->butApplyMode->Text = L"Применить";
+			this->butApplyMode->UseVisualStyleBackColor = true;
+			// 
+			// radioButton4
+			// 
+			this->radioButton4->AutoSize = true;
+			this->radioButton4->Location = System::Drawing::Point(19, 154);
+			this->radioButton4->Name = L"radioButton4";
+			this->radioButton4->Size = System::Drawing::Size(130, 17);
+			this->radioButton4->TabIndex = 3;
+			this->radioButton4->TabStop = true;
+			this->radioButton4->Text = L"Управление по ПИД";
+			this->radioButton4->UseVisualStyleBackColor = true;
+			// 
+			// radioButton3
+			// 
+			this->radioButton3->AutoSize = true;
+			this->radioButton3->Location = System::Drawing::Point(19, 133);
+			this->radioButton3->Name = L"radioButton3";
+			this->radioButton3->Size = System::Drawing::Size(173, 17);
+			this->radioButton3->TabIndex = 2;
+			this->radioButton3->TabStop = true;
+			this->radioButton3->Text = L"Задание продолжительности";
+			this->radioButton3->UseVisualStyleBackColor = true;
+			// 
+			// radioButton2
+			// 
+			this->radioButton2->AutoSize = true;
+			this->radioButton2->Location = System::Drawing::Point(19, 110);
+			this->radioButton2->Name = L"radioButton2";
+			this->radioButton2->Size = System::Drawing::Size(145, 17);
+			this->radioButton2->TabIndex = 1;
+			this->radioButton2->TabStop = true;
+			this->radioButton2->Text = L"Периодический впрыск";
+			this->radioButton2->UseVisualStyleBackColor = true;
+			// 
+			// radioButton1
+			// 
+			this->radioButton1->AutoSize = true;
+			this->radioButton1->Location = System::Drawing::Point(19, 87);
+			this->radioButton1->Name = L"radioButton1";
+			this->radioButton1->Size = System::Drawing::Size(187, 17);
+			this->radioButton1->TabIndex = 0;
+			this->radioButton1->TabStop = true;
+			this->radioButton1->Text = L"Ожидание (впрыск отсутствует)";
+			this->radioButton1->UseVisualStyleBackColor = true;
 			// 
 			// Form1
 			// 
@@ -1965,32 +1961,32 @@ private: System::ComponentModel::IContainer^  components;
 			this->tabControlPage->ResumeLayout(false);
 			this->groupBox4->ResumeLayout(false);
 			this->groupBox4->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmax))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmin))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmax))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmin))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmax))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmin))->EndInit();
 			this->groupBox3->ResumeLayout(false);
 			this->tctrlModeParameters->ResumeLayout(false);
 			this->tab1_Standby->ResumeLayout(false);
 			this->tab1_Standby->PerformLayout();
 			this->tab2_Period->ResumeLayout(false);
 			this->tab2_Period->PerformLayout();
-			this->groupBox2->ResumeLayout(false);
-			this->groupBox2->PerformLayout();
-			this->groupBox1->ResumeLayout(false);
-			this->groupBox1->PerformLayout();
 			this->tab3_TimeSet->ResumeLayout(false);
 			this->tab3_TimeSet->PerformLayout();
 			this->tab4_PID->ResumeLayout(false);
 			this->tab4_PID->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmin))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmax))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmax))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmin))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmax))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmin))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown7))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown8))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown9))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown10))->EndInit();
+			this->groupBox2->ResumeLayout(false);
+			this->groupBox2->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown11))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown12))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown9))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown10))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown8))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->numericUpDown7))->EndInit();
+			this->groupBox1->ResumeLayout(false);
+			this->groupBox1->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
