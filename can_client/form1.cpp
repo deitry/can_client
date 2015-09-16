@@ -65,22 +65,52 @@ void can_client::Form1::onCanRecieve(void)
 	BOOL            fRet;
 	tCanMsgStruct   RxCanMsg;
 
-    //if (m_fInitOk != FALSE)
-    //{
-        // read CAN messages until the buffer is empty
-        do
+    do
+    {
+        // read CAN message
+        fRet = readMsg (&RxCanMsg);
+        if (fRet != FALSE)
         {
-            // read CAN message
-            fRet = readMsg (&RxCanMsg);
-            if (fRet != FALSE)
-            {
-                printMsg (&RxCanMsg);
-            }
+            printMsg (&RxCanMsg);
+        }
 
-        } while (fRet != FALSE);
-    //}
+    } while (fRet != FALSE);
 
-    //return 0;
+	if (!isInitialized)
+	{
+		// очистить список
+		canWrite(EC_PCLR,0,0,0);		
+		// запрашиваем все параметры - добавляем их в список "запроса"
+		canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
+		canWrite(EC_PQUE, EC_G_N, EC_S_NU,0);		
+		canWrite(EC_PQUE, EC_G_N, EC_S_DTIME,0);		
+		canWrite(EC_PQUE, EC_G_QC, EC_S_QC_AN,0);		
+		canWrite(EC_PQUE, EC_G_QC, EC_S_QC,0);		
+		canWrite(EC_PQUE, EC_G_QC, EC_S_ADOP,0);		
+		canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
+		canWrite(EC_PQUE, EC_P_VMT, 0,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT1,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT2,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD1,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);		
+		canWrite(EC_PQUE, EC_T_INJPHI, EC_S_NR,0);		
+		canWrite(EC_PQUE, EC_T_INJZ, 0,0);		
+		canWrite(EC_PQUE, EC_T_INJN, 0,0);		
+		canWrite(EC_PQUE, EC_T_INJT, 0,0);		
+		canWrite(EC_PQUE, EC_T_INJCNT, 0,0);		
+		canWrite(EC_PQUE, EC_P_KP, 0,0);		
+		canWrite(EC_PQUE, EC_P_KI, 0,0);		
+		canWrite(EC_PQUE, EC_P_KD, 0,0);		
+		canWrite(EC_PQUE, EC_P_ERR, 0,0);		
+		canWrite(EC_PQUE, EC_P_ERRI, 0,0);		
+		canWrite(EC_PQUE, EC_P_ERRD, 0,0);		
+		canWrite(EC_PQUE, EC_P_PTIME, 0,0);		
+		canWrite(EC_PQUE, EC_P_ITIME, 0,0);		
+		canWrite(EC_PQUE, EC_P_ITIME1, 0,0);		
+		canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVT,0);
+
+		isInitialized = true;
+	}
 }
 
 BOOL can_client::Form1::readMsg(tCanMsgStruct* pCanMsg_p)
@@ -110,14 +140,13 @@ BOOL can_client::Form1::readMsg(tCanMsgStruct* pCanMsg_p)
 
 void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 {
-	/*
 	CAN_DATA d;
 	for (int counter = 0; counter < 8; counter ++ )
 		d.all[counter] = pCanMsg_p->m_bData[counter];
 	unsigned char id = d.f.PARID;
 	nMessage++;
 
-	textBox3->Text = Convert::ToString((byte)pCanMsg_p->m_bData[0],16);
+	//textBox3->Text = Convert::ToString((byte)pCanMsg_p->m_bData[0],16);
 
 	eng_mod a;
 	float tmpf;
@@ -125,31 +154,33 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 	switch (id)
 	{
 	case EC_TIME:
+		break;
 	case EC_TINJ:
+		cbInjection->Checked = !cbInjection->Checked;
+		break;
 	case EC_TPROG:
+		cbConnection->Checked = !cbConnection->Checked;
 		break;
 	case EC_P_MODE:
-		try { this->comboMode->SelectedIndex = d.f.val.i - 1; } catch (Exception^ e) {}
+		/*try { this->comboMode->SelectedIndex = d.f.val.i - 1; } catch (Exception^ e) {}
 		if (this->comboModeOut->SelectedIndex == 0)
 		{
 			this->comboModeOut->SelectedIndex = this->comboMode->SelectedIndex;
-		}
+		}*/
 		break;
 	case EC_G_N:
 		switch (d.f.R1)
 		{
 		case EC_S_NR:
-			this->RPM->Text = Convert::ToString(d.f.val.f);
+			this->NCurrent->Text = Convert::ToString(d.f.val.f);
+			this->NCurrentValue->Text = Convert::ToString(d.f.val.f);
+			this->NCurrentProgress->Value = d.f.val.f;
 			break;
 		case EC_S_NU:
-			this->textnUIn->Text = Convert::ToString(d.f.val.f);
-			if (this->textnUOut->Text == "")
-			{
-				this->textnUOut->Text = this->textnUIn->Text;
-			}
+			//this->NSetpoint->Text = Convert::ToString(d.f.val.f);
 			break;
 		case EC_S_DTIME:
-			this->dT_ms->Text = Convert::ToString(d.f.val.f);
+			//this->gStep2->Text = Convert::ToString(d.f.val.f);			
 			break;
 		}
 		break;
@@ -159,15 +190,14 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		case EC_S_QC:
 			break;
 		case EC_S_QC_T:
-			this->Tvprysk->Text = Convert::ToString((System::Object^)d.f.val.i);
-			this->textQCtIn->Text = Convert::ToString((System::Object^)d.f.val.i);
+			//this->gStep2->Text = Convert::ToString((System::Object^)d.f.val.i);
 			break;
 		case EC_S_QC_AN:
-			this->textQCAnIn->Text = Convert::ToString((System::Object^)d.f.val.f);
-			this->textQCAn->Text = Convert::ToString((System::Object^)d.f.val.f);
+			//this->textQCAnIn->Text = Convert::ToString((System::Object^)d.f.val.f);
+			//this->textQCAn->Text = Convert::ToString((System::Object^)d.f.val.f);
 			break;
 		case EC_S_QC_ADOP:
-			this->textBox1->Text = Convert::ToString((System::Object^)d.f.val.f);
+			//this->textBox1->Text = Convert::ToString((System::Object^)d.f.val.f);
 			break;
 		}
 		break;
@@ -175,39 +205,68 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		switch (d.f.R1)
 		{
 		case EC_S_INJT1:
-			this->textInjT1In->Text = Convert::ToString((System::Object^)d.f.val.i);
+			if (gStep1 == -1)
+			{
+				gStep1 = d.f.val.i;
+				this->gStep1Box->Text = Convert::ToString((System::Object^)d.f.val.i);
+			}
 			break;
 		case EC_S_INJT2:
-			this->textInjT2In->Text = Convert::ToString((System::Object^)d.f.val.i);
+			if (gStep2 == -1)
+			{
+				gStep2 = d.f.val.i;
+				this->gStep2Box->Text = Convert::ToString((System::Object^)d.f.val.i);
+			}
 			break;
 		case EC_S_INJD1:
-			this->textInjD1In->Text = Convert::ToString((System::Object^)d.f.val.i);
+			if (gDuty1 == -1)
+			{
+				gDuty1 = d.f.val.i;
+				this->gDuty1Box->Text = Convert::ToString((System::Object^)d.f.val.i);
+			}
 			break;
 		case EC_S_INJD2:
-			this->textInjD2In->Text = Convert::ToString((System::Object^)d.f.val.i);
+			if (gDuty2 == -1)
+			{
+				gDuty2 = d.f.val.i;
+				this->gDuty2Box->Text = Convert::ToString((System::Object^)d.f.val.i);
+			}
 			break;
 		}
 		break;
 	case EC_P_VMT:
-		this->textVMTIn->Text = Convert::ToString(d.f.val.f);
+		if (this->VMTBox->Text == "")
+		{
+			this->VMTBox->Text = Convert::ToString(d.f.val.f);
+		}
 		break;
 	case EC_P_M_MODE:
-		this->checkManModeIn->Checked = d.f.val.i;
+		//this->checkManModeIn->Checked = d.f.val.i;
 		break;
 	case EC_P_M_QC:
 		switch (d.f.R1)
 		{
 		case EC_P0:
-			this->checkmanQCIn->Checked = d.f.val.i;
+			manQC = d.f.val.i;
+			refreshMode();
+			
+			switch(d.f.val.i)
+			{
+			case EG_MANQC_AUTO:
+			case EG_MANQC_TIME:
+			case EG_MANQC_ANGLE:
+			case EG_MANQC_QC:
+				break;
+			}
 			break;
 		case EC_S_M_AN:
-			this->checkmanAngleIn->Checked = d.f.val.i;
+			//this->checkmanAngleIn->Checked = d.f.val.i;
 			break;
 		case EC_S_M_IAN:
-			this->textQCAnIn->Text = Convert::ToString((System::Object^)d.f.val.f);
+			//this->textQCAnIn->Text = Convert::ToString((System::Object^)d.f.val.f);
 			break;
 		case EC_S_M_QCT:
-			this->checkManQCtIn->Checked = d.f.val.i;
+			//this->checkManQCtIn->Checked = d.f.val.i;
 			break;
 		}
 		break;
@@ -215,27 +274,29 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		switch (d.f.R1)
 		{
 		case EC_S_QC_T:
-			this->checkmanInjIn->Checked = d.f.val.i;
+			manInj = d.f.val.i;
+			refreshMode();
 			break;
 		case EC_S_M_IONCE:
-			this->checkinjOnceIn->Checked = d.f.val.i;
+			injOnce = d.f.val.i;
+			refreshMode();
 			break;
 		}
 		break;
 	case EC_P_M_PED:
-		this->checkmanPedIn->Checked = d.f.val.i;
+		//this->checkmanPedIn->Checked = d.f.val.i;
 		break;
 	case EC_P_M_LED:
-		this->checkManLedIn->Checked = d.f.val.i;
+		//this->checkManLedIn->Checked = d.f.val.i;
 		break;
 	case EC_P_M_CANS:
 		switch (d.f.R1)
 		{
 		case EC_P0:
-			this->checkCanSendIn->Checked = d.f.val.i;
+			//this->checkCanSendIn->Checked = d.f.val.i;
 			break;
 		case EC_S_M_CANST:
-			this->checkCanTimeIn->Checked = d.f.val.i;
+			//this->checkCanTimeIn->Checked = d.f.val.i;
 			break;
 		}
 		break;
@@ -243,58 +304,67 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		switch (d.f.R1)
 		{
 		case EC_P0:
-			this->checkmanUOVTIn->Checked = d.f.val.i;
+			//this->checkmanUOVTIn->Checked = d.f.val.i;
 			break;
 		case EC_S_M_UOVT:
-			this->textinjUOVTIn->Text = Convert::ToString(d.f.val.f);
-			this->UOVT->Text = Convert::ToString(d.f.val.f);
+			//this->textinjUOVTIn->Text = Convert::ToString(d.f.val.f);
+			//this->UOVT->Text = Convert::ToString(d.f.val.f);
 			break;
 		}
 		break;
 	case EC_P_M_FDBK:
-		if (d.f.R1 == 0)
+		/*if (d.f.R1 == 0)
 		{
 			this->checkManFdbkIn->Checked = d.f.val.i;
 		} else {
 			fdbkData[d.f.R1-1] = d.f.val.f;
 			gridFdbk->Rows[0]->Cells[d.f.R1-1]->Value = d.f.val.f;
-		}
+		}*/
 		break;
 	case EC_P_PTIME:
-		this->textProgTime->Text = Convert::ToString(d.f.val.f);
+		//this->textProgTime->Text = Convert::ToString(d.f.val.f);
 		break;
 	case EC_P_ITIME:
-		this->textIntTime->Text = Convert::ToString(d.f.val.f);
+		//this->textIntTime->Text = Convert::ToString(d.f.val.f);
 		break;
 	case EC_P_ITIME1:
-		this->textIntTime1->Text = Convert::ToString(d.f.val.f);
+		//this->textIntTime1->Text = Convert::ToString(d.f.val.f);
 		break;
 	case EC_P_KP:
-		this->KpMultIn->Text = this->KpMultOut->Text;
-		if ((this->KpMultOut->Text != "") && (Single::TryParse(this->KpMultIn->Text, tmpf)))
+		// TODO : если не совпадает с текущим значением, выделить жёлтым
+		if (Kp == -1)
 		{
-			this->KpMultIn->Text = this->KpMultOut->Text;
-			this->KpValIn->Text = Convert::ToString(d.f.val.f / tmpf);
+			Kp = d.f.val.f;
+			if ((this->KpMult->Text != "") && (Single::TryParse(this->KpMult->Text, tmpf)))
+			{
+				this->KpVal->Text = Convert::ToString(d.f.val.f / tmpf);
+			}
+			else this->KpVal->Text = Convert::ToString(d.f.val.f);
 		}
-		else this->KpValIn->Text = Convert::ToString(d.f.val.f);
 		break;
 	case EC_P_KI:
-		this->KiMultIn->Text = this->KiMultOut->Text;
-		if ((this->KiMultOut->Text != "") && (Single::TryParse(this->KiMultIn->Text, tmpf)))
+		if (Ki == -1)
 		{
-			this->KiMultIn->Text = this->KiMultOut->Text;
-			this->KiValIn->Text = Convert::ToString(d.f.val.f / tmpf);
+			Ki = d.f.val.f;
+			if ((this->KiMult->Text != "") && (Single::TryParse(this->KiMult->Text, tmpf)))
+			{
+				this->KiVal->Text = Convert::ToString(d.f.val.f / tmpf);
+			}
+			else this->KiVal->Text = Convert::ToString(d.f.val.f);
 		}
-		else this->KiValIn->Text = Convert::ToString(d.f.val.f);
 		break;
 	case EC_P_KD:
-		this->KdMultIn->Text = this->KdMultOut->Text;
-		if ((this->KdMultOut->Text != "") && (Single::TryParse(this->KdMultIn->Text, tmpf)))
+		if (Kd == -1)
 		{
-			this->KdValIn->Text = Convert::ToString(d.f.val.f / tmpf);
+			Kd = d.f.val.f;
+			if ((this->KdMult->Text != "") && (Single::TryParse(this->KdMult->Text, tmpf)))
+			{
+				this->KdVal->Text = Convert::ToString(d.f.val.f / tmpf);
+			}
+			else this->KdVal->Text = Convert::ToString(d.f.val.f);
 		}
-		else this->KdValIn->Text = Convert::ToString(d.f.val.f);
-		break;	}
+		break;
+	}
 
 	if (isLogWrite)
 	{
@@ -315,7 +385,6 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 				this->textRandIn->Text = Convert::ToString(d.f.val.i);
 			}
 		}
-		*/
 }
 
 void can_client::Form1::canWrite(int id1, int id2, int id3, float a)
@@ -445,9 +514,8 @@ void can_client::Form1::onCanTransmit()
 
 BOOL can_client::Form1::writeMsg (tCanMsgStruct *pCanMsg_p)
 {
-
-BOOL    fRet    = m_fIsInitialized;
-BYTE    bRet;
+	BOOL    fRet    = m_fIsInitialized;
+	BYTE    bRet;
 
     //ASSERT (pCanMsg_p != NULL);
 
@@ -462,7 +530,7 @@ BYTE    bRet;
         {
             goto Exit;
         }
-
+		for (int i = 0; i < 5000; i++);	// ожидание нужно, чтобы всё успешно дошло и обработалось
         fRet = TRUE;
     }
 
