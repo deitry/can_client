@@ -108,7 +108,10 @@ void can_client::Form1::onCanRecieve(void)
 		canWrite(EC_PQUE, EC_P_ITIME, 0,0);		
 		canWrite(EC_PQUE, EC_P_ITIME1, 0,0);		
 		canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVT,0);
-
+		canWrite(EC_PQUE, EC_P_M_INJ, 0,0);		
+		canWrite(EC_PQUE, EC_P_M_QC, 0,0);		
+		canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);		
+		
 		isInitialized = true;
 	}
 }
@@ -154,6 +157,7 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 	switch (id)
 	{
 	case EC_TIME:
+		cbConnection->Checked = !cbConnection->Checked;
 		break;
 	case EC_TINJ:
 		cbInjection->Checked = !cbInjection->Checked;
@@ -172,9 +176,16 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		switch (d.f.R1)
 		{
 		case EC_S_NR:
-			this->NCurrent->Text = Convert::ToString(d.f.val.f);
-			this->NCurrentValue->Text = Convert::ToString(d.f.val.f);
-			this->NCurrentProgress->Value = d.f.val.f;
+			NCurrentBox->Text = Convert::ToString(d.f.val.f);
+			NCurrentValue->Text = Convert::ToString(d.f.val.f);
+			if (d.f.val.f < NCurrentProgress->Maximum)
+			{
+				NCurrentProgress->Value = d.f.val.f;
+			}
+			else
+			{
+				NCurrentProgress->Value = NCurrentProgress->Maximum;
+			}
 			break;
 		case EC_S_NU:
 			//this->NSetpoint->Text = Convert::ToString(d.f.val.f);
@@ -212,11 +223,11 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 			}
 			break;
 		case EC_S_INJT2:
-			if (gStep2 == -1)
-			{
+			//if (gStep2 == -1)
+			//{
 				gStep2 = d.f.val.i;
 				this->gStep2Box->Text = Convert::ToString((System::Object^)d.f.val.i);
-			}
+			//}
 			break;
 		case EC_S_INJD1:
 			if (gDuty1 == -1)
@@ -259,15 +270,15 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 				break;
 			}
 			break;
-		case EC_S_M_AN:
+		//case EC_S_M_AN:
 			//this->checkmanAngleIn->Checked = d.f.val.i;
-			break;
+			//break;
 		case EC_S_M_IAN:
 			//this->textQCAnIn->Text = Convert::ToString((System::Object^)d.f.val.f);
 			break;
-		case EC_S_M_QCT:
+		//case EC_S_M_QCT:
 			//this->checkManQCtIn->Checked = d.f.val.i;
-			break;
+			//break;
 		}
 		break;
 	case EC_P_M_INJ:
@@ -322,13 +333,13 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		}*/
 		break;
 	case EC_P_PTIME:
-		//this->textProgTime->Text = Convert::ToString(d.f.val.f);
+		tProgTime->Text = Convert::ToString(d.f.val.f);
 		break;
 	case EC_P_ITIME:
-		//this->textIntTime->Text = Convert::ToString(d.f.val.f);
+		tIntTime->Text = Convert::ToString(d.f.val.f);
 		break;
 	case EC_P_ITIME1:
-		//this->textIntTime1->Text = Convert::ToString(d.f.val.f);
+		tInt1Time->Text = Convert::ToString(d.f.val.f);
 		break;
 	case EC_P_KP:
 		// TODO : если не совпадает с текущим значением, выделить жёлтым

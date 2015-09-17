@@ -52,9 +52,9 @@ namespace can_client {
 			nMessage = 0;
 			isLogWrite = 0;
 
-			InjPeriodSelect->SelectedIndex = 0;
-			InjTimeSetSelect->SelectedIndex = 0;
-			InjTimeSelect->SelectedIndex = 0;
+			injPeriodSelect->SelectedIndex = 0;
+			injTimeSetSelect->SelectedIndex = 0;
+			injTimeSelect->SelectedIndex = 0;
 			QCValueSelect->SelectedIndex = 0;
 
 			manQC = -1;
@@ -203,7 +203,8 @@ private: System::Windows::Forms::NumericUpDown^  gStep1Box;
 	private: System::Windows::Forms::Label^  label36;
 	private: System::Windows::Forms::TextBox^  textBox7;
 	private: System::Windows::Forms::Label^  label42;
-	private: System::Windows::Forms::TextBox^  NCurrent;
+private: System::Windows::Forms::TextBox^  NCurrentBox;
+
 	private: System::Windows::Forms::Label^  label41;
 	private: System::Windows::Forms::Label^  label40;
 	private: System::Windows::Forms::Label^  label39;
@@ -223,23 +224,29 @@ private: System::Windows::Forms::TextBox^  NSetpointBox;
 	private: System::Windows::Forms::Button^  ApplyPeriodic;
 	private: System::Windows::Forms::Button^  ApplyTimeSet;
 	private: System::Windows::Forms::Label^  label46;
-private: System::Windows::Forms::TextBox^  InjectionTimeSetBox;
+private: System::Windows::Forms::TextBox^  injTimeSetBox;
+
 
 	private: System::Windows::Forms::Label^  label48;
-private: System::Windows::Forms::TextBox^  InjectionPeriodBox;
+private: System::Windows::Forms::TextBox^  injPeriodBox;
+
 
 	private: System::Windows::Forms::Label^  label47;
-	private: System::Windows::Forms::TextBox^  textBox9;
+private: System::Windows::Forms::TextBox^  injTimeBox;
+
 	private: System::Windows::Forms::Label^  label13;
 	private: System::Windows::Forms::Label^  label50;
 	private: System::Windows::Forms::Label^  label49;
 private: System::Windows::Forms::ComboBox^  QCValueSelect;
-private: System::Windows::Forms::ComboBox^  InjPeriodSelect;
+private: System::Windows::Forms::ComboBox^  injPeriodSelect;
+
+private: System::Windows::Forms::ComboBox^  injTimeSelect;
+private: System::Windows::Forms::ComboBox^  injTimeSetSelect;
 
 
 
-private: System::Windows::Forms::ComboBox^  InjTimeSelect;
-private: System::Windows::Forms::ComboBox^  InjTimeSetSelect;
+
+
 
 
 
@@ -247,6 +254,15 @@ private: System::Windows::Forms::ComboBox^  InjTimeSetSelect;
 	private: System::Windows::Forms::Label^  label51;
 private: System::Windows::Forms::TextBox^  NIdleBox;
 private: System::Windows::Forms::TextBox^  gStep2Box;
+private: System::Windows::Forms::Label^  label54;
+private: System::Windows::Forms::Label^  label53;
+private: System::Windows::Forms::Label^  label52;
+private: System::Windows::Forms::TextBox^  tProgTime;
+private: System::Windows::Forms::TextBox^  tIntTime;
+private: System::Windows::Forms::TextBox^  tInt1Time;
+
+
+
 
 	private: System::ComponentModel::IContainer^  components;
 
@@ -329,19 +345,19 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->label33 = (gcnew System::Windows::Forms::Label());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->tab2_Period = (gcnew System::Windows::Forms::TabPage());
-			this->InjPeriodSelect = (gcnew System::Windows::Forms::ComboBox());
-			this->InjTimeSelect = (gcnew System::Windows::Forms::ComboBox());
+			this->injPeriodSelect = (gcnew System::Windows::Forms::ComboBox());
+			this->injTimeSelect = (gcnew System::Windows::Forms::ComboBox());
 			this->label48 = (gcnew System::Windows::Forms::Label());
-			this->InjectionPeriodBox = (gcnew System::Windows::Forms::TextBox());
+			this->injPeriodBox = (gcnew System::Windows::Forms::TextBox());
 			this->label47 = (gcnew System::Windows::Forms::Label());
-			this->textBox9 = (gcnew System::Windows::Forms::TextBox());
+			this->injTimeBox = (gcnew System::Windows::Forms::TextBox());
 			this->ApplyPeriodic = (gcnew System::Windows::Forms::Button());
 			this->label34 = (gcnew System::Windows::Forms::Label());
 			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
 			this->tab3_TimeSet = (gcnew System::Windows::Forms::TabPage());
-			this->InjTimeSetSelect = (gcnew System::Windows::Forms::ComboBox());
+			this->injTimeSetSelect = (gcnew System::Windows::Forms::ComboBox());
 			this->label46 = (gcnew System::Windows::Forms::Label());
-			this->InjectionTimeSetBox = (gcnew System::Windows::Forms::TextBox());
+			this->injTimeSetBox = (gcnew System::Windows::Forms::TextBox());
 			this->ApplyTimeSet = (gcnew System::Windows::Forms::Button());
 			this->label35 = (gcnew System::Windows::Forms::Label());
 			this->textBox6 = (gcnew System::Windows::Forms::TextBox());
@@ -354,7 +370,7 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->label44 = (gcnew System::Windows::Forms::Label());
 			this->label43 = (gcnew System::Windows::Forms::Label());
 			this->label42 = (gcnew System::Windows::Forms::Label());
-			this->NCurrent = (gcnew System::Windows::Forms::TextBox());
+			this->NCurrentBox = (gcnew System::Windows::Forms::TextBox());
 			this->label41 = (gcnew System::Windows::Forms::Label());
 			this->label40 = (gcnew System::Windows::Forms::Label());
 			this->label39 = (gcnew System::Windows::Forms::Label());
@@ -399,6 +415,12 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->rbTimeSet = (gcnew System::Windows::Forms::RadioButton());
 			this->rbPeriodic = (gcnew System::Windows::Forms::RadioButton());
 			this->rbStandby = (gcnew System::Windows::Forms::RadioButton());
+			this->tInt1Time = (gcnew System::Windows::Forms::TextBox());
+			this->tIntTime = (gcnew System::Windows::Forms::TextBox());
+			this->tProgTime = (gcnew System::Windows::Forms::TextBox());
+			this->label52 = (gcnew System::Windows::Forms::Label());
+			this->label53 = (gcnew System::Windows::Forms::Label());
+			this->label54 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
 			this->tabParameters->SuspendLayout();
@@ -617,6 +639,12 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			// 
 			// InjectionTimeBox
 			// 
+			this->InjectionTimeBox->Controls->Add(this->label54);
+			this->InjectionTimeBox->Controls->Add(this->label53);
+			this->InjectionTimeBox->Controls->Add(this->label52);
+			this->InjectionTimeBox->Controls->Add(this->tProgTime);
+			this->InjectionTimeBox->Controls->Add(this->tIntTime);
+			this->InjectionTimeBox->Controls->Add(this->tInt1Time);
 			this->InjectionTimeBox->Controls->Add(this->QCValueSelect);
 			this->InjectionTimeBox->Controls->Add(this->label13);
 			this->InjectionTimeBox->Controls->Add(this->cbInjection);
@@ -775,6 +803,7 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			// 
 			this->QCCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
 			this->QCCurrentProgress->Location = System::Drawing::Point(157, 145);
+			this->QCCurrentProgress->Maximum = 100000;
 			this->QCCurrentProgress->Name = L"QCCurrentProgress";
 			this->QCCurrentProgress->Size = System::Drawing::Size(140, 10);
 			this->QCCurrentProgress->TabIndex = 21;
@@ -1017,12 +1046,12 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			// 
 			// tab2_Period
 			// 
-			this->tab2_Period->Controls->Add(this->InjPeriodSelect);
-			this->tab2_Period->Controls->Add(this->InjTimeSelect);
+			this->tab2_Period->Controls->Add(this->injPeriodSelect);
+			this->tab2_Period->Controls->Add(this->injTimeSelect);
 			this->tab2_Period->Controls->Add(this->label48);
-			this->tab2_Period->Controls->Add(this->InjectionPeriodBox);
+			this->tab2_Period->Controls->Add(this->injPeriodBox);
 			this->tab2_Period->Controls->Add(this->label47);
-			this->tab2_Period->Controls->Add(this->textBox9);
+			this->tab2_Period->Controls->Add(this->injTimeBox);
 			this->tab2_Period->Controls->Add(this->ApplyPeriodic);
 			this->tab2_Period->Controls->Add(this->label34);
 			this->tab2_Period->Controls->Add(this->textBox5);
@@ -1034,25 +1063,25 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->tab2_Period->Text = L"Периодический впрыск";
 			this->tab2_Period->UseVisualStyleBackColor = true;
 			// 
-			// InjPeriodSelect
+			// injPeriodSelect
 			// 
-			this->InjPeriodSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->InjPeriodSelect->FormattingEnabled = true;
-			this->InjPeriodSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(сек)", L"(мс)", L"(мкс)"});
-			this->InjPeriodSelect->Location = System::Drawing::Point(337, 88);
-			this->InjPeriodSelect->Name = L"InjPeriodSelect";
-			this->InjPeriodSelect->Size = System::Drawing::Size(77, 21);
-			this->InjPeriodSelect->TabIndex = 16;
+			this->injPeriodSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->injPeriodSelect->FormattingEnabled = true;
+			this->injPeriodSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(сек)", L"(10 мс)", L"(100 мкс)"});
+			this->injPeriodSelect->Location = System::Drawing::Point(337, 88);
+			this->injPeriodSelect->Name = L"injPeriodSelect";
+			this->injPeriodSelect->Size = System::Drawing::Size(77, 21);
+			this->injPeriodSelect->TabIndex = 16;
 			// 
-			// InjTimeSelect
+			// injTimeSelect
 			// 
-			this->InjTimeSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->InjTimeSelect->FormattingEnabled = true;
-			this->InjTimeSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
-			this->InjTimeSelect->Location = System::Drawing::Point(338, 38);
-			this->InjTimeSelect->Name = L"InjTimeSelect";
-			this->InjTimeSelect->Size = System::Drawing::Size(75, 21);
-			this->InjTimeSelect->TabIndex = 14;
+			this->injTimeSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->injTimeSelect->FormattingEnabled = true;
+			this->injTimeSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
+			this->injTimeSelect->Location = System::Drawing::Point(338, 38);
+			this->injTimeSelect->Name = L"injTimeSelect";
+			this->injTimeSelect->Size = System::Drawing::Size(75, 21);
+			this->injTimeSelect->TabIndex = 14;
 			// 
 			// label48
 			// 
@@ -1063,13 +1092,13 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->label48->TabIndex = 13;
 			this->label48->Text = L"Периодичность впрыска";
 			// 
-			// InjectionPeriodBox
+			// injPeriodBox
 			// 
-			this->InjectionPeriodBox->Location = System::Drawing::Point(259, 89);
-			this->InjectionPeriodBox->Name = L"InjectionPeriodBox";
-			this->InjectionPeriodBox->Size = System::Drawing::Size(62, 20);
-			this->InjectionPeriodBox->TabIndex = 12;
-			this->InjectionPeriodBox->Text = L"1";
+			this->injPeriodBox->Location = System::Drawing::Point(259, 89);
+			this->injPeriodBox->Name = L"injPeriodBox";
+			this->injPeriodBox->Size = System::Drawing::Size(62, 20);
+			this->injPeriodBox->TabIndex = 12;
+			this->injPeriodBox->Text = L"1";
 			// 
 			// label47
 			// 
@@ -1080,13 +1109,13 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->label47->TabIndex = 10;
 			this->label47->Text = L"Продолжительность впрыска";
 			// 
-			// textBox9
+			// injTimeBox
 			// 
-			this->textBox9->Location = System::Drawing::Point(259, 38);
-			this->textBox9->Name = L"textBox9";
-			this->textBox9->Size = System::Drawing::Size(62, 20);
-			this->textBox9->TabIndex = 9;
-			this->textBox9->Text = L"1000";
+			this->injTimeBox->Location = System::Drawing::Point(259, 38);
+			this->injTimeBox->Name = L"injTimeBox";
+			this->injTimeBox->Size = System::Drawing::Size(62, 20);
+			this->injTimeBox->TabIndex = 9;
+			this->injTimeBox->Text = L"1000";
 			// 
 			// ApplyPeriodic
 			// 
@@ -1121,9 +1150,9 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			// 
 			// tab3_TimeSet
 			// 
-			this->tab3_TimeSet->Controls->Add(this->InjTimeSetSelect);
+			this->tab3_TimeSet->Controls->Add(this->injTimeSetSelect);
 			this->tab3_TimeSet->Controls->Add(this->label46);
-			this->tab3_TimeSet->Controls->Add(this->InjectionTimeSetBox);
+			this->tab3_TimeSet->Controls->Add(this->injTimeSetBox);
 			this->tab3_TimeSet->Controls->Add(this->ApplyTimeSet);
 			this->tab3_TimeSet->Controls->Add(this->label35);
 			this->tab3_TimeSet->Controls->Add(this->textBox6);
@@ -1135,14 +1164,14 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->tab3_TimeSet->Text = L"Задание продолжительности";
 			this->tab3_TimeSet->UseVisualStyleBackColor = true;
 			// 
-			// InjTimeSetSelect
+			// injTimeSetSelect
 			// 
-			this->InjTimeSetSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->InjTimeSetSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
-			this->InjTimeSetSelect->Location = System::Drawing::Point(338, 37);
-			this->InjTimeSetSelect->Name = L"InjTimeSetSelect";
-			this->InjTimeSetSelect->Size = System::Drawing::Size(77, 21);
-			this->InjTimeSetSelect->TabIndex = 17;
+			this->injTimeSetSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->injTimeSetSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
+			this->injTimeSetSelect->Location = System::Drawing::Point(338, 37);
+			this->injTimeSetSelect->Name = L"injTimeSetSelect";
+			this->injTimeSetSelect->Size = System::Drawing::Size(77, 21);
+			this->injTimeSetSelect->TabIndex = 17;
 			// 
 			// label46
 			// 
@@ -1153,13 +1182,13 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->label46->TabIndex = 7;
 			this->label46->Text = L"Продолжительность впрыска";
 			// 
-			// InjectionTimeSetBox
+			// injTimeSetBox
 			// 
-			this->InjectionTimeSetBox->Location = System::Drawing::Point(259, 38);
-			this->InjectionTimeSetBox->Name = L"InjectionTimeSetBox";
-			this->InjectionTimeSetBox->Size = System::Drawing::Size(62, 20);
-			this->InjectionTimeSetBox->TabIndex = 6;
-			this->InjectionTimeSetBox->Text = L"1000";
+			this->injTimeSetBox->Location = System::Drawing::Point(259, 38);
+			this->injTimeSetBox->Name = L"injTimeSetBox";
+			this->injTimeSetBox->Size = System::Drawing::Size(62, 20);
+			this->injTimeSetBox->TabIndex = 6;
+			this->injTimeSetBox->Text = L"1000";
 			// 
 			// ApplyTimeSet
 			// 
@@ -1202,7 +1231,7 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->tab4_PID->Controls->Add(this->label44);
 			this->tab4_PID->Controls->Add(this->label43);
 			this->tab4_PID->Controls->Add(this->label42);
-			this->tab4_PID->Controls->Add(this->NCurrent);
+			this->tab4_PID->Controls->Add(this->NCurrentBox);
 			this->tab4_PID->Controls->Add(this->label41);
 			this->tab4_PID->Controls->Add(this->label40);
 			this->tab4_PID->Controls->Add(this->label39);
@@ -1300,13 +1329,13 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->label42->TabIndex = 17;
 			this->label42->Text = L"Текущая частота";
 			// 
-			// NCurrent
+			// NCurrentBox
 			// 
-			this->NCurrent->Location = System::Drawing::Point(350, 22);
-			this->NCurrent->Name = L"NCurrent";
-			this->NCurrent->ReadOnly = true;
-			this->NCurrent->Size = System::Drawing::Size(38, 20);
-			this->NCurrent->TabIndex = 16;
+			this->NCurrentBox->Location = System::Drawing::Point(350, 22);
+			this->NCurrentBox->Name = L"NCurrentBox";
+			this->NCurrentBox->ReadOnly = true;
+			this->NCurrentBox->Size = System::Drawing::Size(38, 20);
+			this->NCurrentBox->TabIndex = 16;
 			// 
 			// label41
 			// 
@@ -1584,6 +1613,7 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->UOVTBox->Name = L"UOVTBox";
 			this->UOVTBox->Size = System::Drawing::Size(52, 20);
 			this->UOVTBox->TabIndex = 7;
+			this->UOVTBox->ValueChanged += gcnew System::EventHandler(this, &Form1::UOVTBox_ValueChanged);
 			// 
 			// VMTBox
 			// 
@@ -1594,6 +1624,7 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->VMTBox->Name = L"VMTBox";
 			this->VMTBox->Size = System::Drawing::Size(75, 20);
 			this->VMTBox->TabIndex = 6;
+			this->VMTBox->ValueChanged += gcnew System::EventHandler(this, &Form1::VMTBox_ValueChanged);
 			// 
 			// label19
 			// 
@@ -1612,6 +1643,7 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->gDuty2Box->Name = L"gDuty2Box";
 			this->gDuty2Box->Size = System::Drawing::Size(52, 20);
 			this->gDuty2Box->TabIndex = 4;
+			this->gDuty2Box->ValueChanged += gcnew System::EventHandler(this, &Form1::gDuty2Box_ValueChanged);
 			// 
 			// label18
 			// 
@@ -1631,6 +1663,7 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->gDuty1Box->Name = L"gDuty1Box";
 			this->gDuty1Box->Size = System::Drawing::Size(52, 20);
 			this->gDuty1Box->TabIndex = 1;
+			this->gDuty1Box->ValueChanged += gcnew System::EventHandler(this, &Form1::gDuty1Box_ValueChanged);
 			// 
 			// gStep1Box
 			// 
@@ -1640,6 +1673,7 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->gStep1Box->Name = L"gStep1Box";
 			this->gStep1Box->Size = System::Drawing::Size(75, 20);
 			this->gStep1Box->TabIndex = 0;
+			this->gStep1Box->ValueChanged += gcnew System::EventHandler(this, &Form1::gStep1Box_ValueChanged);
 			// 
 			// groupBox1
 			// 
@@ -1740,6 +1774,57 @@ private: System::Windows::Forms::TextBox^  gStep2Box;
 			this->rbStandby->Text = L"Ожидание (впрыск отсутствует)";
 			this->rbStandby->UseVisualStyleBackColor = true;
 			this->rbStandby->CheckedChanged += gcnew System::EventHandler(this, &Form1::rbStandby_CheckedChanged);
+			// 
+			// tInt1Time
+			// 
+			this->tInt1Time->Location = System::Drawing::Point(528, 203);
+			this->tInt1Time->Name = L"tInt1Time";
+			this->tInt1Time->ReadOnly = true;
+			this->tInt1Time->Size = System::Drawing::Size(61, 20);
+			this->tInt1Time->TabIndex = 35;
+			// 
+			// tIntTime
+			// 
+			this->tIntTime->Location = System::Drawing::Point(528, 177);
+			this->tIntTime->Name = L"tIntTime";
+			this->tIntTime->ReadOnly = true;
+			this->tIntTime->Size = System::Drawing::Size(61, 20);
+			this->tIntTime->TabIndex = 36;
+			// 
+			// tProgTime
+			// 
+			this->tProgTime->Location = System::Drawing::Point(528, 151);
+			this->tProgTime->Name = L"tProgTime";
+			this->tProgTime->ReadOnly = true;
+			this->tProgTime->Size = System::Drawing::Size(61, 20);
+			this->tProgTime->TabIndex = 37;
+			// 
+			// label52
+			// 
+			this->label52->AutoSize = true;
+			this->label52->Location = System::Drawing::Point(442, 154);
+			this->label52->Name = L"label52";
+			this->label52->Size = System::Drawing::Size(80, 13);
+			this->label52->TabIndex = 38;
+			this->label52->Text = L"Время работы";
+			// 
+			// label53
+			// 
+			this->label53->AutoSize = true;
+			this->label53->Location = System::Drawing::Point(417, 180);
+			this->label53->Name = L"label53";
+			this->label53->Size = System::Drawing::Size(105, 13);
+			this->label53->TabIndex = 39;
+			this->label53->Text = L"Время прерывания";
+			// 
+			// label54
+			// 
+			this->label54->AutoSize = true;
+			this->label54->Location = System::Drawing::Point(408, 206);
+			this->label54->Name = L"label54";
+			this->label54->Size = System::Drawing::Size(114, 13);
+			this->label54->TabIndex = 40;
+			this->label54->Text = L"Время прерывания 2";
 			// 
 			// Form1
 			// 
@@ -2072,7 +2157,40 @@ private: System::Void ApplyPeriodic_Click(System::Object^  sender, System::Event
 
 		 void ApplyPeriodicAction()
 		 {
-
+			 float res = 0;
+			 float tmpf = 0;
+			 int tmpi = 0;
+			 
+			 if (Int32::TryParse(this->injPeriodBox->Text, tmpi))
+			{	
+				switch (injPeriodSelect->SelectedIndex)
+				{
+				case 0: res *= 10000; break;
+				case 1: res *= 100; break;
+				case 2:	break;
+				}
+				canWrite(EC_P_M_INJ, EC_S_M_IN, 0, tmpi);
+			}
+			
+			if (Single::TryParse(this->injTimeBox->Text, tmpf)) // || Int32::TryParse(this->injTimeBox->Text, tmpi)
+			{	
+				switch (injTimeSelect->SelectedIndex)
+				{
+				case 0:
+					tmpi = tmpf;
+					canWrite(EC_P_M_QC, 0, 0, EG_MANQC_TIME); 
+					canWrite(EC_G_INJ, EC_S_INJT2, 0, tmpi);
+					break;
+				case 1: 
+					canWrite(EC_P_M_QC, 0, 0, EG_MANQC_ANGLE);
+					canWrite(EC_P_M_QC, EC_S_M_IAN, 0, tmpf);
+					break;
+				case 2:	
+					canWrite(EC_P_M_QC, 0, 0, EG_MANQC_QC);
+					canWrite(EC_G_QC, EC_S_QC, 0, tmpf);
+					break;
+				}
+			}
 		 }
 private: System::Void ApplyTimeSet_Click(System::Object^  sender, System::EventArgs^  e) {
 			ApplyTimeSetAction();
@@ -2080,7 +2198,29 @@ private: System::Void ApplyTimeSet_Click(System::Object^  sender, System::EventA
 		 
 		 void ApplyTimeSetAction()
 		 {
+			 int tmpi = 0;
+			 float tmpf = 0;
 
+			// продолжительность
+			if (Single::TryParse(this->injTimeSetBox->Text, tmpf)) // || Int32::TryParse(this->injTimeBox->Text, tmpi)
+			{	
+				switch (injTimeSetSelect->SelectedIndex)
+				{
+				case 0:
+					tmpi = tmpf;
+					canWrite(EC_P_M_QC, 0, 0, EG_MANQC_TIME); 
+					canWrite(EC_G_INJ, EC_S_INJT2, 0, tmpi);
+					break;
+				case 1: 
+					canWrite(EC_P_M_QC, 0, 0, EG_MANQC_ANGLE);
+					canWrite(EC_P_M_QC, EC_S_M_IAN, 0, tmpf);
+					break;
+				case 2:	
+					canWrite(EC_P_M_QC, 0, 0, EG_MANQC_QC);
+					canWrite(EC_G_QC, EC_S_QC, 0, tmpf);
+					break;
+				}
+			}
 		 }
 private: System::Void tab4_PID_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
@@ -2091,7 +2231,56 @@ private: System::Void ApplyPID_Click(System::Object^  sender, System::EventArgs^
 
 		 void ApplyPIDAction()
 		 {
-
+			 int tmpi = 0;
+			 float tmpf = 0;
+			 // Kp, Ki, Kd
+			float KV;
+			float KM;
+			if (Single::TryParse(this->KpVal->Text, KV))
+			{
+				if (Single::TryParse(this->KpMult->Text,KM))
+				{
+					KV *= KM;
+				}
+				canWrite(EC_P_KP, 0, 0, KV);
+			}
+			if (Single::TryParse(this->KiVal->Text, KV))
+			{
+				if (Single::TryParse(this->KiMult->Text,KM))
+				{
+					KV *= KM;
+				}
+				canWrite(EC_P_KI, 0, 0, KV);
+			}
+			if (Single::TryParse(this->KdVal->Text, KV))
+			{
+				if (Single::TryParse(this->KdMult->Text,KM))
+				{
+					KV *= KM;
+				}
+				canWrite(EC_P_KD, 0, 0, KV);
+			}
+			 
+			 // уставка
+			 if (Single::TryParse(this->injTimeBox->Text, tmpf))
+			 {
+				canWrite(EC_G_N, EC_S_NU, 0, tmpf);
+			 }
+		 }
+private: System::Void gDuty1Box_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 canWrite(EC_G_INJ, EC_S_INJD1, 0, System::Decimal::ToSingle(gDuty1Box->Value));
+		 }
+private: System::Void gDuty2Box_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 canWrite(EC_G_INJ, EC_S_INJD2, 0, System::Decimal::ToSingle(gDuty2Box->Value));
+		 }
+private: System::Void UOVTBox_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 canWrite(EC_P_M_UOVT, EC_S_M_UOVT, 0, System::Decimal::ToSingle(UOVTBox->Value));
+		 }
+private: System::Void VMTBox_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 canWrite(EC_P_VMT, 0, 0, System::Decimal::ToSingle(VMTBox->Value));
+		 }
+private: System::Void gStep1Box_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 canWrite(EC_G_INJ, EC_S_INJT1, 0, System::Decimal::ToSingle(gStep1Box->Value));
 		 }
 };
 }
