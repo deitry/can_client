@@ -305,6 +305,12 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabControlPage = (gcnew System::Windows::Forms::TabPage());
 			this->InjectionTimeBox = (gcnew System::Windows::Forms::GroupBox());
+			this->label54 = (gcnew System::Windows::Forms::Label());
+			this->label53 = (gcnew System::Windows::Forms::Label());
+			this->label52 = (gcnew System::Windows::Forms::Label());
+			this->tProgTime = (gcnew System::Windows::Forms::TextBox());
+			this->tIntTime = (gcnew System::Windows::Forms::TextBox());
+			this->tInt1Time = (gcnew System::Windows::Forms::TextBox());
 			this->QCValueSelect = (gcnew System::Windows::Forms::ComboBox());
 			this->label13 = (gcnew System::Windows::Forms::Label());
 			this->cbInjection = (gcnew System::Windows::Forms::CheckBox());
@@ -415,12 +421,6 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			this->rbTimeSet = (gcnew System::Windows::Forms::RadioButton());
 			this->rbPeriodic = (gcnew System::Windows::Forms::RadioButton());
 			this->rbStandby = (gcnew System::Windows::Forms::RadioButton());
-			this->tInt1Time = (gcnew System::Windows::Forms::TextBox());
-			this->tIntTime = (gcnew System::Windows::Forms::TextBox());
-			this->tProgTime = (gcnew System::Windows::Forms::TextBox());
-			this->label52 = (gcnew System::Windows::Forms::Label());
-			this->label53 = (gcnew System::Windows::Forms::Label());
-			this->label54 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
 			this->tabParameters->SuspendLayout();
@@ -451,11 +451,11 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// initButton
 			// 
-			this->initButton->Location = System::Drawing::Point(18, 46);
+			this->initButton->Location = System::Drawing::Point(12, 12);
 			this->initButton->Name = L"initButton";
-			this->initButton->Size = System::Drawing::Size(91, 30);
+			this->initButton->Size = System::Drawing::Size(91, 47);
 			this->initButton->TabIndex = 0;
-			this->initButton->Text = L"Инициализировать";
+			this->initButton->Text = L"Установить соединение";
 			this->initButton->UseVisualStyleBackColor = true;
 			this->initButton->Click += gcnew System::EventHandler(this, &Form1::initButton_Click);
 			// 
@@ -686,12 +686,63 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			this->InjectionTimeBox->TabStop = false;
 			this->InjectionTimeBox->Text = L"Графические индикаторы";
 			// 
+			// label54
+			// 
+			this->label54->AutoSize = true;
+			this->label54->Location = System::Drawing::Point(408, 206);
+			this->label54->Name = L"label54";
+			this->label54->Size = System::Drawing::Size(114, 13);
+			this->label54->TabIndex = 40;
+			this->label54->Text = L"Время прерывания 2";
+			// 
+			// label53
+			// 
+			this->label53->AutoSize = true;
+			this->label53->Location = System::Drawing::Point(417, 180);
+			this->label53->Name = L"label53";
+			this->label53->Size = System::Drawing::Size(105, 13);
+			this->label53->TabIndex = 39;
+			this->label53->Text = L"Время прерывания";
+			// 
+			// label52
+			// 
+			this->label52->AutoSize = true;
+			this->label52->Location = System::Drawing::Point(442, 154);
+			this->label52->Name = L"label52";
+			this->label52->Size = System::Drawing::Size(80, 13);
+			this->label52->TabIndex = 38;
+			this->label52->Text = L"Время работы";
+			// 
+			// tProgTime
+			// 
+			this->tProgTime->Location = System::Drawing::Point(528, 151);
+			this->tProgTime->Name = L"tProgTime";
+			this->tProgTime->ReadOnly = true;
+			this->tProgTime->Size = System::Drawing::Size(61, 20);
+			this->tProgTime->TabIndex = 37;
+			// 
+			// tIntTime
+			// 
+			this->tIntTime->Location = System::Drawing::Point(528, 177);
+			this->tIntTime->Name = L"tIntTime";
+			this->tIntTime->ReadOnly = true;
+			this->tIntTime->Size = System::Drawing::Size(61, 20);
+			this->tIntTime->TabIndex = 36;
+			// 
+			// tInt1Time
+			// 
+			this->tInt1Time->Location = System::Drawing::Point(528, 203);
+			this->tInt1Time->Name = L"tInt1Time";
+			this->tInt1Time->ReadOnly = true;
+			this->tInt1Time->Size = System::Drawing::Size(61, 20);
+			this->tInt1Time->TabIndex = 35;
+			// 
 			// QCValueSelect
 			// 
 			this->QCValueSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->QCValueSelect->FormattingEnabled = true;
 			this->QCValueSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
-			this->QCValueSelect->Location = System::Drawing::Point(232, 121);
+			this->QCValueSelect->Location = System::Drawing::Point(240, 122);
 			this->QCValueSelect->Name = L"QCValueSelect";
 			this->QCValueSelect->Size = System::Drawing::Size(65, 21);
 			this->QCValueSelect->TabIndex = 15;
@@ -753,7 +804,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// label15
 			// 
 			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(307, 124);
+			this->label15->Location = System::Drawing::Point(315, 125);
 			this->label15->Name = L"label15";
 			this->label15->Size = System::Drawing::Size(33, 13);
 			this->label15->TabIndex = 27;
@@ -779,7 +830,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// QCCurrentValue
 			// 
-			this->QCCurrentValue->Location = System::Drawing::Point(176, 121);
+			this->QCCurrentValue->Location = System::Drawing::Point(184, 122);
 			this->QCCurrentValue->Name = L"QCCurrentValue";
 			this->QCCurrentValue->ReadOnly = true;
 			this->QCCurrentValue->Size = System::Drawing::Size(47, 20);
@@ -787,22 +838,22 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// QCmax
 			// 
-			this->QCmax->Location = System::Drawing::Point(303, 140);
+			this->QCmax->Location = System::Drawing::Point(311, 141);
 			this->QCmax->Name = L"QCmax";
-			this->QCmax->Size = System::Drawing::Size(39, 20);
+			this->QCmax->Size = System::Drawing::Size(48, 20);
 			this->QCmax->TabIndex = 23;
 			// 
 			// QCmin
 			// 
 			this->QCmin->Location = System::Drawing::Point(112, 140);
 			this->QCmin->Name = L"QCmin";
-			this->QCmin->Size = System::Drawing::Size(39, 20);
+			this->QCmin->Size = System::Drawing::Size(47, 20);
 			this->QCmin->TabIndex = 22;
 			// 
 			// QCCurrentProgress
 			// 
 			this->QCCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
-			this->QCCurrentProgress->Location = System::Drawing::Point(157, 145);
+			this->QCCurrentProgress->Location = System::Drawing::Point(165, 146);
 			this->QCCurrentProgress->Maximum = 100000;
 			this->QCCurrentProgress->Name = L"QCCurrentProgress";
 			this->QCCurrentProgress->Size = System::Drawing::Size(140, 10);
@@ -820,7 +871,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(229, 72);
+			this->label8->Location = System::Drawing::Point(237, 73);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(31, 13);
 			this->label8->TabIndex = 19;
@@ -838,7 +889,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(307, 72);
+			this->label10->Location = System::Drawing::Point(315, 73);
 			this->label10->Name = L"label10";
 			this->label10->Size = System::Drawing::Size(33, 13);
 			this->label10->TabIndex = 17;
@@ -864,7 +915,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// PMCurrentValue
 			// 
-			this->PMCurrentValue->Location = System::Drawing::Point(176, 67);
+			this->PMCurrentValue->Location = System::Drawing::Point(184, 68);
 			this->PMCurrentValue->Name = L"PMCurrentValue";
 			this->PMCurrentValue->ReadOnly = true;
 			this->PMCurrentValue->Size = System::Drawing::Size(47, 20);
@@ -872,22 +923,22 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// PMmax
 			// 
-			this->PMmax->Location = System::Drawing::Point(303, 88);
+			this->PMmax->Location = System::Drawing::Point(311, 89);
 			this->PMmax->Name = L"PMmax";
-			this->PMmax->Size = System::Drawing::Size(39, 20);
+			this->PMmax->Size = System::Drawing::Size(48, 20);
 			this->PMmax->TabIndex = 13;
 			// 
 			// PMmin
 			// 
 			this->PMmin->Location = System::Drawing::Point(112, 88);
 			this->PMmin->Name = L"PMmin";
-			this->PMmin->Size = System::Drawing::Size(39, 20);
+			this->PMmin->Size = System::Drawing::Size(47, 20);
 			this->PMmin->TabIndex = 12;
 			// 
 			// PMCurrentProgress
 			// 
 			this->PMCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
-			this->PMCurrentProgress->Location = System::Drawing::Point(157, 93);
+			this->PMCurrentProgress->Location = System::Drawing::Point(165, 94);
 			this->PMCurrentProgress->Name = L"PMCurrentProgress";
 			this->PMCurrentProgress->Size = System::Drawing::Size(140, 10);
 			this->PMCurrentProgress->TabIndex = 11;
@@ -905,7 +956,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(229, 22);
+			this->label7->Location = System::Drawing::Point(237, 23);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(50, 13);
 			this->label7->TabIndex = 9;
@@ -923,7 +974,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(307, 22);
+			this->label5->Location = System::Drawing::Point(315, 23);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(33, 13);
 			this->label5->TabIndex = 7;
@@ -949,7 +1000,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// NCurrentValue
 			// 
-			this->NCurrentValue->Location = System::Drawing::Point(176, 19);
+			this->NCurrentValue->Location = System::Drawing::Point(184, 20);
 			this->NCurrentValue->Name = L"NCurrentValue";
 			this->NCurrentValue->ReadOnly = true;
 			this->NCurrentValue->Size = System::Drawing::Size(47, 20);
@@ -957,22 +1008,28 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// Nmax
 			// 
-			this->Nmax->Location = System::Drawing::Point(303, 38);
+			this->Nmax->Location = System::Drawing::Point(311, 39);
+			this->Nmax->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {100000, 0, 0, 0});
 			this->Nmax->Name = L"Nmax";
-			this->Nmax->Size = System::Drawing::Size(39, 20);
+			this->Nmax->Size = System::Drawing::Size(48, 20);
 			this->Nmax->TabIndex = 3;
+			this->Nmax->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1100, 0, 0, 0});
+			this->Nmax->ValueChanged += gcnew System::EventHandler(this, &Form1::Nmax_ValueChanged);
 			// 
 			// Nmin
 			// 
 			this->Nmin->Location = System::Drawing::Point(112, 38);
+			this->Nmin->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1100, 0, 0, 0});
 			this->Nmin->Name = L"Nmin";
-			this->Nmin->Size = System::Drawing::Size(39, 20);
+			this->Nmin->Size = System::Drawing::Size(47, 20);
 			this->Nmin->TabIndex = 2;
+			this->Nmin->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {100, 0, 0, 0});
+			this->Nmin->ValueChanged += gcnew System::EventHandler(this, &Form1::Nmin_ValueChanged);
 			// 
 			// NCurrentProgress
 			// 
 			this->NCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
-			this->NCurrentProgress->Location = System::Drawing::Point(157, 43);
+			this->NCurrentProgress->Location = System::Drawing::Point(165, 44);
 			this->NCurrentProgress->Maximum = 1200;
 			this->NCurrentProgress->Name = L"NCurrentProgress";
 			this->NCurrentProgress->Size = System::Drawing::Size(140, 10);
@@ -1704,9 +1761,9 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// CurrentMode
 			// 
-			this->CurrentMode->Enabled = false;
 			this->CurrentMode->Location = System::Drawing::Point(122, 31);
 			this->CurrentMode->Name = L"CurrentMode";
+			this->CurrentMode->ReadOnly = true;
 			this->CurrentMode->Size = System::Drawing::Size(100, 20);
 			this->CurrentMode->TabIndex = 6;
 			// 
@@ -1774,57 +1831,6 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			this->rbStandby->Text = L"Ожидание (впрыск отсутствует)";
 			this->rbStandby->UseVisualStyleBackColor = true;
 			this->rbStandby->CheckedChanged += gcnew System::EventHandler(this, &Form1::rbStandby_CheckedChanged);
-			// 
-			// tInt1Time
-			// 
-			this->tInt1Time->Location = System::Drawing::Point(528, 203);
-			this->tInt1Time->Name = L"tInt1Time";
-			this->tInt1Time->ReadOnly = true;
-			this->tInt1Time->Size = System::Drawing::Size(61, 20);
-			this->tInt1Time->TabIndex = 35;
-			// 
-			// tIntTime
-			// 
-			this->tIntTime->Location = System::Drawing::Point(528, 177);
-			this->tIntTime->Name = L"tIntTime";
-			this->tIntTime->ReadOnly = true;
-			this->tIntTime->Size = System::Drawing::Size(61, 20);
-			this->tIntTime->TabIndex = 36;
-			// 
-			// tProgTime
-			// 
-			this->tProgTime->Location = System::Drawing::Point(528, 151);
-			this->tProgTime->Name = L"tProgTime";
-			this->tProgTime->ReadOnly = true;
-			this->tProgTime->Size = System::Drawing::Size(61, 20);
-			this->tProgTime->TabIndex = 37;
-			// 
-			// label52
-			// 
-			this->label52->AutoSize = true;
-			this->label52->Location = System::Drawing::Point(442, 154);
-			this->label52->Name = L"label52";
-			this->label52->Size = System::Drawing::Size(80, 13);
-			this->label52->TabIndex = 38;
-			this->label52->Text = L"Время работы";
-			// 
-			// label53
-			// 
-			this->label53->AutoSize = true;
-			this->label53->Location = System::Drawing::Point(417, 180);
-			this->label53->Name = L"label53";
-			this->label53->Size = System::Drawing::Size(105, 13);
-			this->label53->TabIndex = 39;
-			this->label53->Text = L"Время прерывания";
-			// 
-			// label54
-			// 
-			this->label54->AutoSize = true;
-			this->label54->Location = System::Drawing::Point(408, 206);
-			this->label54->Name = L"label54";
-			this->label54->Size = System::Drawing::Size(114, 13);
-			this->label54->TabIndex = 40;
-			this->label54->Text = L"Время прерывания 2";
 			// 
 			// Form1
 			// 
@@ -1943,37 +1949,38 @@ private: System::Void writeLogButton_Click(System::Object^  sender, System::Even
 		 }
 private: System::Void initButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			 // инициализировать
-			 /*this->checkmanQCOut->Checked = this->checkmanQCIn->Checked;
-			 this->checkmanAngleOut->Checked = this->checkmanAngleIn->Checked;
-			 this->textQCAnOut->Text = this->textQCAnIn->Text;
-			 this->checkmanInjOut->Checked = this->checkmanInjIn->Checked;
-			 this->checkinjOnceOut->Checked = this->checkinjOnceIn->Checked;
-			 this->textmanNOut->Text = this->textmanNIn->Text;
-			 this->checkManModeOut->Checked = this->checkManModeIn->Checked;
-			 this->checkmanPedOut->Checked = this->checkmanPedIn->Checked;
-			 this->checkManLedOut->Checked = this->checkManLedIn->Checked;
-			 this->checkCanSendOut->Checked = this->checkCanSendIn->Checked;
-			 this->checkCanTimeOut->Checked = this->checkCanTimeIn->Checked;
-			 this->checkmanUOVTOut->Checked = this->checkmanUOVTIn->Checked;
-			 this->textinjUOVTOut->Text = this->textinjUOVTIn->Text;
-			 this->comboModeOut->SelectedIndex = this->comboMode->SelectedIndex;
-			 this->textnUOut->Text = this->textnUIn->Text;
-			 this->textInjD1Out->Text = this->textInjD1In->Text;
-			 this->textInjD2Out->Text = this->textInjD2In->Text;
-			 this->textInjT1Out->Text = this->textInjT1In->Text;
-			 this->textInjT2Out->Text = this->textInjT2In->Text;
-			 this->textQCtOut->Text = this->textQCtIn->Text;
-			 this->checkManQCtOut->Checked = this->checkManQCtIn->Checked;
-			 this->checkManFdbkOut->Checked = this->checkManFdbkIn->Checked;
-			 this->numVMTOut->Value = Decimal::Parse(this->textVMTIn->Text);
-
-			 this->KpValOut->Text = this->KpValIn->Text;
-			 this->KiValOut->Text = this->KiValIn->Text;
-			 this->KdValOut->Text = this->KdValIn->Text;
-			 this->KpMultOut->Text = this->KpMultIn->Text;
-			 this->KiMultOut->Text = this->KiMultIn->Text;
-			 this->KdMultOut->Text = this->KdMultIn->Text;
-			 */
+			 canWrite(EC_PCLR,0,0,0);		
+			// запрашиваем все параметры - добавляем их в список "запроса"
+			canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
+			canWrite(EC_PQUE, EC_G_N, EC_S_NU,0);		
+			canWrite(EC_PQUE, EC_G_N, EC_S_DTIME,0);		
+			canWrite(EC_PQUE, EC_G_QC, EC_S_QC_AN,0);		
+			canWrite(EC_PQUE, EC_G_QC, EC_S_QC,0);		
+			canWrite(EC_PQUE, EC_G_QC, EC_S_ADOP,0);		
+			canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
+			canWrite(EC_PQUE, EC_P_VMT, 0,0);		
+			canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT1,0);		
+			canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT2,0);		
+			canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD1,0);		
+			canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);		
+			canWrite(EC_PQUE, EC_T_INJPHI, EC_S_NR,0);		
+			canWrite(EC_PQUE, EC_T_INJZ, 0,0);		
+			canWrite(EC_PQUE, EC_T_INJN, 0,0);		
+			canWrite(EC_PQUE, EC_T_INJT, 0,0);		
+			canWrite(EC_PQUE, EC_T_INJCNT, 0,0);		
+			canWrite(EC_PQUE, EC_P_KP, 0,0);		
+			canWrite(EC_PQUE, EC_P_KI, 0,0);		
+			canWrite(EC_PQUE, EC_P_KD, 0,0);		
+			canWrite(EC_PQUE, EC_P_ERR, 0,0);		
+			canWrite(EC_PQUE, EC_P_ERRI, 0,0);		
+			canWrite(EC_PQUE, EC_P_ERRD, 0,0);		
+			canWrite(EC_PQUE, EC_P_PTIME, 0,0);		
+			canWrite(EC_PQUE, EC_P_ITIME, 0,0);		
+			canWrite(EC_PQUE, EC_P_ITIME1, 0,0);		
+			canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVT,0);
+			canWrite(EC_PQUE, EC_P_M_INJ, 0,0);		
+			canWrite(EC_PQUE, EC_P_M_QC, 0,0);		
+			canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);
 		 }
 private: System::Void checkmanUOVTIn_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }
@@ -2081,27 +2088,27 @@ private: System::Void textBox5_TextChanged(System::Object^  sender, System::Even
 	}
 private: System::Void KpMult_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 // переписываем значение Kp
-			 float tmpMult;
-			 if (Single::TryParse(this->KpMult->Text, tmpMult))
-			 {
-				 this->KpVal->Text = Convert::ToString(Kp / tmpMult);
-			 }
+			 //float tmpMult;
+			 //if (Single::TryParse(this->KpMult->Text, tmpMult))
+			 //{
+			//	 this->KpVal->Text = Convert::ToString(Kp / tmpMult);
+			 //}
 		 }
 private: System::Void KiMult_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 // переписываем значение Ki
-			 float tmpMult;
-			 if (Single::TryParse(this->KiMult->Text, tmpMult))
-			 {
-				 this->KiVal->Text = Convert::ToString(Ki / tmpMult);
-			 }
+			 //float tmpMult;
+			 //if (Single::TryParse(this->KiMult->Text, tmpMult))
+			 //{
+			//	 this->KiVal->Text = Convert::ToString(Ki / tmpMult);
+			 //}
 		 }
 private: System::Void KdMult_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 		     // переписываем значение Kd
-			 float tmpMult;
-			 if (Single::TryParse(this->KdMult->Text, tmpMult))
-			 {
-				 this->KdVal->Text = Convert::ToString(Kd / tmpMult);
-			 }
+			 //float tmpMult;
+			 //if (Single::TryParse(this->KdMult->Text, tmpMult))
+			 //{
+			//	 this->KdVal->Text = Convert::ToString(Kd / tmpMult);
+			 //}
 		 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 NSetpointBox->Text = NIdleBox->Text;
@@ -2165,8 +2172,8 @@ private: System::Void ApplyPeriodic_Click(System::Object^  sender, System::Event
 			{	
 				switch (injPeriodSelect->SelectedIndex)
 				{
-				case 0: res *= 10000; break;
-				case 1: res *= 100; break;
+				case 0: tmpi *= 10000; break;
+				case 1: tmpi *= 100; break;
 				case 2:	break;
 				}
 				canWrite(EC_P_M_INJ, EC_S_M_IN, 0, tmpi);
@@ -2187,6 +2194,7 @@ private: System::Void ApplyPeriodic_Click(System::Object^  sender, System::Event
 					break;
 				case 2:	
 					canWrite(EC_P_M_QC, 0, 0, EG_MANQC_QC);
+					tmpf *= 0.001;
 					canWrite(EC_G_QC, EC_S_QC, 0, tmpf);
 					break;
 				}
@@ -2217,6 +2225,7 @@ private: System::Void ApplyTimeSet_Click(System::Object^  sender, System::EventA
 					break;
 				case 2:	
 					canWrite(EC_P_M_QC, 0, 0, EG_MANQC_QC);
+					tmpf *= 0.001;
 					canWrite(EC_G_QC, EC_S_QC, 0, tmpf);
 					break;
 				}
@@ -2262,16 +2271,16 @@ private: System::Void ApplyPID_Click(System::Object^  sender, System::EventArgs^
 			}
 			 
 			 // уставка
-			 if (Single::TryParse(this->injTimeBox->Text, tmpf))
+			 if (Single::TryParse(this->NSetpointBox->Text, tmpf))
 			 {
 				canWrite(EC_G_N, EC_S_NU, 0, tmpf);
 			 }
 		 }
 private: System::Void gDuty1Box_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-			 canWrite(EC_G_INJ, EC_S_INJD1, 0, System::Decimal::ToSingle(gDuty1Box->Value));
+			 canWrite(EC_G_INJ, EC_S_INJD1, 0, System::Decimal::ToInt32(gDuty1Box->Value));
 		 }
 private: System::Void gDuty2Box_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-			 canWrite(EC_G_INJ, EC_S_INJD2, 0, System::Decimal::ToSingle(gDuty2Box->Value));
+			 canWrite(EC_G_INJ, EC_S_INJD2, 0, System::Decimal::ToInt32(gDuty2Box->Value));
 		 }
 private: System::Void UOVTBox_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
 			 canWrite(EC_P_M_UOVT, EC_S_M_UOVT, 0, System::Decimal::ToSingle(UOVTBox->Value));
@@ -2280,7 +2289,13 @@ private: System::Void VMTBox_ValueChanged(System::Object^  sender, System::Event
 			 canWrite(EC_P_VMT, 0, 0, System::Decimal::ToSingle(VMTBox->Value));
 		 }
 private: System::Void gStep1Box_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
-			 canWrite(EC_G_INJ, EC_S_INJT1, 0, System::Decimal::ToSingle(gStep1Box->Value));
+			 canWrite(EC_G_INJ, EC_S_INJT1, 0, System::Decimal::ToInt32(gStep1Box->Value));
+		 }
+private: System::Void Nmax_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 NCurrentProgress->Maximum = Decimal::ToInt32(Nmax->Value);
+		 }
+private: System::Void Nmin_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 NCurrentProgress->Minimum = Decimal::ToInt32(Nmin->Value);
 		 }
 };
 }

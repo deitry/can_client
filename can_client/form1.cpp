@@ -157,7 +157,7 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 	switch (id)
 	{
 	case EC_TIME:
-		cbConnection->Checked = !cbConnection->Checked;
+		cbHall->Checked = !cbHall->Checked;
 		break;
 	case EC_TINJ:
 		cbInjection->Checked = !cbInjection->Checked;
@@ -178,13 +178,17 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		case EC_S_NR:
 			NCurrentBox->Text = Convert::ToString(d.f.val.f);
 			NCurrentValue->Text = Convert::ToString(d.f.val.f);
-			if (d.f.val.f < NCurrentProgress->Maximum)
+			if (d.f.val.f > NCurrentProgress->Maximum)
 			{
-				NCurrentProgress->Value = d.f.val.f;
+				NCurrentProgress->Value = NCurrentProgress->Maximum;
+			}
+			else if (d.f.val.f < NCurrentProgress->Minimum)
+			{
+				NCurrentProgress->Value = NCurrentProgress->Minimum;
 			}
 			else
 			{
-				NCurrentProgress->Value = NCurrentProgress->Maximum;
+				NCurrentProgress->Value = d.f.val.f;
 			}
 			break;
 		case EC_S_NU:
