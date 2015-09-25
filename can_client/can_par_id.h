@@ -34,12 +34,12 @@ union EC_CAN_PAR_ID
  * «апрос на получение параметра. ‘ормат данных в таком случае:
  * (0xFF) - (P) - (S) - (SS) - (SSS)
  */
-#define EC_PREQ		0xFF		// одиночный запрос параметра
+#define EC_PREQ		0xFB		// одиночный запрос параметра
 #define EC_PQUE		0xFA		// добавление параметра в список посто€нной передачи
 #define EC_PCLR		0xF9		// обнуление списка посто€нной передачи
 
 #define EC_P0		0x00
-#define EC_BAD		0xFFFF
+#define EC_BAD		0xFF
 /**
  * –асшифровка сокращений:
  * - EC = Electronic Control
