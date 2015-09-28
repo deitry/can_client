@@ -939,10 +939,12 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			this->PMCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
 			this->PMCurrentProgress->Location = System::Drawing::Point(165, 94);
+			this->PMCurrentProgress->Maximum = 600;
 			this->PMCurrentProgress->Name = L"PMCurrentProgress";
 			this->PMCurrentProgress->Size = System::Drawing::Size(140, 10);
+			this->PMCurrentProgress->Step = 1;
 			this->PMCurrentProgress->TabIndex = 11;
-			this->PMCurrentProgress->Value = 90;
+			this->PMCurrentProgress->Value = 10;
 			// 
 			// label12
 			// 
@@ -1674,11 +1676,13 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// VMTBox
 			// 
+			this->VMTBox->DecimalPlaces = 2;
 			this->VMTBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {5, 0, 0, 65536});
 			this->VMTBox->Location = System::Drawing::Point(19, 200);
 			this->VMTBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, 0});
 			this->VMTBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, System::Int32::MinValue});
 			this->VMTBox->Name = L"VMTBox";
+			this->VMTBox->ReadOnly = true;
 			this->VMTBox->Size = System::Drawing::Size(75, 20);
 			this->VMTBox->TabIndex = 6;
 			this->VMTBox->ValueChanged += gcnew System::EventHandler(this, &Form1::VMTBox_ValueChanged);
@@ -1947,40 +1951,47 @@ private: System::Void writeLogButton_Click(System::Object^  sender, System::Even
 			isLogWrite = !isLogWrite;
 			logCheck->Checked = isLogWrite;
 		 }
+
+private: System::Void initializeMessageList()
+	{
+		// очистить список
+		canWrite(EC_PCLR,0,0,0);		
+		// запрашиваем все параметры - добавляем их в список "запроса"
+		canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
+		canWrite(EC_PQUE, EC_G_N, EC_S_NU,0);		
+		canWrite(EC_PQUE, EC_G_N, EC_S_DTIME,0);		
+		canWrite(EC_PQUE, EC_G_QC, EC_S_QC_AN,0);		
+		canWrite(EC_PQUE, EC_G_QC, EC_S_QC,0);		
+		canWrite(EC_PQUE, EC_G_QC, EC_S_ADOP,0);		
+		canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
+		canWrite(EC_PQUE, EC_P_VMT, 0,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT1,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT2,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD1,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);		
+		canWrite(EC_PQUE, EC_T_INJPHI, EC_S_NR,0);		
+		canWrite(EC_PQUE, EC_T_INJZ, 0,0);		
+		canWrite(EC_PQUE, EC_T_INJN, 0,0);		
+		canWrite(EC_PQUE, EC_T_INJT, 0,0);		
+		canWrite(EC_PQUE, EC_T_INJCNT, 0,0);		
+		canWrite(EC_PQUE, EC_P_KP, 0,0);		
+		canWrite(EC_PQUE, EC_P_KI, 0,0);		
+		canWrite(EC_PQUE, EC_P_KD, 0,0);		
+		canWrite(EC_PQUE, EC_P_ERR, 0,0);		
+		canWrite(EC_PQUE, EC_P_ERRI, 0,0);		
+		canWrite(EC_PQUE, EC_P_ERRD, 0,0);		
+		canWrite(EC_PQUE, EC_P_PTIME, 0,0);		
+		canWrite(EC_PQUE, EC_P_ITIME, 0,0);		
+		canWrite(EC_PQUE, EC_P_ITIME1, 0,0);		
+		canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVT,0);
+		canWrite(EC_PQUE, EC_P_M_INJ, 0,0);		
+		canWrite(EC_PQUE, EC_P_M_QC, 0,0);		
+		canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);		
+		canWrite(EC_PQUE, EC_P_M_SENS, EC_S_D_PINJ,0);
+	}
+
 private: System::Void initButton_Click(System::Object^  sender, System::EventArgs^  e) {
-			 // инициализировать
-			 canWrite(EC_PCLR,0,0,0);		
-			// запрашиваем все параметры - добавляем их в список "запроса"
-			canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
-			canWrite(EC_PQUE, EC_G_N, EC_S_NU,0);		
-			canWrite(EC_PQUE, EC_G_N, EC_S_DTIME,0);		
-			canWrite(EC_PQUE, EC_G_QC, EC_S_QC_AN,0);		
-			canWrite(EC_PQUE, EC_G_QC, EC_S_QC,0);		
-			canWrite(EC_PQUE, EC_G_QC, EC_S_ADOP,0);		
-			canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
-			canWrite(EC_PQUE, EC_P_VMT, 0,0);		
-			canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT1,0);		
-			canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT2,0);		
-			canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD1,0);		
-			canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);		
-			canWrite(EC_PQUE, EC_T_INJPHI, EC_S_NR,0);		
-			canWrite(EC_PQUE, EC_T_INJZ, 0,0);		
-			canWrite(EC_PQUE, EC_T_INJN, 0,0);		
-			canWrite(EC_PQUE, EC_T_INJT, 0,0);		
-			canWrite(EC_PQUE, EC_T_INJCNT, 0,0);		
-			canWrite(EC_PQUE, EC_P_KP, 0,0);		
-			canWrite(EC_PQUE, EC_P_KI, 0,0);		
-			canWrite(EC_PQUE, EC_P_KD, 0,0);		
-			canWrite(EC_PQUE, EC_P_ERR, 0,0);		
-			canWrite(EC_PQUE, EC_P_ERRI, 0,0);		
-			canWrite(EC_PQUE, EC_P_ERRD, 0,0);		
-			canWrite(EC_PQUE, EC_P_PTIME, 0,0);		
-			canWrite(EC_PQUE, EC_P_ITIME, 0,0);		
-			canWrite(EC_PQUE, EC_P_ITIME1, 0,0);		
-			canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVT,0);
-			canWrite(EC_PQUE, EC_P_M_INJ, 0,0);		
-			canWrite(EC_PQUE, EC_P_M_QC, 0,0);		
-			canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);
+			initializeMessageList();
 		 }
 private: System::Void checkmanUOVTIn_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }

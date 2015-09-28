@@ -78,39 +78,7 @@ void can_client::Form1::onCanRecieve(void)
 
 	if (!isInitialized)
 	{
-		// очистить список
-		canWrite(EC_PCLR,0,0,0);		
-		// запрашиваем все параметры - добавляем их в список "запроса"
-		canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
-		canWrite(EC_PQUE, EC_G_N, EC_S_NU,0);		
-		canWrite(EC_PQUE, EC_G_N, EC_S_DTIME,0);		
-		canWrite(EC_PQUE, EC_G_QC, EC_S_QC_AN,0);		
-		canWrite(EC_PQUE, EC_G_QC, EC_S_QC,0);		
-		canWrite(EC_PQUE, EC_G_QC, EC_S_ADOP,0);		
-		canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
-		canWrite(EC_PQUE, EC_P_VMT, 0,0);		
-		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT1,0);		
-		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT2,0);		
-		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD1,0);		
-		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);		
-		canWrite(EC_PQUE, EC_T_INJPHI, EC_S_NR,0);		
-		canWrite(EC_PQUE, EC_T_INJZ, 0,0);		
-		canWrite(EC_PQUE, EC_T_INJN, 0,0);		
-		canWrite(EC_PQUE, EC_T_INJT, 0,0);		
-		canWrite(EC_PQUE, EC_T_INJCNT, 0,0);		
-		canWrite(EC_PQUE, EC_P_KP, 0,0);		
-		canWrite(EC_PQUE, EC_P_KI, 0,0);		
-		canWrite(EC_PQUE, EC_P_KD, 0,0);		
-		canWrite(EC_PQUE, EC_P_ERR, 0,0);		
-		canWrite(EC_PQUE, EC_P_ERRI, 0,0);		
-		canWrite(EC_PQUE, EC_P_ERRD, 0,0);		
-		canWrite(EC_PQUE, EC_P_PTIME, 0,0);		
-		canWrite(EC_PQUE, EC_P_ITIME, 0,0);		
-		canWrite(EC_PQUE, EC_P_ITIME1, 0,0);		
-		canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVT,0);
-		canWrite(EC_PQUE, EC_P_M_INJ, 0,0);		
-		canWrite(EC_PQUE, EC_P_M_QC, 0,0);		
-		canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);		
+		initializeMessageList();		
 		
 		isInitialized = true;
 	}
@@ -157,7 +125,7 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 	switch (id)
 	{
 	case EC_TIME:
-		cbHall->Checked = !cbHall->Checked;
+		//cbHall->Checked = !cbHall->Checked;
 		break;
 	case EC_TINJ:
 		cbInjection->Checked = !cbInjection->Checked;
@@ -205,14 +173,22 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		case EC_S_QC:
 			break;
 		case EC_S_QC_T:
-			//this->gStep2->Text = Convert::ToString((System::Object^)d.f.val.i);
+			if (QCValueSelect->SelectedIndex == 0)
+			{
+				QCCurrentValue->Text = Convert::ToString((System::Object^)d.f.val.i);
+			}
 			break;
 		case EC_S_QC_AN:
-			//this->textQCAnIn->Text = Convert::ToString((System::Object^)d.f.val.f);
-			//this->textQCAn->Text = Convert::ToString((System::Object^)d.f.val.f);
+			if (QCValueSelect->SelectedIndex == 1)
+			{
+				QCCurrentValue->Text = Convert::ToString((System::Object^)d.f.val.f);
+			}
 			break;
 		case EC_S_QC_ADOP:
-			//this->textBox1->Text = Convert::ToString((System::Object^)d.f.val.f);
+			if (QCValueSelect->SelectedIndex == 2)
+			{
+				QCCurrentValue->Text = Convert::ToString((System::Object^)d.f.val.f);
+			}
 			break;
 		}
 		break;
@@ -232,6 +208,10 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 				gStep2 = d.f.val.i;
 				this->gStep2Box->Text = Convert::ToString((System::Object^)d.f.val.i);
 			//}
+				if (QCValueSelect->SelectedIndex == 0)
+			{
+				QCCurrentValue->Text = Convert::ToString((System::Object^)d.f.val.i);
+			}
 			break;
 		case EC_S_INJD1:
 			if (gDuty1 == -1)
@@ -250,10 +230,10 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		}
 		break;
 	case EC_P_VMT:
-		if (this->VMTBox->Text == "")
-		{
+		//if (this->VMTBox->Text == "")
+		//{
 			this->VMTBox->Text = Convert::ToString(d.f.val.f);
-		}
+		//}
 		break;
 	case EC_P_M_MODE:
 		//this->checkManModeIn->Checked = d.f.val.i;
@@ -377,6 +357,28 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 				this->KdVal->Text = Convert::ToString(d.f.val.f / tmpf);
 			}
 			else this->KdVal->Text = Convert::ToString(d.f.val.f);
+		}
+		break;
+	case EC_P_M_SENS:
+		switch (d.f.R1)
+		{
+		case EC_S_D_PINJ:
+			PMCurrentValue->Text = Convert::ToString(d.f.val.f);
+			if (d.f.val.f*100 > PMCurrentProgress->Maximum)
+			{
+				PMCurrentProgress->Value = PMCurrentProgress->Maximum;
+			}
+			else if (d.f.val.f*100 < PMCurrentProgress->Minimum)
+			{
+				PMCurrentProgress->Value = PMCurrentProgress->Minimum;
+			}
+			else
+			{
+				PMCurrentProgress->Value = d.f.val.f*100;
+			}
+			break;
+		default:
+			break;
 		}
 		break;
 	}

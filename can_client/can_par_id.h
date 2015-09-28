@@ -115,6 +115,7 @@ union EC_CAN_PAR_ID
 #define EC_P_M_SENS		0x29				// данные от оцифровки датчиков
 #define 	EC_S_PK				0x01		// Pkompr
 #define		EC_S_TV				0x02		// Tvozd
+#define 	EC_S_D_PINJ			0x04		// Pinj давление впрыска
 
 #define EC_T_UOVT		0x31	// таблица углов опережени€ впрыска
 #define EC_T_SPCHAR		0x32	// внешн€€ скоростна€ характеристика
