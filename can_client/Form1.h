@@ -260,6 +260,7 @@ private: System::Windows::Forms::Label^  label52;
 private: System::Windows::Forms::TextBox^  tProgTime;
 private: System::Windows::Forms::TextBox^  tIntTime;
 private: System::Windows::Forms::TextBox^  tInt1Time;
+private: System::Windows::Forms::Panel^  panel1;
 
 
 
@@ -299,9 +300,10 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			this->logFileName = (gcnew System::Windows::Forms::TextBox());
 			this->logCheck = (gcnew System::Windows::Forms::CheckBox());
 			this->tabParameters = (gcnew System::Windows::Forms::TabPage());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->ParametersDataGrid = (gcnew System::Windows::Forms::DataGridView());
 			this->label29 = (gcnew System::Windows::Forms::Label());
 			this->FilterTextBox = (gcnew System::Windows::Forms::TextBox());
-			this->ParametersDataGrid = (gcnew System::Windows::Forms::DataGridView());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabControlPage = (gcnew System::Windows::Forms::TabPage());
 			this->InjectionTimeBox = (gcnew System::Windows::Forms::GroupBox());
@@ -424,6 +426,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
 			this->tabParameters->SuspendLayout();
+			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabControlPage->SuspendLayout();
@@ -535,11 +538,11 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// sendButton
 			// 
-			this->sendButton->Location = System::Drawing::Point(117, 46);
+			this->sendButton->Location = System::Drawing::Point(109, 12);
 			this->sendButton->Name = L"sendButton";
-			this->sendButton->Size = System::Drawing::Size(82, 30);
+			this->sendButton->Size = System::Drawing::Size(101, 47);
 			this->sendButton->TabIndex = 27;
-			this->sendButton->Text = L"отправить";
+			this->sendButton->Text = L"Частичная передача параметров";
 			this->sendButton->UseVisualStyleBackColor = true;
 			this->sendButton->Click += gcnew System::EventHandler(this, &Form1::sendButton_Click);
 			// 
@@ -573,9 +576,9 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// tabParameters
 			// 
+			this->tabParameters->Controls->Add(this->panel1);
 			this->tabParameters->Controls->Add(this->label29);
 			this->tabParameters->Controls->Add(this->FilterTextBox);
-			this->tabParameters->Controls->Add(this->ParametersDataGrid);
 			this->tabParameters->Location = System::Drawing::Point(4, 22);
 			this->tabParameters->Name = L"tabParameters";
 			this->tabParameters->Padding = System::Windows::Forms::Padding(3);
@@ -583,6 +586,26 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			this->tabParameters->TabIndex = 3;
 			this->tabParameters->Text = L"Таблица параметров";
 			this->tabParameters->UseVisualStyleBackColor = true;
+			// 
+			// panel1
+			// 
+			this->panel1->Controls->Add(this->ParametersDataGrid);
+			this->panel1->Location = System::Drawing::Point(6, 32);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(935, 445);
+			this->panel1->TabIndex = 47;
+			// 
+			// ParametersDataGrid
+			// 
+			this->ParametersDataGrid->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::DisplayedCells;
+			this->ParametersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->ParametersDataGrid->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->ParametersDataGrid->Location = System::Drawing::Point(0, 0);
+			this->ParametersDataGrid->Name = L"ParametersDataGrid";
+			this->ParametersDataGrid->ReadOnly = true;
+			this->ParametersDataGrid->Size = System::Drawing::Size(935, 445);
+			this->ParametersDataGrid->TabIndex = 0;
+			this->ParametersDataGrid->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::ParametersDataGrid_CellClick);
 			// 
 			// label29
 			// 
@@ -601,17 +624,6 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			this->FilterTextBox->Size = System::Drawing::Size(101, 20);
 			this->FilterTextBox->TabIndex = 45;
 			this->FilterTextBox->TextChanged += gcnew System::EventHandler(this, &Form1::textBox2_TextChanged);
-			// 
-			// ParametersDataGrid
-			// 
-			this->ParametersDataGrid->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::DisplayedCells;
-			this->ParametersDataGrid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->ParametersDataGrid->Location = System::Drawing::Point(3, 32);
-			this->ParametersDataGrid->Name = L"ParametersDataGrid";
-			this->ParametersDataGrid->ReadOnly = true;
-			this->ParametersDataGrid->Size = System::Drawing::Size(944, 594);
-			this->ParametersDataGrid->TabIndex = 0;
-			this->ParametersDataGrid->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &Form1::ParametersDataGrid_CellClick);
 			// 
 			// tabControl1
 			// 
@@ -923,10 +935,12 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			// 
 			// PMmax
 			// 
+			this->PMmax->BackColor = System::Drawing::SystemColors::Window;
 			this->PMmax->Location = System::Drawing::Point(311, 89);
 			this->PMmax->Name = L"PMmax";
 			this->PMmax->Size = System::Drawing::Size(48, 20);
 			this->PMmax->TabIndex = 13;
+			this->PMmax->ValueChanged += gcnew System::EventHandler(this, &Form1::PMmax_ValueChanged);
 			// 
 			// PMmin
 			// 
@@ -1863,6 +1877,7 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->EndInit();
 			this->tabParameters->ResumeLayout(false);
 			this->tabParameters->PerformLayout();
+			this->panel1->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->EndInit();
 			this->tabControl1->ResumeLayout(false);
 			this->tabControlPage->ResumeLayout(false);
@@ -1963,7 +1978,6 @@ private: System::Void initializeMessageList()
 		canWrite(EC_PQUE, EC_G_QC, EC_S_QC_AN,0);		
 		canWrite(EC_PQUE, EC_G_QC, EC_S_QC,0);		
 		canWrite(EC_PQUE, EC_G_QC, EC_S_ADOP,0);		
-		canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
 		canWrite(EC_PQUE, EC_P_VMT, 0,0);		
 		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT1,0);		
 		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT2,0);		
@@ -2284,7 +2298,7 @@ private: System::Void ApplyPID_Click(System::Object^  sender, System::EventArgs^
 			 // уставка
 			 if (Single::TryParse(this->NSetpointBox->Text, tmpf))
 			 {
-				canWrite(EC_G_N, EC_S_NU, 0, tmpf);
+				canWrite(EC_P_PED, 0, 0, tmpf);
 			 }
 		 }
 private: System::Void gDuty1Box_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -2307,6 +2321,8 @@ private: System::Void Nmax_ValueChanged(System::Object^  sender, System::EventAr
 		 }
 private: System::Void Nmin_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
 			 NCurrentProgress->Minimum = Decimal::ToInt32(Nmin->Value);
+		 }
+private: System::Void PMmax_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }

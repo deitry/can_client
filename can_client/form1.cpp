@@ -149,14 +149,18 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 			if (d.f.val.f > NCurrentProgress->Maximum)
 			{
 				NCurrentProgress->Value = NCurrentProgress->Maximum;
+				Nmax->BackColor = Color::Red;
 			}
 			else if (d.f.val.f < NCurrentProgress->Minimum)
 			{
 				NCurrentProgress->Value = NCurrentProgress->Minimum;
+				Nmin->BackColor = Color::Red;
 			}
 			else
 			{
 				NCurrentProgress->Value = d.f.val.f;
+				Nmax->BackColor = Color::White;
+				Nmin->BackColor = Color::White;
 			}
 			break;
 		case EC_S_NU:
@@ -171,6 +175,10 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		switch (d.f.R1)
 		{
 		case EC_S_QC:
+			if (QCValueSelect->SelectedIndex == 2)
+			{
+				QCCurrentValue->Text = Convert::ToString((System::Object^)d.f.val.f);
+			}
 			break;
 		case EC_S_QC_T:
 			if (QCValueSelect->SelectedIndex == 0)
@@ -185,10 +193,6 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 			}
 			break;
 		case EC_S_QC_ADOP:
-			if (QCValueSelect->SelectedIndex == 2)
-			{
-				QCCurrentValue->Text = Convert::ToString((System::Object^)d.f.val.f);
-			}
 			break;
 		}
 		break;
@@ -367,14 +371,18 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 			if (d.f.val.f*100 > PMCurrentProgress->Maximum)
 			{
 				PMCurrentProgress->Value = PMCurrentProgress->Maximum;
+				PMmax->BackColor = Color::Red;
 			}
 			else if (d.f.val.f*100 < PMCurrentProgress->Minimum)
 			{
 				PMCurrentProgress->Value = PMCurrentProgress->Minimum;
+				PMmin->BackColor = Color::Red;
 			}
 			else
 			{
 				PMCurrentProgress->Value = d.f.val.f*100;
+				PMmin->BackColor = Color::White;
+				PMmax->BackColor = Color::White;
 			}
 			break;
 		default:
@@ -385,7 +393,7 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 
 	if (isLogWrite)
 	{
-		printMessageToFile(&d,&(SysToStd(logFileName->Text+".txt")));
+		printMessageToFile(&d,&(SysToStd(logFileName->Text+".xls")));
 	}
 
 	Byte id0, id1;
@@ -608,7 +616,38 @@ extern "C" void PUBLIC UcanCallbackFktEx (tUcanHandle UcanHandle_p, DWORD dwEven
 }
 
 System::Void can_client::Form1::sendButton_Click(System::Object^  sender, System::EventArgs^  e) {
-	onCanTransmit();	
+	canWrite(EC_PCLR,0,0,0);		
+		// запрашиваем все параметры - добавляем их в список "запроса"
+		canWrite(EC_PQUE, EC_G_N, EC_S_NR,0);		
+		//canWrite(EC_PQUE, EC_G_N, EC_S_NU,0);		
+		//canWrite(EC_PQUE, EC_G_N, EC_S_DTIME,0);		
+		//canWrite(EC_PQUE, EC_G_QC, EC_S_QC_AN,0);		
+		//canWrite(EC_PQUE, EC_G_QC, EC_S_QC,0);		
+		//canWrite(EC_PQUE, EC_G_QC, EC_S_ADOP,0);		
+		//canWrite(EC_PQUE, EC_P_VMT, 0,0);		
+		//canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT1,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT2,0);		
+		//canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD1,0);		
+		//canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);		
+		//canWrite(EC_PQUE, EC_T_INJPHI, EC_S_NR,0);		
+		//canWrite(EC_PQUE, EC_T_INJZ, 0,0);		
+		canWrite(EC_PQUE, EC_T_INJN, 0,0);		
+		//canWrite(EC_PQUE, EC_T_INJT, 0,0);		
+		//canWrite(EC_PQUE, EC_T_INJCNT, 0,0);		
+		canWrite(EC_PQUE, EC_P_KP, 0,0);		
+		canWrite(EC_PQUE, EC_P_KI, 0,0);		
+		canWrite(EC_PQUE, EC_P_KD, 0,0);		
+		canWrite(EC_PQUE, EC_P_ERR, 0,0);		
+		canWrite(EC_PQUE, EC_P_ERRI, 0,0);		
+		canWrite(EC_PQUE, EC_P_ERRD, 0,0);		
+		//canWrite(EC_PQUE, EC_P_PTIME, 0,0);		
+		//canWrite(EC_PQUE, EC_P_ITIME, 0,0);		
+		//canWrite(EC_PQUE, EC_P_ITIME1, 0,0);		
+		//canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVT,0);
+		//canWrite(EC_PQUE, EC_P_M_INJ, 0,0);		
+		//canWrite(EC_PQUE, EC_P_M_QC, 0,0);		
+		//canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);		
+		//canWrite(EC_PQUE, EC_P_M_SENS, EC_S_D_PINJ,0);
 }
 
 System::Void can_client::Form1::buttonRandIn_Click(System::Object^  sender, System::EventArgs^  e) {
