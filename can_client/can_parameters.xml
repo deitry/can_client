@@ -56,6 +56,21 @@
     <description>Время между соседними зубьями (между прерываниями от датчика Холла)</description>
   </parameter>
 
+  <parameter idp="0x02" ids1="4" ids2="0" ids3="0" isFloat="1">
+    <units>об/мин</units>
+    <description>Нижнее ограничение частоты вращения</description>
+  </parameter>
+
+  <parameter idp="0x02" ids1="5" ids2="0" ids3="0" isFloat="1">
+    <units>об/мин</units>
+    <description>Верхнее ограничение частоты вращения</description>
+  </parameter>
+
+  <parameter idp="0x02" ids1="6" ids2="0" ids3="0" isFloat="1">
+    <units>boolean</units>
+    <description>Включение/выключения аварийного отключения при выходе за пределы частоты вращения</description>
+  </parameter>
+
   <parameter idp="0x03" ids1="0" ids2="0" ids3="0" isFloat="0">
     <units>мкс</units>
     <description>Продолжительность удерживающего импульса</description>
@@ -67,7 +82,7 @@
   </parameter>
 
   <parameter idp="0x03" ids1="2" ids2="0" ids3="0" isFloat="1">
-    <units>кг/цикл</units>
+    <units>мм3/цикл</units>
     <description>Цикловая подача топлива</description>
   </parameter>
 
@@ -77,23 +92,28 @@
   </parameter>
 
   <parameter idp="0x03" ids1="4" ids2="0" ids3="0" isFloat="1">
-    <units>кг/цикл</units>
+    <units>мм3/цикл</units>
     <description>Ограничение подачи по альфе</description>
   </parameter>
 
   <parameter idp="0x03" ids1="5" ids2="0" ids3="0" isFloat="1">
-    <units>кг/цикл</units>
+    <units>мм3/цикл</units>
     <description>Максимальное значение подачи</description>
   </parameter>
 
   <parameter idp="0x03" ids1="6" ids2="0" ids3="0" isFloat="1">
-    <units>кг/цикл</units>
+    <units>мм3/цикл</units>
     <description>Минимальное значение подачи</description>
   </parameter>
 
   <parameter idp="0x03" ids1="7" ids2="0" ids3="0" isFloat="1">
     <units>?</units>
-    <description>Переводной коэффициент подачи кг/л -> мкс</description>
+    <description>Переводной коэффициент подачи м3/цикл -> мкс</description>
+  </parameter>
+
+  <parameter idp="0x03" ids1="8" ids2="0" ids3="0" isFloat="1">
+    <units>мм3/цикл</units>
+    <description>Значение подачи при старте</description>
   </parameter>
 
   <parameter idp="0x04" ids1="0" ids2="0" ids3="0" isFloat="0">
@@ -186,6 +206,11 @@
     <description>Ручная установка подачи в мкс</description>
   </parameter>
 
+  <parameter idp="0x22" ids1="4" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Включение/выключение пневмокоррекции (ограничение QC в зависимости от альфа) </description>
+  </parameter>
+
   <parameter idp="0x23" ids1="0" ids2="0" ids3="0" isFloat="0">
     <units>boolean</units>
     <description>Ручной режим впрыска</description>
@@ -273,12 +298,27 @@
 
   <parameter idp="0x29" ids1="4" ids2="0" ids3="0" isFloat="0">
     <units>КПа</units>
-    <description>Давление впрыска</description>
+    <description>Давление масла</description>
   </parameter>
 
   <parameter idp="0x29" ids1="5" ids2="0" ids3="0" isFloat="0">
     <units>К</units>
     <description>Температура воздуха</description>
+  </parameter>
+
+  <parameter idp="0x29" ids1="6" ids2="0" ids3="0" isFloat="1">
+    <units>бар</units>
+    <description>Верхнее ограничение давления, при превышении которого подача отключается</description>
+  </parameter>
+
+  <parameter idp="0x29" ids1="7" ids2="0" ids3="0" isFloat="1">
+    <units>бар</units>
+    <description>Нижнее ограничение давления, при превышении которого подача отключается</description>
+  </parameter>
+
+  <parameter idp="0x29" ids1="8" ids2="0" ids3="0" isFloat="0">
+    <units>boolean</units>
+    <description>Включение/выключение аварийного прерывания работы при ограничении давления масла</description>
   </parameter>
 
   <parameter idp="0x31" ids1="0" ids2="0" ids3="0" isFloat="0">
@@ -317,21 +357,27 @@
   </parameter>
 
   <parameter idp="0x44" ids1="0" ids2="0" ids3="0" isFloat="0">
-    <units>кг/л</units>
+    <units>мм3/л</units>
     <description>Пропорциональная составляющая управляющего сигнала ПИД-регулятора
       (errP*Kp)
     </description>
   </parameter>
   
-  <parameter idp="0x45" ids1="0" ids2="0" ids3="0" isFloat="0">
-    <units>кг/л</units>
+  <parameter idp="0x45" ids1="0" ids2="0" ids3="0" isFloat="1">
+    <units>мм3/л</units>
     <description>Интегральная составляющая управляющего сигнала ПИД-регулятора
       (errI*Ki)
     </description>
   </parameter>
 
-  <parameter idp="0x46" ids1="0" ids2="0" ids3="0" isFloat="0">
-    <units>кг/л</units>
+  <parameter idp="0x45" ids1="1" ids2="0" ids3="0" isFloat="1">
+    <units>мм3/л</units>
+    <description>Верхнее ограничение для интегральной составляющей управляющего сигнала ПИД-регулятора
+    </description>
+  </parameter>
+
+  <parameter idp="0x46" ids1="0" ids2="0" ids3="0" isFloat="1">
+    <units>мм3/л</units>
     <description>Дифференциальная составляющая управляющего сигнала ПИД-регулятора
       (errD*Kd)
     </description>
@@ -342,12 +388,12 @@
     <description>Коээфициент темпа набора частоты вращения</description>
   </parameter>
 
-  <parameter idp="0x48" ids1="0" ids2="0" ids3="0" isFloat="0">
+  <parameter idp="0x48" ids1="0" ids2="0" ids3="0" isFloat="1">
     <units>float</units>
     <description>Зона нечувствительности ПИД-регулятора</description>
   </parameter>
 
-  <parameter idp="0x51" ids1="0" ids2="0" ids3="0" isFloat="0">
+  <parameter idp="0x51" ids1="0" ids2="0" ids3="0" isFloat="1">
     <units>с</units>
     <description>Продолжительность работы основного цикла программы</description>
   </parameter>

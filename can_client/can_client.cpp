@@ -4,7 +4,7 @@
 #include "Form1.h"
 
 using namespace can_client;
-char* outFileName = "out_log.txt";
+char* outFileName = "out_log.xls";
 
 [STAThreadAttribute]
 int main(array<System::String ^> ^args)

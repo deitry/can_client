@@ -261,6 +261,7 @@ private: System::Windows::Forms::TextBox^  tProgTime;
 private: System::Windows::Forms::TextBox^  tIntTime;
 private: System::Windows::Forms::TextBox^  tInt1Time;
 private: System::Windows::Forms::Panel^  panel1;
+private: System::Windows::Forms::Button^  button2;
 
 
 
@@ -350,6 +351,7 @@ private: System::Windows::Forms::Panel^  panel1;
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
 			this->tctrlModeParameters = (gcnew System::Windows::Forms::TabControl());
 			this->tab1_Standby = (gcnew System::Windows::Forms::TabPage());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label33 = (gcnew System::Windows::Forms::Label());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->tab2_Period = (gcnew System::Windows::Forms::TabPage());
@@ -753,7 +755,7 @@ private: System::Windows::Forms::Panel^  panel1;
 			// 
 			this->QCValueSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->QCValueSelect->FormattingEnabled = true;
-			this->QCValueSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
+			this->QCValueSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(мм3/цикл)"});
 			this->QCValueSelect->Location = System::Drawing::Point(240, 122);
 			this->QCValueSelect->Name = L"QCValueSelect";
 			this->QCValueSelect->Size = System::Drawing::Size(65, 21);
@@ -1085,6 +1087,7 @@ private: System::Windows::Forms::Panel^  panel1;
 			// 
 			// tab1_Standby
 			// 
+			this->tab1_Standby->Controls->Add(this->button2);
 			this->tab1_Standby->Controls->Add(this->label33);
 			this->tab1_Standby->Controls->Add(this->textBox4);
 			this->tab1_Standby->Location = System::Drawing::Point(4, 22);
@@ -1094,6 +1097,16 @@ private: System::Windows::Forms::Panel^  panel1;
 			this->tab1_Standby->TabIndex = 0;
 			this->tab1_Standby->Text = L"Ожидание";
 			this->tab1_Standby->UseVisualStyleBackColor = true;
+			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(271, 25);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(75, 38);
+			this->button2->TabIndex = 2;
+			this->button2->Text = L"Запуск двигателя";
+			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &Form1::button2_Click);
 			// 
 			// label33
 			// 
@@ -1150,7 +1163,7 @@ private: System::Windows::Forms::Panel^  panel1;
 			// 
 			this->injTimeSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->injTimeSelect->FormattingEnabled = true;
-			this->injTimeSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
+			this->injTimeSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(мм3/цикл)"});
 			this->injTimeSelect->Location = System::Drawing::Point(338, 38);
 			this->injTimeSelect->Name = L"injTimeSelect";
 			this->injTimeSelect->Size = System::Drawing::Size(75, 21);
@@ -1240,7 +1253,7 @@ private: System::Windows::Forms::Panel^  panel1;
 			// injTimeSetSelect
 			// 
 			this->injTimeSetSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->injTimeSetSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(г/цикл)"});
+			this->injTimeSetSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(мм3/цикл)"});
 			this->injTimeSetSelect->Location = System::Drawing::Point(338, 37);
 			this->injTimeSetSelect->Name = L"injTimeSetSelect";
 			this->injTimeSetSelect->Size = System::Drawing::Size(77, 21);
@@ -1469,7 +1482,6 @@ private: System::Windows::Forms::Panel^  panel1;
 			this->KdMult->Name = L"KdMult";
 			this->KdMult->Size = System::Drawing::Size(38, 20);
 			this->KdMult->TabIndex = 9;
-			this->KdMult->Text = L"1e-5";
 			this->KdMult->TextChanged += gcnew System::EventHandler(this, &Form1::KdMult_TextChanged);
 			// 
 			// KdVal
@@ -1485,7 +1497,6 @@ private: System::Windows::Forms::Panel^  panel1;
 			this->KiMult->Name = L"KiMult";
 			this->KiMult->Size = System::Drawing::Size(38, 20);
 			this->KiMult->TabIndex = 7;
-			this->KiMult->Text = L"1e-5";
 			this->KiMult->TextChanged += gcnew System::EventHandler(this, &Form1::KiMult_TextChanged);
 			// 
 			// KiVal
@@ -1501,7 +1512,6 @@ private: System::Windows::Forms::Panel^  panel1;
 			this->KpMult->Name = L"KpMult";
 			this->KpMult->Size = System::Drawing::Size(38, 20);
 			this->KpMult->TabIndex = 5;
-			this->KpMult->Text = L"1e-5";
 			this->KpMult->TextChanged += gcnew System::EventHandler(this, &Form1::KpMult_TextChanged);
 			// 
 			// KpVal
@@ -1510,6 +1520,7 @@ private: System::Windows::Forms::Panel^  panel1;
 			this->KpVal->Name = L"KpVal";
 			this->KpVal->Size = System::Drawing::Size(38, 20);
 			this->KpVal->TabIndex = 4;
+			this->KpVal->TextChanged += gcnew System::EventHandler(this, &Form1::KpVal_TextChanged);
 			// 
 			// label36
 			// 
@@ -1957,11 +1968,11 @@ private: System::Void writeLogButton_Click(System::Object^  sender, System::Even
 			
 			if (!isLogWrite)
 			{
-				clearFile(&(SysToStd(logFileName->Text+".txt")));
+				clearFile(&(SysToStd(logFileName->Text+".xls")));
 				nMessage = 0;
 			} else {
 				// сохраняем в лог то, что есть
-				flushToFile(&(SysToStd(logFileName->Text+".txt")));
+				flushToFile(&(SysToStd(logFileName->Text+".xls")));
 			}
 			isLogWrite = !isLogWrite;
 			logCheck->Checked = isLogWrite;
@@ -2156,6 +2167,8 @@ private: System::Void butApplyMode_Click(System::Object^  sender, System::EventA
 				 canWrite(EC_P_M_INJ,0,0,1);
 				 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
 				 canWrite(EC_P_M_QC,0,0,1);
+				 canWrite(EC_P_M_QC, 0, 0, EG_MANQC_TIME);
+				 canWrite(EC_G_QC, EC_S_QC_T, 0, 0);
 				 return;
 			 }
 			 if (rbPeriodic->Checked)
@@ -2168,10 +2181,10 @@ private: System::Void butApplyMode_Click(System::Object^  sender, System::EventA
 			 }
 			 if (rbTimeSet->Checked)
 			 {
-				 ApplyTimeSetAction();
+				 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
 				 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
 				 canWrite(EC_P_M_INJ,0,0,0);
-				 canWrite(EC_P_M_QC,0,0,1);
+				 //canWrite(EC_P_M_QC,0,0,1);
 				 return;
 			 }
 			 if (rbPID->Checked)
@@ -2250,7 +2263,7 @@ private: System::Void ApplyTimeSet_Click(System::Object^  sender, System::EventA
 					break;
 				case 2:	
 					canWrite(EC_P_M_QC, 0, 0, EG_MANQC_QC);
-					tmpf *= 0.001;
+					//tmpf *= 0.001;
 					canWrite(EC_G_QC, EC_S_QC, 0, tmpf);
 					break;
 				}
@@ -2323,6 +2336,18 @@ private: System::Void Nmin_ValueChanged(System::Object^  sender, System::EventAr
 			 NCurrentProgress->Minimum = Decimal::ToInt32(Nmin->Value);
 		 }
 private: System::Void PMmax_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+			//canWrite(manQC, 0);
+			// canWrite(mode, start);
+			canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
+			canWrite(EC_P_M_INJ,0,0,0);
+			canWrite(EC_P_M_QC,0,0,0);
+			canWrite(EC_P_MODE,0,0,1);
+			tctrlModeParameters->SelectedIndex = 3;
+			rbPID->Checked = true;
+		 }
+private: System::Void KpVal_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }

@@ -63,6 +63,8 @@ union EC_CAN_PAR_ID
 #define 	EC_S_NU			0x01		// float уставка частоты вращени€ об/мин
 #define 	EC_S_OMEGA		0x02		// float рад/с
 #define 	EC_S_DTIME		0x03		// float врем€ между прерывани€ми по зубь€ми в с
+#define		EC_S_NMIN			0x04	// минимальное значение частоты, ниже которого система перестаЄт впрыскивать
+#define 	EC_S_NMAX			0x05	// верхнее ограничение частоты вращени€
 
 #define EC_G_QC			0x03			// группа параметров подачи
 #define 	EC_S_QC_T			0x00	// int врем€ импульса удержани€ в мкс
@@ -70,6 +72,10 @@ union EC_CAN_PAR_ID
 #define 	EC_S_QC				0x02	// float количество топлива, которое подаЄтс€ в цилиндр
 #define		EC_S_ADOP			0x03	// float альфа - ограничение
 #define		EC_S_QC_ADOP		0x04	// float подача - ограниченна€ по альфе
+#define 	EC_S_QC_MAX			0x05	// максимальное значение подачи
+#define 	EC_S_QC_MIN			0x06	// минимальное значение подачи
+#define		EC_S_KQC			0x07	// переводной коэффициент кг/л -> мкс
+#define 	EC_S_START			0x08	// стартовое значение подачи в мм3/цикл
 #define EC_P_NCYL		0x04			// int количество цилиндров
 #define EC_P_PED		0x05			// float положение педали
 #define 	EC_S_PEDST			0x01	// float кратность округлени€ значений педали
@@ -99,6 +105,8 @@ union EC_CAN_PAR_ID
 #define 	EC_S_M_IAN			0x02        // „исло injAngle - продолжительность впрыска в углах коленчатого вала
 //#define 	EC_S_M_QCT			0x03        // ‘лаг manQCt - задание подачи в микросекундах
 // --
+#define 	EC_S_M_QALPHA		0x04	// вкл/выкл пневмокоррекции
+
 #define EC_P_M_INJ		0x23                // ‘лаг manInj - ручное управление впрыском в нулевой цилиндр 
 #define 	EC_S_M_IONCE		0x01        // ‘лаг injOnce - осуществить однократный или периодический (если manN != 0) впрыск в цилиндр
 #define 	EC_S_M_IN			0x02        // „исло manN - частота впрысков в сотн€х микросекунд
@@ -116,6 +124,8 @@ union EC_CAN_PAR_ID
 #define 	EC_S_PK				0x01		// Pkompr
 #define		EC_S_TV				0x02		// Tvozd
 #define 	EC_S_D_PINJ			0x04		// Pinj давление впрыска
+#define 	EC_S_D_PINJMAX		0x06	// верхнее ограничение давлени€ масла
+#define 	EC_S_D_PINJMIN		0x07	// нижнее ограничение давлени€ масла
 
 #define EC_T_UOVT		0x31	// таблица углов опережени€ впрыска
 #define EC_T_SPCHAR		0x32	// внешн€€ скоростна€ характеристика
@@ -127,6 +137,7 @@ union EC_CAN_PAR_ID
 #define EC_P_KD			0x43	// float к-т при дифференциальной составл€ющей
 #define EC_P_ERR		0x44	// float пропорциональна€ ошибка регулировани€
 #define EC_P_ERRI		0x45	// float интегральна€ ошибка регулировани€
+#define 	EC_S_ERRIMAX	0x01
 #define EC_P_ERRD		0x46	// float дифференциальна€ ошибка регулировани€
 
 #define EC_P_MUN		0x47	// float коэффициент темпа набора частоты
@@ -137,163 +148,3 @@ union EC_CAN_PAR_ID
 #define EC_P_ITIME1		0x53
 
 #endif /* CAN_PAR_ID_H_ */
-
-
-/*void sendCanMsg(PAR_ID_BYTES id)
-{
-	CAN_DATA data;
-
-	for (int i = 0; i < 6; i++)
-	{
-		data.all[i] = 0;
-	}
-
-	data.f.PARID = id.P;
-	data.f.R1 = id.S;
-
-	switch (id.P)
-	{
-	case EC_P_MODE: data.f.val.i = engine->mode; break;
-	case EC_G_N:
-		switch (id.S)
-		{
-		case EC_S_NR: data.f.val.f = EG::nR; break;
-		case EC_S_NU: data.f.val.f = EG::nU; break;
-		case EC_S_OMEGA: data.f.val.f = EG::omegaR; break;
-		case EC_S_DTIME: data.f.val.i = delta_time; break;
-		}
-		break;
-	case EC_G_QC:
-		switch (id.S)
-		{
-		case EC_S_QC_T: data.f.val.f = EG::g_step2Us; break;
-		case EC_S_QC_AN: data.f.val.f = EG::injAngle; break;
-		case EC_S_QC: data.f.val.f = EG::QC; break;
-		}
-		break;
-	case EC_P_NCYL: data.f.val.i = DIESEL_N_CYL; break;
-	case EC_P_PED:
-		switch (id.S)
-		{
-		case EC_P0: data.f.val.f = EG::pedal; break;
-		case EC_S_PEDST: data.f.val.i = EG::pedStep; break;
-		}
-		break;
-	case EC_P_VMT: data.f.val.i = EG::anVMT; break;
-	case EC_G_INJ:
-		switch (id.S)
-		{
-		case EC_S_INJT1: data.f.val.i = EG::g_step1Us; break;
-		case EC_S_INJT2: data.f.val.i = EG::g_step2Us; break;
-		case EC_S_INJD1: data.f.val.i = EG::g_duty1; break;
-		case EC_S_INJD2: data.f.val.i = EG::g_duty2; break;
-		}
-		break;
-	case EC_T_INJPHI: data.f.val.f = EG::injPhi[id.S]; break;
-	case EC_T_INJZ:	data.f.val.f = EG::injZ[id.S]; break;
-	case EC_T_INJN:	data.f.val.f = EG::injN[id.S]; break;
-	case EC_T_INJT:	data.f.val.f = EG::injT[id.S]; break;
-	case EC_P_M_MODE: data.f.val.i = EG::manMode; break;
-	case EC_P_M_QC:
-		switch (id.S)
-		{
-		case EC_P0: data.f.val.i = EG::manQC; break;
-		case EC_S_M_AN: data.f.val.i = EG::manAngle; break;
-		case EC_S_M_IAN: data.f.val.f = EG::injAngle; break;
-		}
-		break;
-	case EC_P_M_INJ:
-		switch (id.S)
-		{
-		case EC_P0: data.f.val.i = EG::manInj; break;
-		case EC_S_M_IONCE: data.f.val.i = EG::injOnce; break;
-		case EC_S_M_IN: data.f.val.i = EG::manN; break;
-		}
-		break;
-	case EC_P_M_PED: data.f.val.i = EG::manPed; break;
-	case EC_P_M_CANS: data.f.val.i = EG::canSend; break;
-	case EC_P_M_UOVT:
-		switch (id.S)
-		{
-		case EC_P0: data.f.val.i = EG::manOUVT; break;
-		case EC_S_M_UOVT: data.f.val.f = EG::injOuvt; break;
-		}
-		break;
-	}
-
-	sendCanMsgX(&data);
-}*/
-
-/*void recieveCanMsg(tCANMsgObject* msg)
-{
-	can_data.all = msg->pucMsgData;
-	switch (msg->pucMsgData[0])
-	{
-	case EC_P_MODE: engine->mode = can_data.f.val.i; break;
-	case EC_G_N:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_S_NR: EG::nR = can_data.f.val.f; break;
-		case EC_S_NU: EG::nU = can_data.f.val.f; break;
-		case EC_S_OMEGA: EG::omegaR = can_data.f.val.f; break;
-		case EC_S_DTIME: delta_time = can_data.f.val.f; break;
-		}
-		break;
-	case EC_G_QC:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_S_QC_T: EG::g_step2Us = can_data.f.val.f; break;
-		case EC_S_QC_AN: EG::injAngle = can_data.f.val.f; break;
-		case EC_S_QC: EG::QC = can_data.f.val.f; break;
-		}
-		break;
-	case EC_P_NCYL: DIESEL_N_CYL = can_data.f.val.i; break;
-	case EC_P_PED:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_P0: EG::pedal = can_data.f.val.f; break;
-		case EC_S_PEDST: EG::pedStep = can_data.f.val.i; break;
-		}
-		break;
-	case EC_P_VMT: EG::anVMT = can_data.f.val.f; break;
-	case EC_G_INJ:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_S_INJT1: EG::g_step1Us = can_data.f.val.i; break;
-		case EC_S_INJT2: EG::g_step2Us = can_data.f.val.i; break;
-		case EC_S_INJD1: EG::g_duty1 = can_data.f.val.i; break;
-		case EC_S_INJD2: EG::g_duty2 = can_data.f.val.i; break;
-		}
-		break;
-	case EC_T_INJPHI: EG::injPhi[msg->pucMsgData[1]] = can_data.f.val.f; break;
-	case EC_T_INJZ:	EG::injZ[msg->pucMsgData[1]] = can_data.f.val.f; break;
-	case EC_T_INJN:	EG::injN[msg->pucMsgData[1]] = can_data.f.val.f; break;
-	case EC_T_INJT:	EG::injT[msg->pucMsgData[1]] = can_data.f.val.f; break;
-	case EC_P_M_MODE: EG::manMode = can_data.f.val.i; break;
-	case EC_P_M_QC:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_P0: EG::manQC = can_data.f.val.i; break;
-		case EC_S_M_AN: EG::manAngle = can_data.f.val.i; break;
-		case EC_S_M_IAN: EG::injAngle = can_data.f.val.f; break;
-		}
-		break;
-	case EC_P_M_INJ:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_P0: EG::manInj = can_data.f.val.i; break;
-		case EC_S_M_IONCE: EG::injOnce = can_data.f.val.i; break;
-		case EC_S_M_IN: EG::manN = can_data.f.val.i; break;
-		}
-		break;
-	case EC_P_M_PED: EG::manPed = can_data.f.val.i; break;
-	case EC_P_M_CANS: EG::canSend = can_data.f.val.i; break;
-	case EC_P_M_UOVT:
-		switch (msg->pucMsgData[1])
-		{
-		case EC_P0: EG::manOUVT = can_data.f.val.i; break;
-		case EC_S_M_UOVT: EG::injOuvt = can_data.f.val.f; break;
-		}
-		break;
-	}
-}*/
