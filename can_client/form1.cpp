@@ -403,13 +403,41 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		&& ((d.f.PARID == EC_TIME) || (d.f.PARID == EC_TINJ) || (d.f.PARID == EC_TPROG)
 			|| (d.f.R1 == id1)))
 		{
-			if (isParFloat(&d))
+			if (isParFloat(&d) ^ chkFloatInvert->Checked)
+			//if (isParameterFloatTable(&d))
 			{
 				this->textRandIn->Text = Convert::ToString(d.f.val.f);
 			} else {
 				this->textRandIn->Text = Convert::ToString(d.f.val.i);
 			}
 		}
+}
+
+int can_client::Form1::isParameterFloatTable(CAN_DATA* data)
+{
+	// TODO : доделать или вообще сделать по-другому
+	/*for (int i = 0; i < ParametersDataGrid->Rows->Count; i++)
+	{
+		int idp;
+		System::Globalization::CultureInfo^ provider = System::Globalization::CultureInfo::InvariantCulture;
+
+		String^ tmp = (String^)ParametersDataGrid->Rows[e->RowIndex]->Cells[2]->Value;
+		tmp = tmp->Replace("0x","");
+		if (!Int32::TryParse(tmp, System::Globalization::NumberStyles::HexNumber, provider, idp))
+			continue;
+		
+		if (idp == randIn)
+
+
+		int ids1;
+		tmp = (String^)ParametersDataGrid->Rows[e->RowIndex]->Cells[3]->Value;
+		tmp->Replace("0x","");
+		if (!Int32::TryParse(tmp, System::Globalization::NumberStyles::HexNumber, provider, ids1))
+			continue;
+
+		
+	}*/
+	return 0;
 }
 
 void can_client::Form1::canWrite(int id1, int id2, int id3, float a)
@@ -667,7 +695,7 @@ System::Void can_client::Form1::buttonRandOut_Click(System::Object^  sender, Sys
 		dat.f.R1 = System::Byte::Parse(this->textId2->Text);
 		dat.f.val.f = System::Single::Parse(this->textRandOut->Text);
 
-		if (isParFloat(&dat))
+		if (isParFloat(&dat) ^ chkFloatInvert->Checked)
 		{
 			canWrite(	dat.f.PARID,
 						dat.f.R1,

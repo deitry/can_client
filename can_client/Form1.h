@@ -262,6 +262,9 @@ private: System::Windows::Forms::TextBox^  tIntTime;
 private: System::Windows::Forms::TextBox^  tInt1Time;
 private: System::Windows::Forms::Panel^  panel1;
 private: System::Windows::Forms::Button^  button2;
+private: System::Windows::Forms::CheckBox^  chkFloatInvert;
+
+
 
 
 
@@ -425,6 +428,7 @@ private: System::Windows::Forms::Button^  button2;
 			this->rbTimeSet = (gcnew System::Windows::Forms::RadioButton());
 			this->rbPeriodic = (gcnew System::Windows::Forms::RadioButton());
 			this->rbStandby = (gcnew System::Windows::Forms::RadioButton());
+			this->chkFloatInvert = (gcnew System::Windows::Forms::CheckBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
 			this->tabParameters->SuspendLayout();
@@ -1367,7 +1371,7 @@ private: System::Windows::Forms::Button^  button2;
 			this->NIdleBox->ReadOnly = true;
 			this->NIdleBox->Size = System::Drawing::Size(38, 20);
 			this->NIdleBox->TabIndex = 21;
-			this->NIdleBox->Text = L"200";
+			this->NIdleBox->Text = L"300";
 			// 
 			// ApplyPID
 			// 
@@ -1474,7 +1478,7 @@ private: System::Windows::Forms::Button^  button2;
 			this->NSetpointBox->Name = L"NSetpointBox";
 			this->NSetpointBox->Size = System::Drawing::Size(38, 20);
 			this->NSetpointBox->TabIndex = 10;
-			this->NSetpointBox->Text = L"200";
+			this->NSetpointBox->Text = L"300";
 			// 
 			// KdMult
 			// 
@@ -1703,6 +1707,7 @@ private: System::Windows::Forms::Button^  button2;
 			// 
 			this->VMTBox->DecimalPlaces = 2;
 			this->VMTBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {5, 0, 0, 65536});
+			this->VMTBox->InterceptArrowKeys = false;
 			this->VMTBox->Location = System::Drawing::Point(19, 200);
 			this->VMTBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, 0});
 			this->VMTBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, System::Int32::MinValue});
@@ -1861,12 +1866,23 @@ private: System::Windows::Forms::Button^  button2;
 			this->rbStandby->UseVisualStyleBackColor = true;
 			this->rbStandby->CheckedChanged += gcnew System::EventHandler(this, &Form1::rbStandby_CheckedChanged);
 			// 
+			// chkFloatInvert
+			// 
+			this->chkFloatInvert->AutoSize = true;
+			this->chkFloatInvert->Location = System::Drawing::Point(143, 107);
+			this->chkFloatInvert->Name = L"chkFloatInvert";
+			this->chkFloatInvert->Size = System::Drawing::Size(52, 17);
+			this->chkFloatInvert->TabIndex = 45;
+			this->chkFloatInvert->Text = L"invert";
+			this->chkFloatInvert->UseVisualStyleBackColor = true;
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
 			this->ClientSize = System::Drawing::Size(1175, 521);
+			this->Controls->Add(this->chkFloatInvert);
 			this->Controls->Add(this->logCheck);
 			this->Controls->Add(this->logFileName);
 			this->Controls->Add(this->writeLogButton);
@@ -2349,5 +2365,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 		 }
 private: System::Void KpVal_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 		 }
+
+		 int isParameterFloatTable(CAN_DATA* data);
 };
 }
