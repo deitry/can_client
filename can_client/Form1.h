@@ -813,11 +813,13 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label14
 			// 
 			this->label14->AutoSize = true;
+			this->label14->Enabled = false;
 			this->label14->Location = System::Drawing::Point(374, 124);
 			this->label14->Name = L"label14";
 			this->label14->Size = System::Drawing::Size(41, 13);
 			this->label14->TabIndex = 28;
 			this->label14->Text = L"label14";
+			this->label14->Visible = false;
 			// 
 			// label15
 			// 
@@ -840,11 +842,13 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// checkBox3
 			// 
 			this->checkBox3->AutoSize = true;
+			this->checkBox3->Enabled = false;
 			this->checkBox3->Location = System::Drawing::Point(377, 142);
 			this->checkBox3->Name = L"checkBox3";
 			this->checkBox3->Size = System::Drawing::Size(15, 14);
 			this->checkBox3->TabIndex = 25;
 			this->checkBox3->UseVisualStyleBackColor = true;
+			this->checkBox3->Visible = false;
 			// 
 			// QCCurrentValue
 			// 
@@ -898,11 +902,13 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label9
 			// 
 			this->label9->AutoSize = true;
+			this->label9->Enabled = false;
 			this->label9->Location = System::Drawing::Point(374, 72);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(35, 13);
 			this->label9->TabIndex = 18;
 			this->label9->Text = L"label9";
+			this->label9->Visible = false;
 			// 
 			// label10
 			// 
@@ -925,11 +931,13 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// PMFailureCheck
 			// 
 			this->PMFailureCheck->AutoSize = true;
+			this->PMFailureCheck->Enabled = false;
 			this->PMFailureCheck->Location = System::Drawing::Point(377, 90);
 			this->PMFailureCheck->Name = L"PMFailureCheck";
 			this->PMFailureCheck->Size = System::Drawing::Size(15, 14);
 			this->PMFailureCheck->TabIndex = 15;
 			this->PMFailureCheck->UseVisualStyleBackColor = true;
+			this->PMFailureCheck->Visible = false;
 			// 
 			// PMCurrentValue
 			// 
@@ -946,6 +954,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->PMmax->Name = L"PMmax";
 			this->PMmax->Size = System::Drawing::Size(48, 20);
 			this->PMmax->TabIndex = 13;
+			this->PMmax->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {16, 0, 0, 0});
 			this->PMmax->ValueChanged += gcnew System::EventHandler(this, &Form1::PMmax_ValueChanged);
 			// 
 			// PMmin
@@ -954,17 +963,20 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->PMmin->Name = L"PMmin";
 			this->PMmin->Size = System::Drawing::Size(47, 20);
 			this->PMmin->TabIndex = 12;
+			this->PMmin->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {4, 0, 0, 0});
+			this->PMmin->ValueChanged += gcnew System::EventHandler(this, &Form1::PMmin_ValueChanged);
 			// 
 			// PMCurrentProgress
 			// 
 			this->PMCurrentProgress->BackColor = System::Drawing::SystemColors::Control;
 			this->PMCurrentProgress->Location = System::Drawing::Point(165, 94);
-			this->PMCurrentProgress->Maximum = 600;
+			this->PMCurrentProgress->Maximum = 1600;
+			this->PMCurrentProgress->Minimum = 600;
 			this->PMCurrentProgress->Name = L"PMCurrentProgress";
 			this->PMCurrentProgress->Size = System::Drawing::Size(140, 10);
 			this->PMCurrentProgress->Step = 1;
 			this->PMCurrentProgress->TabIndex = 11;
-			this->PMCurrentProgress->Value = 10;
+			this->PMCurrentProgress->Value = 600;
 			// 
 			// label12
 			// 
@@ -987,11 +999,13 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label6
 			// 
 			this->label6->AutoSize = true;
+			this->label6->Enabled = false;
 			this->label6->Location = System::Drawing::Point(356, 22);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(125, 13);
 			this->label6->TabIndex = 8;
 			this->label6->Text = L"Аварийное отключение";
+			this->label6->Visible = false;
 			// 
 			// label5
 			// 
@@ -1014,11 +1028,13 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// NFailureCheck
 			// 
 			this->NFailureCheck->AutoSize = true;
+			this->NFailureCheck->Enabled = false;
 			this->NFailureCheck->Location = System::Drawing::Point(377, 40);
 			this->NFailureCheck->Name = L"NFailureCheck";
 			this->NFailureCheck->Size = System::Drawing::Size(15, 14);
 			this->NFailureCheck->TabIndex = 5;
 			this->NFailureCheck->UseVisualStyleBackColor = true;
+			this->NFailureCheck->Visible = false;
 			// 
 			// NCurrentValue
 			// 
@@ -1045,7 +1061,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->Nmin->Name = L"Nmin";
 			this->Nmin->Size = System::Drawing::Size(47, 20);
 			this->Nmin->TabIndex = 2;
-			this->Nmin->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {100, 0, 0, 0});
+			this->Nmin->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {10, 0, 0, 0});
 			this->Nmin->ValueChanged += gcnew System::EventHandler(this, &Form1::Nmin_ValueChanged);
 			// 
 			// NCurrentProgress
@@ -2352,6 +2368,7 @@ private: System::Void Nmin_ValueChanged(System::Object^  sender, System::EventAr
 			 NCurrentProgress->Minimum = Decimal::ToInt32(Nmin->Value);
 		 }
 private: System::Void PMmax_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 PMCurrentProgress->Maximum = Decimal::ToInt32(PMmax->Value)*100;
 		 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 			//canWrite(manQC, 0);
@@ -2367,5 +2384,8 @@ private: System::Void KpVal_TextChanged(System::Object^  sender, System::EventAr
 		 }
 
 		 int isParameterFloatTable(CAN_DATA* data);
+private: System::Void PMmin_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			 PMCurrentProgress->Minimum = Decimal::ToInt32(PMmin->Value)*100;
+		 }
 };
 }

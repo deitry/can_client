@@ -76,12 +76,12 @@ void can_client::Form1::onCanRecieve(void)
 
     } while (fRet != FALSE);
 
-	if (!isInitialized)
+	/*if (!isInitialized)
 	{
 		initializeMessageList();		
 		
 		isInitialized = true;
-	}
+	}*/
 }
 
 BOOL can_client::Form1::readMsg(tCanMsgStruct* pCanMsg_p)
