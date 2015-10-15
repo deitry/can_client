@@ -1913,9 +1913,11 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->Controls->Add(this->textId2);
 			this->Controls->Add(this->label27);
 			this->Controls->Add(this->label28);
+			this->KeyPreview = true;
 			this->Name = L"Form1";
 			this->Text = L"Form1";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Form1::form1_FormClosing);
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Form1::Form1_KeyDown);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->EndInit();
 			this->tabParameters->ResumeLayout(false);
@@ -2193,38 +2195,61 @@ private: System::Void rbTimeSet_CheckedChanged(System::Object^  sender, System::
 private: System::Void rbPID_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 tctrlModeParameters->SelectedIndex = 3;
 		 }
+
+		 System::Void SetStandbyMode()
+		 {
+			 canWrite(EC_P_M_INJ,0,0,1);
+			 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
+			 canWrite(EC_P_M_QC,0,0,1);
+			 canWrite(EC_P_M_QC, 0, 0, EG_MANQC_TIME);
+			 canWrite(EC_G_QC, EC_S_QC_T, 0, 0);
+		 }
+
+		 System::Void SetPeriodicMode()
+		 {
+			 ApplyPeriodicAction();
+			 canWrite(EC_P_M_INJ, EC_S_M_IONCE,0,1);
+			 canWrite(EC_P_M_INJ,0,0,1);
+			 canWrite(EC_P_M_QC,0,0,1);
+		 }
+		 
+		 System::Void SetFixedMode()
+		 {
+			 ApplyTimeSetAction();
+			 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
+			 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
+			 canWrite(EC_P_M_INJ,0,0,0);
+			 //canWrite(EC_P_M_QC,0,0,1);
+		 }
+
+		 System::Void SetPIDMode()
+		 {
+			 ApplyPIDAction();
+			 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
+			 canWrite(EC_P_M_INJ,0,0,0);
+			 canWrite(EC_P_M_QC,0,0,0);
+		 }
+
+
 private: System::Void butApplyMode_Click(System::Object^  sender, System::EventArgs^  e) {
 			 if (rbStandby->Checked)
 			 {
-				 canWrite(EC_P_M_INJ,0,0,1);
-				 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
-				 canWrite(EC_P_M_QC,0,0,1);
-				 canWrite(EC_P_M_QC, 0, 0, EG_MANQC_TIME);
-				 canWrite(EC_G_QC, EC_S_QC_T, 0, 0);
+				 SetStandbyMode();
 				 return;
 			 }
 			 if (rbPeriodic->Checked)
 			 {
-				 ApplyPeriodicAction();
-				 canWrite(EC_P_M_INJ, EC_S_M_IONCE,0,1);
-				 canWrite(EC_P_M_INJ,0,0,1);
-				 canWrite(EC_P_M_QC,0,0,1);
+				 SetPeriodicMode();
 				 return;
 			 }
 			 if (rbTimeSet->Checked)
 			 {
-				 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
-				 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
-				 canWrite(EC_P_M_INJ,0,0,0);
-				 //canWrite(EC_P_M_QC,0,0,1);
+				 SetFixedMode();
 				 return;
 			 }
 			 if (rbPID->Checked)
 			 {
-				 ApplyPIDAction();
-				 canWrite(EC_P_M_INJ,EC_S_M_IONCE,0,0);
-				 canWrite(EC_P_M_INJ,0,0,0);
-				 canWrite(EC_P_M_QC,0,0,0);
+				 SetPIDMode();
 				 return;
 			 }
 		 }
@@ -2386,6 +2411,119 @@ private: System::Void KpVal_TextChanged(System::Object^  sender, System::EventAr
 		 int isParameterFloatTable(CAN_DATA* data);
 private: System::Void PMmin_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
 			 PMCurrentProgress->Minimum = Decimal::ToInt32(PMmin->Value)*100;
+		 }
+private: System::Void Form1_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
+			 //if (e->Control)
+			 //{
+			//	 CurrentMode->Text = "" + e->KeyValue;
+			 //}
+			 // A - 65, Z - 90
+			 // [ - 219, ] - 221
+			 // < - 188, > - 190
+			 // Space - 32
+			 // Enter - 13
+			 
+			 if (e->Control)
+			 {
+				 // остановка -  ѕрекращение подачи
+				 if ((e->KeyValue == 13) || (e->KeyValue == 32))
+				 {
+					 SetStandbyMode();
+					 return;
+				 }
+
+				 // изменение уставки +- 10
+				 if (e->KeyValue == 219)
+				 {
+					 float tmpf = 0;
+					 if (Single::TryParse(this->NSetpointBox->Text, tmpf))
+					 {
+					    tmpf -= 100;
+						NSetpointBox->Text = Convert::ToString(tmpf);
+						canWrite(EC_P_PED, 0, 0, tmpf);
+					 }
+				 }
+			 
+				 if (e->KeyValue == 221)
+				 {
+					 float tmpf = 0;
+					 if (Single::TryParse(this->NSetpointBox->Text, tmpf))
+					 {
+					    tmpf += 100;
+						NSetpointBox->Text = Convert::ToString(tmpf);
+						canWrite(EC_P_PED, 0, 0, tmpf);
+					 }
+				 }
+
+				 // изменение уставки +- 100
+				 if (e->KeyValue == 188)
+				 {
+					float tmpf = 0;
+					 if (Single::TryParse(this->NSetpointBox->Text, tmpf))
+					 {
+					    tmpf -= 10;
+						NSetpointBox->Text = Convert::ToString(tmpf);
+						canWrite(EC_P_PED, 0, 0, tmpf);
+					 }
+				 }
+			 
+				 if (e->KeyValue == 190)
+				 {
+					float tmpf = 0;
+					 if (Single::TryParse(this->NSetpointBox->Text, tmpf))
+					 {
+					    tmpf += 10;
+						NSetpointBox->Text = Convert::ToString(tmpf);
+						canWrite(EC_P_PED, 0, 0, tmpf);
+					 }
+				 }
+			 }
+
+
+			 // переключение режима
+			 if (e->Shift)
+			 {
+				 // остановка -  ѕрекращение подачи
+				 if ((e->KeyValue == 13) || (e->KeyValue == 32))
+				 {
+					 SetStandbyMode();
+					 return;
+				 }
+
+				 if (e->KeyValue == 49)
+				 {
+					 SetStandbyMode();
+					 rbStandby->Checked = true;
+					 return;
+				 }
+				 else if (e->KeyValue == 50)
+				 {
+					 SetPeriodicMode();
+					 rbPeriodic->Checked = true;
+					 return;
+				 }
+				 else if (e->KeyValue == 51)
+				 {
+					 SetFixedMode();
+					 rbTimeSet->Checked = true;
+					 return;
+				 }
+				 else if (e->KeyValue == 52)
+				 {
+					 SetPIDMode();
+					 rbPID->Checked = true;
+					 return;
+				 }
+				 else if (e->KeyValue == 48) // '0'
+				 {
+					 NSetpointBox->Text = NIdleBox->Text;
+					 SetPIDMode();
+					 rbPID->Checked = true;
+					 return;
+				 }
+			 }
+
+			 // cброс на холостой ход 
 		 }
 };
 }
