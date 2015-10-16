@@ -117,6 +117,7 @@ union EC_CAN_PAR_ID
 #define		EC_S_M_CANST		0x01		// Флаг CanTime - пересылка временных меток
 #define EC_P_M_UOVT		0x26                // Флаг manUOVT - ручное задание УОВТ
 #define 	EC_S_M_UOVT			0x01        // Число injUOVT - угол опережения впрыска топлива
+#define 	EC_S_M_UOVTMAN			0x02        // Число injUOVT - угол опережения впрыска топлива
 #define EC_P_M_FDBK		0x27                // Флаг manFdbk - обратная связь по току.
 	// Является таблицей. Подиндекс обозначает номер значения, считанного сразу после впрыска
 #define EC_P_M_LED		0x28				// флаг включение светодиодов

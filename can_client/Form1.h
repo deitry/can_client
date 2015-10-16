@@ -236,7 +236,7 @@ private: System::Windows::Forms::TextBox^  injTimeBox;
 
 	private: System::Windows::Forms::Label^  label13;
 	private: System::Windows::Forms::Label^  label50;
-	private: System::Windows::Forms::Label^  label49;
+
 private: System::Windows::Forms::ComboBox^  QCValueSelect;
 private: System::Windows::Forms::ComboBox^  injPeriodSelect;
 
@@ -263,6 +263,13 @@ private: System::Windows::Forms::TextBox^  tInt1Time;
 private: System::Windows::Forms::Panel^  panel1;
 private: System::Windows::Forms::Button^  button2;
 private: System::Windows::Forms::CheckBox^  chkFloatInvert;
+private: System::Windows::Forms::CheckBox^  cbManUovt;
+
+
+private: System::Windows::Forms::Label^  label55;
+private: System::Windows::Forms::NumericUpDown^  UOVTManBox;
+
+private: System::Windows::Forms::Label^  label49;
 
 
 
@@ -399,6 +406,9 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->label36 = (gcnew System::Windows::Forms::Label());
 			this->textBox7 = (gcnew System::Windows::Forms::TextBox());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->cbManUovt = (gcnew System::Windows::Forms::CheckBox());
+			this->label55 = (gcnew System::Windows::Forms::Label());
+			this->UOVTManBox = (gcnew System::Windows::Forms::NumericUpDown());
 			this->gStep2Box = (gcnew System::Windows::Forms::TextBox());
 			this->label50 = (gcnew System::Windows::Forms::Label());
 			this->label49 = (gcnew System::Windows::Forms::Label());
@@ -450,6 +460,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->tab3_TimeSet->SuspendLayout();
 			this->tab4_PID->SuspendLayout();
 			this->groupBox2->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->UOVTManBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->UOVTBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->VMTBox))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gDuty2Box))->BeginInit();
@@ -1565,6 +1576,9 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// 
 			// groupBox2
 			// 
+			this->groupBox2->Controls->Add(this->cbManUovt);
+			this->groupBox2->Controls->Add(this->label55);
+			this->groupBox2->Controls->Add(this->UOVTManBox);
 			this->groupBox2->Controls->Add(this->gStep2Box);
 			this->groupBox2->Controls->Add(this->label50);
 			this->groupBox2->Controls->Add(this->label49);
@@ -1592,9 +1606,43 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Параметры впрыска";
 			// 
+			// cbManUovt
+			// 
+			this->cbManUovt->AutoSize = true;
+			this->cbManUovt->Checked = true;
+			this->cbManUovt->CheckState = System::Windows::Forms::CheckState::Checked;
+			this->cbManUovt->Location = System::Drawing::Point(65, 202);
+			this->cbManUovt->Name = L"cbManUovt";
+			this->cbManUovt->Size = System::Drawing::Size(69, 17);
+			this->cbManUovt->TabIndex = 24;
+			this->cbManUovt->Text = L"Таблица";
+			this->cbManUovt->UseVisualStyleBackColor = true;
+			this->cbManUovt->CheckedChanged += gcnew System::EventHandler(this, &Form1::checkBox1_CheckedChanged);
+			// 
+			// label55
+			// 
+			this->label55->AutoSize = true;
+			this->label55->Location = System::Drawing::Point(198, 172);
+			this->label55->Name = L"label55";
+			this->label55->Size = System::Drawing::Size(33, 13);
+			this->label55->TabIndex = 22;
+			this->label55->Text = L"град.";
+			// 
+			// UOVTManBox
+			// 
+			this->UOVTManBox->DecimalPlaces = 2;
+			this->UOVTManBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {5, 0, 0, 65536});
+			this->UOVTManBox->Location = System::Drawing::Point(140, 170);
+			this->UOVTManBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, 0});
+			this->UOVTManBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, System::Int32::MinValue});
+			this->UOVTManBox->Name = L"UOVTManBox";
+			this->UOVTManBox->Size = System::Drawing::Size(52, 20);
+			this->UOVTManBox->TabIndex = 21;
+			this->UOVTManBox->ValueChanged += gcnew System::EventHandler(this, &Form1::UOVTManBox_ValueChanged);
+			// 
 			// gStep2Box
 			// 
-			this->gStep2Box->Location = System::Drawing::Point(19, 134);
+			this->gStep2Box->Location = System::Drawing::Point(18, 110);
 			this->gStep2Box->Name = L"gStep2Box";
 			this->gStep2Box->ReadOnly = true;
 			this->gStep2Box->Size = System::Drawing::Size(74, 20);
@@ -1603,7 +1651,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label50
 			// 
 			this->label50->AutoSize = true;
-			this->label50->Location = System::Drawing::Point(198, 203);
+			this->label50->Location = System::Drawing::Point(198, 206);
 			this->label50->Name = L"label50";
 			this->label50->Size = System::Drawing::Size(33, 13);
 			this->label50->TabIndex = 19;
@@ -1612,7 +1660,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label49
 			// 
 			this->label49->AutoSize = true;
-			this->label49->Location = System::Drawing::Point(100, 203);
+			this->label49->Location = System::Drawing::Point(119, 145);
 			this->label49->Name = L"label49";
 			this->label49->Size = System::Drawing::Size(33, 13);
 			this->label49->TabIndex = 18;
@@ -1621,7 +1669,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label31
 			// 
 			this->label31->AutoSize = true;
-			this->label31->Location = System::Drawing::Point(133, 119);
+			this->label31->Location = System::Drawing::Point(133, 95);
 			this->label31->Name = L"label31";
 			this->label31->Size = System::Drawing::Size(69, 13);
 			this->label31->TabIndex = 17;
@@ -1630,7 +1678,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label32
 			// 
 			this->label32->AutoSize = true;
-			this->label32->Location = System::Drawing::Point(16, 119);
+			this->label32->Location = System::Drawing::Point(16, 96);
 			this->label32->Name = L"label32";
 			this->label32->Size = System::Drawing::Size(111, 13);
 			this->label32->TabIndex = 16;
@@ -1639,7 +1687,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label30
 			// 
 			this->label30->AutoSize = true;
-			this->label30->Location = System::Drawing::Point(133, 45);
+			this->label30->Location = System::Drawing::Point(133, 39);
 			this->label30->Name = L"label30";
 			this->label30->Size = System::Drawing::Size(69, 13);
 			this->label30->TabIndex = 15;
@@ -1648,7 +1696,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label26
 			// 
 			this->label26->AutoSize = true;
-			this->label26->Location = System::Drawing::Point(16, 45);
+			this->label26->Location = System::Drawing::Point(16, 39);
 			this->label26->Name = L"label26";
 			this->label26->Size = System::Drawing::Size(111, 13);
 			this->label26->TabIndex = 14;
@@ -1657,7 +1705,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label25
 			// 
 			this->label25->AutoSize = true;
-			this->label25->Location = System::Drawing::Point(198, 137);
+			this->label25->Location = System::Drawing::Point(198, 113);
 			this->label25->Name = L"label25";
 			this->label25->Size = System::Drawing::Size(15, 13);
 			this->label25->TabIndex = 13;
@@ -1666,7 +1714,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label24
 			// 
 			this->label24->AutoSize = true;
-			this->label24->Location = System::Drawing::Point(198, 63);
+			this->label24->Location = System::Drawing::Point(198, 57);
 			this->label24->Name = L"label24";
 			this->label24->Size = System::Drawing::Size(15, 13);
 			this->label24->TabIndex = 12;
@@ -1675,7 +1723,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label23
 			// 
 			this->label23->AutoSize = true;
-			this->label23->Location = System::Drawing::Point(100, 137);
+			this->label23->Location = System::Drawing::Point(100, 113);
 			this->label23->Name = L"label23";
 			this->label23->Size = System::Drawing::Size(27, 13);
 			this->label23->TabIndex = 11;
@@ -1684,7 +1732,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label22
 			// 
 			this->label22->AutoSize = true;
-			this->label22->Location = System::Drawing::Point(100, 63);
+			this->label22->Location = System::Drawing::Point(100, 57);
 			this->label22->Name = L"label22";
 			this->label22->Size = System::Drawing::Size(27, 13);
 			this->label22->TabIndex = 10;
@@ -1693,7 +1741,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label21
 			// 
 			this->label21->AutoSize = true;
-			this->label21->Location = System::Drawing::Point(129, 171);
+			this->label21->Location = System::Drawing::Point(15, 172);
 			this->label21->Name = L"label21";
 			this->label21->Size = System::Drawing::Size(93, 26);
 			this->label21->TabIndex = 9;
@@ -1702,7 +1750,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// label20
 			// 
 			this->label20->AutoSize = true;
-			this->label20->Location = System::Drawing::Point(28, 180);
+			this->label20->Location = System::Drawing::Point(16, 145);
 			this->label20->Name = L"label20";
 			this->label20->Size = System::Drawing::Size(30, 13);
 			this->label20->TabIndex = 8;
@@ -1710,11 +1758,13 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// 
 			// UOVTBox
 			// 
+			this->UOVTBox->DecimalPlaces = 2;
 			this->UOVTBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {5, 0, 0, 65536});
-			this->UOVTBox->Location = System::Drawing::Point(140, 200);
+			this->UOVTBox->Location = System::Drawing::Point(140, 201);
 			this->UOVTBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, 0});
 			this->UOVTBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, System::Int32::MinValue});
 			this->UOVTBox->Name = L"UOVTBox";
+			this->UOVTBox->ReadOnly = true;
 			this->UOVTBox->Size = System::Drawing::Size(52, 20);
 			this->UOVTBox->TabIndex = 7;
 			this->UOVTBox->ValueChanged += gcnew System::EventHandler(this, &Form1::UOVTBox_ValueChanged);
@@ -1724,12 +1774,12 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->VMTBox->DecimalPlaces = 2;
 			this->VMTBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {5, 0, 0, 65536});
 			this->VMTBox->InterceptArrowKeys = false;
-			this->VMTBox->Location = System::Drawing::Point(19, 200);
+			this->VMTBox->Location = System::Drawing::Point(53, 143);
 			this->VMTBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, 0});
 			this->VMTBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, System::Int32::MinValue});
 			this->VMTBox->Name = L"VMTBox";
 			this->VMTBox->ReadOnly = true;
-			this->VMTBox->Size = System::Drawing::Size(75, 20);
+			this->VMTBox->Size = System::Drawing::Size(56, 20);
 			this->VMTBox->TabIndex = 6;
 			this->VMTBox->ValueChanged += gcnew System::EventHandler(this, &Form1::VMTBox_ValueChanged);
 			// 
@@ -1738,7 +1788,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->label19->AutoSize = true;
 			this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
-			this->label19->Location = System::Drawing::Point(16, 101);
+			this->label19->Location = System::Drawing::Point(15, 83);
 			this->label19->Name = L"label19";
 			this->label19->Size = System::Drawing::Size(134, 13);
 			this->label19->TabIndex = 5;
@@ -1746,7 +1796,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// 
 			// gDuty2Box
 			// 
-			this->gDuty2Box->Location = System::Drawing::Point(140, 135);
+			this->gDuty2Box->Location = System::Drawing::Point(140, 112);
 			this->gDuty2Box->Name = L"gDuty2Box";
 			this->gDuty2Box->Size = System::Drawing::Size(52, 20);
 			this->gDuty2Box->TabIndex = 4;
@@ -1757,7 +1807,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->label18->AutoSize = true;
 			this->label18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(204)));
-			this->label18->Location = System::Drawing::Point(16, 26);
+			this->label18->Location = System::Drawing::Point(16, 20);
 			this->label18->Name = L"label18";
 			this->label18->Size = System::Drawing::Size(128, 13);
 			this->label18->TabIndex = 2;
@@ -1766,7 +1816,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// 
 			// gDuty1Box
 			// 
-			this->gDuty1Box->Location = System::Drawing::Point(140, 61);
+			this->gDuty1Box->Location = System::Drawing::Point(140, 55);
 			this->gDuty1Box->Name = L"gDuty1Box";
 			this->gDuty1Box->Size = System::Drawing::Size(52, 20);
 			this->gDuty1Box->TabIndex = 1;
@@ -1775,7 +1825,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			// gStep1Box
 			// 
 			this->gStep1Box->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {100, 0, 0, 0});
-			this->gStep1Box->Location = System::Drawing::Point(19, 61);
+			this->gStep1Box->Location = System::Drawing::Point(19, 55);
 			this->gStep1Box->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {10000, 0, 0, 0});
 			this->gStep1Box->Name = L"gStep1Box";
 			this->gStep1Box->Size = System::Drawing::Size(75, 20);
@@ -1946,6 +1996,7 @@ private: System::Windows::Forms::CheckBox^  chkFloatInvert;
 			this->tab4_PID->PerformLayout();
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox2->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->UOVTManBox))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->UOVTBox))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->VMTBox))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gDuty2Box))->EndInit();
@@ -2043,6 +2094,7 @@ private: System::Void initializeMessageList()
 		canWrite(EC_PQUE, EC_P_ITIME, 0,0);		
 		canWrite(EC_PQUE, EC_P_ITIME1, 0,0);		
 		canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVT,0);
+		canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVTMAN,0);
 		canWrite(EC_PQUE, EC_P_M_INJ, 0,0);		
 		canWrite(EC_PQUE, EC_P_M_QC, 0,0);		
 		canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);		
@@ -2429,6 +2481,7 @@ private: System::Void Form1_KeyDown(System::Object^  sender, System::Windows::Fo
 				 if ((e->KeyValue == 13) || (e->KeyValue == 32))
 				 {
 					 SetStandbyMode();
+					 rbStandby->Checked = true;
 					 return;
 				 }
 
@@ -2487,6 +2540,7 @@ private: System::Void Form1_KeyDown(System::Object^  sender, System::Windows::Fo
 				 if ((e->KeyValue == 13) || (e->KeyValue == 32))
 				 {
 					 SetStandbyMode();
+					 rbStandby->Checked = true;
 					 return;
 				 }
 
@@ -2524,6 +2578,13 @@ private: System::Void Form1_KeyDown(System::Object^  sender, System::Windows::Fo
 			 }
 
 			 // cброс на холостой ход 
+		 }
+private: System::Void UOVTManBox_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+			canWrite(EC_P_M_UOVT, EC_S_M_UOVTMAN, 0, System::Decimal::ToSingle(UOVTManBox->Value));
+		 }
+private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+			 canWrite(EC_P_M_UOVT, 0, 0, !cbManUovt->Checked);
+			 UOVTBox->ReadOnly = cbManUovt->Checked;
 		 }
 };
 }

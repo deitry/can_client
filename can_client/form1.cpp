@@ -306,8 +306,10 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 			//this->checkmanUOVTIn->Checked = d.f.val.i;
 			break;
 		case EC_S_M_UOVT:
-			//this->textinjUOVTIn->Text = Convert::ToString(d.f.val.f);
-			//this->UOVT->Text = Convert::ToString(d.f.val.f);
+			this->UOVTBox->Text = Convert::ToString(d.f.val.f);
+			break;
+		case EC_S_M_UOVTMAN:
+			this->UOVTManBox->Text = Convert::ToString(d.f.val.f);
 			break;
 		}
 		break;
