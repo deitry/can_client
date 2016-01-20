@@ -387,6 +387,12 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 				PMmax->BackColor = Color::White;
 			}
 			break;
+		case EC_S_PV:
+			PvCurrent->Text = Convert::ToString(d.f.val.f);
+			break;
+		case EC_S_TV:
+			TvCurrent->Text = Convert::ToString(d.f.val.f);
+			break;
 		default:
 			break;
 		}
@@ -397,7 +403,9 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 	{
 		printMessageToFile(&d,&(SysToStd(logFileName->Text+".xls")));
 	}
-
+	
+	// сохраняем запись в настройках
+	saveSetting(&d);
 	Byte id0, id1;
 
 	if (Byte::TryParse(this->textId1->Text, id0) && Byte::TryParse(this->textId2->Text, id1) 
@@ -462,6 +470,8 @@ void can_client::Form1::canWrite(int id1, int id2, int id3, float a)
 	}
 		
 	fRet = writeMsg (&TxCanMsg_l);
+
+	saveSetting(&data);
 }
 
 void can_client::Form1::canWrite(int id1, int id2, int id3, int a)
@@ -485,6 +495,8 @@ void can_client::Form1::canWrite(int id1, int id2, int id3, int a)
 	}
 		
 	fRet = writeMsg (&TxCanMsg_l);
+
+	saveSetting(&data);
 }
 
 void can_client::Form1::onVmtSearch() 
@@ -645,6 +657,7 @@ extern "C" void PUBLIC UcanCallbackFktEx (tUcanHandle UcanHandle_p, DWORD dwEven
 
 }
 
+// "короткий" список
 System::Void can_client::Form1::sendButton_Click(System::Object^  sender, System::EventArgs^  e) {
 	canWrite(EC_PCLR,0,0,0);		
 		// запрашиваем все параметры - добавляем их в список "запроса"

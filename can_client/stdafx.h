@@ -12,6 +12,7 @@
 #include <tchar.h>
 
 #include <string>
+#include <vector>
 
 #include "eng_virt.h"
 #include "can_par_id.h"
@@ -35,6 +36,13 @@ struct CAN_DATA_FIELDS {                      // bits description
     CAN_DATA_VAL val;
 };
 
+//struct CAN_ID_FIELDS {
+//	BYTE PARID;
+//    BYTE R1;
+//    BYTE R2;
+//    BYTE R3;
+//}
+
 union CAN_DATA {
     BYTE  all[8];
     CAN_DATA_FIELDS f;
@@ -53,9 +61,11 @@ union PAR_HELPER
 };
 
 #define DARR_SIZE	500000
+#define SARR_SIZE	1000
 
 extern CAN_DATA dataArr[DARR_SIZE];
 extern int curI;
+extern std::vector<CAN_DATA> settings;
 
 extern char* outFileName;
 extern long int nMessage;
@@ -64,6 +74,11 @@ int printMessageToFile(CAN_DATA *data, std::string* FileName);
 int printMessageToFileX(CAN_DATA *data, std::ofstream* out, int* cur_i);
 void clearFile(std::string* str);
 void flushToFile(std::string* FileName);
+
+int saveSetting(CAN_DATA *data);
+int printSettingsToFile(std::string *FileName);
+int printSettingToFileX(CAN_DATA *data, std::ofstream* out);
+int loadSettingsFromFile(CAN_DATA *data);
 
 enum eng_mod { 	EC_Start = 1,		// пуск
 				EC_Steady,			// холостой ход

@@ -36,6 +36,7 @@ int isParFloat(CAN_DATA* data)
 		case EC_S_DTIME:
 		case EC_S_NMIN:
 		case EC_S_NMAX:
+		case EC_S_N_LOW:
 			return 1;
 		}
 		break;
@@ -50,6 +51,7 @@ int isParFloat(CAN_DATA* data)
 		case EC_S_QC_MIN:
 		case EC_S_KQC:
 		case EC_S_START:
+		case EC_S_QC_MAX_LOW:
 			return 1;
 		}
 		break;
@@ -69,7 +71,8 @@ int isParFloat(CAN_DATA* data)
 	case EC_P_M_UOVT:
 		switch (data->f.R1)
 		{
-		case EC_S_M_UOVT: return 1;
+		case EC_S_M_UOVT:
+		case EC_S_M_UOVTMAN: return 1;
 		}
 		break;
 	case EC_P_M_SENS:
@@ -77,8 +80,10 @@ int isParFloat(CAN_DATA* data)
 		{
 		case EC_S_PK:
 		case EC_S_TV: 
+		case EC_S_D_PINJ:
 		case EC_S_D_PINJMAX:
 		case EC_S_D_PINJMIN:
+		case EC_S_PV:	
 			return 1;
 		}
 		break;

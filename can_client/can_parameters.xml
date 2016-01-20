@@ -71,6 +71,11 @@
     <description>Включение/выключения аварийного отключения при выходе за пределы частоты вращения</description>
   </parameter>
 
+  <parameter idp="0x02" ids1="7" ids2="0" ids3="0" isFloat="1">
+    <units>об/мин</units>
+    <description>Частота вращения, ниже которой она считается "низкой"</description>
+  </parameter>
+  
   <parameter idp="0x03" ids1="0" ids2="0" ids3="0" isFloat="0">
     <units>мкс</units>
     <description>Продолжительность удерживающего импульса</description>
@@ -114,6 +119,11 @@
   <parameter idp="0x03" ids1="8" ids2="0" ids3="0" isFloat="1">
     <units>мм3/цикл</units>
     <description>Значение подачи при старте</description>
+  </parameter>
+  
+  <parameter idp="0x03" ids1="9" ids2="0" ids3="0" isFloat="1">
+    <units>мм3/цикл</units>
+    <description>Верхнее ограничение подачи для низких частот вращения</description>
   </parameter>
 
   <parameter idp="0x04" ids1="0" ids2="0" ids3="0" isFloat="0">
@@ -320,6 +330,11 @@
     <units>boolean</units>
     <description>Включение/выключение аварийного прерывания работы при ограничении давления масла</description>
   </parameter>
+  
+  <parameter idp="0x29" ids1="9" ids2="0" ids3="0" isFloat="1">
+    <units>КПа</units>
+    <description>Давление воздуха</description>
+  </parameter>
 
   <parameter idp="0x31" ids1="0" ids2="0" ids3="0" isFloat="0">
     <units>boolean</units>
@@ -375,6 +390,12 @@
     <description>Верхнее ограничение для интегральной составляющей управляющего сигнала ПИД-регулятора
     </description>
   </parameter>
+  
+  <parameter idp="0x45" ids1="2" ids2="0" ids3="0" isFloat="1">
+    <units>-</units>
+    <description>Коэффициент, умножающийся на прибавку к интегральной составляющей и влияющий таким образом на темп набора инт. сост.
+    </description>
+  </parameter>
 
   <parameter idp="0x46" ids1="0" ids2="0" ids3="0" isFloat="1">
     <units>мм3/л</units>
@@ -383,11 +404,16 @@
     </description>
   </parameter>
   
-  <parameter idp="0x47" ids1="0" ids2="0" ids3="0" isFloat="0">
+  <parameter idp="0x47" ids1="0" ids2="0" ids3="0" isFloat="1">
     <units>boolean</units>
     <description>Коээфициент темпа набора частоты вращения</description>
   </parameter>
 
+  <parameter idp="0x47" ids1="1" ids2="0" ids3="0" isFloat="1">
+    <units>boolean</units>
+    <description>Коээфициент темпа набора частоты вращения на низких частотах</description>
+  </parameter>
+  
   <parameter idp="0x48" ids1="0" ids2="0" ids3="0" isFloat="1">
     <units>float</units>
     <description>Зона нечувствительности ПИД-регулятора</description>

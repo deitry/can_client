@@ -270,6 +270,20 @@ private: System::Windows::Forms::Label^  label55;
 private: System::Windows::Forms::NumericUpDown^  UOVTManBox;
 
 private: System::Windows::Forms::Label^  label49;
+private: System::Windows::Forms::Label^  label57;
+private: System::Windows::Forms::TextBox^  TvCurrent;
+
+private: System::Windows::Forms::Label^  label56;
+private: System::Windows::Forms::TextBox^  PvCurrent;
+private: System::Windows::Forms::Button^  btSaveSettings;
+private: System::Windows::Forms::Button^  btLoadSettings;
+private: System::Windows::Forms::Label^  label58;
+private: System::Windows::Forms::TextBox^  tbSettingsFileName;
+
+private: System::Windows::Forms::Label^  label59;
+private: System::Windows::Forms::SaveFileDialog^  saveSettings;
+private: System::Windows::Forms::OpenFileDialog^  openSettings;
+
 
 
 
@@ -318,6 +332,10 @@ private: System::Windows::Forms::Label^  label49;
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabControlPage = (gcnew System::Windows::Forms::TabPage());
 			this->InjectionTimeBox = (gcnew System::Windows::Forms::GroupBox());
+			this->label57 = (gcnew System::Windows::Forms::Label());
+			this->TvCurrent = (gcnew System::Windows::Forms::TextBox());
+			this->label56 = (gcnew System::Windows::Forms::Label());
+			this->PvCurrent = (gcnew System::Windows::Forms::TextBox());
 			this->label54 = (gcnew System::Windows::Forms::Label());
 			this->label53 = (gcnew System::Windows::Forms::Label());
 			this->label52 = (gcnew System::Windows::Forms::Label());
@@ -439,6 +457,13 @@ private: System::Windows::Forms::Label^  label49;
 			this->rbPeriodic = (gcnew System::Windows::Forms::RadioButton());
 			this->rbStandby = (gcnew System::Windows::Forms::RadioButton());
 			this->chkFloatInvert = (gcnew System::Windows::Forms::CheckBox());
+			this->btSaveSettings = (gcnew System::Windows::Forms::Button());
+			this->btLoadSettings = (gcnew System::Windows::Forms::Button());
+			this->label58 = (gcnew System::Windows::Forms::Label());
+			this->tbSettingsFileName = (gcnew System::Windows::Forms::TextBox());
+			this->label59 = (gcnew System::Windows::Forms::Label());
+			this->saveSettings = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->openSettings = (gcnew System::Windows::Forms::OpenFileDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
 			this->tabParameters->SuspendLayout();
@@ -668,6 +693,10 @@ private: System::Windows::Forms::Label^  label49;
 			// 
 			// InjectionTimeBox
 			// 
+			this->InjectionTimeBox->Controls->Add(this->label57);
+			this->InjectionTimeBox->Controls->Add(this->TvCurrent);
+			this->InjectionTimeBox->Controls->Add(this->label56);
+			this->InjectionTimeBox->Controls->Add(this->PvCurrent);
 			this->InjectionTimeBox->Controls->Add(this->label54);
 			this->InjectionTimeBox->Controls->Add(this->label53);
 			this->InjectionTimeBox->Controls->Add(this->label52);
@@ -714,6 +743,40 @@ private: System::Windows::Forms::Label^  label49;
 			this->InjectionTimeBox->TabIndex = 3;
 			this->InjectionTimeBox->TabStop = false;
 			this->InjectionTimeBox->Text = L"Графические индикаторы";
+			// 
+			// label57
+			// 
+			this->label57->AutoSize = true;
+			this->label57->Location = System::Drawing::Point(476, 73);
+			this->label57->Name = L"label57";
+			this->label57->Size = System::Drawing::Size(20, 13);
+			this->label57->TabIndex = 44;
+			this->label57->Text = L"Tv";
+			// 
+			// TvCurrent
+			// 
+			this->TvCurrent->Location = System::Drawing::Point(502, 70);
+			this->TvCurrent->Name = L"TvCurrent";
+			this->TvCurrent->ReadOnly = true;
+			this->TvCurrent->Size = System::Drawing::Size(87, 20);
+			this->TvCurrent->TabIndex = 43;
+			// 
+			// label56
+			// 
+			this->label56->AutoSize = true;
+			this->label56->Location = System::Drawing::Point(476, 44);
+			this->label56->Name = L"label56";
+			this->label56->Size = System::Drawing::Size(20, 13);
+			this->label56->TabIndex = 42;
+			this->label56->Text = L"Pv";
+			// 
+			// PvCurrent
+			// 
+			this->PvCurrent->Location = System::Drawing::Point(502, 41);
+			this->PvCurrent->Name = L"PvCurrent";
+			this->PvCurrent->ReadOnly = true;
+			this->PvCurrent->Size = System::Drawing::Size(87, 20);
+			this->PvCurrent->TabIndex = 41;
 			// 
 			// label54
 			// 
@@ -1942,12 +2005,66 @@ private: System::Windows::Forms::Label^  label49;
 			this->chkFloatInvert->Text = L"invert";
 			this->chkFloatInvert->UseVisualStyleBackColor = true;
 			// 
+			// btSaveSettings
+			// 
+			this->btSaveSettings->Location = System::Drawing::Point(17, 476);
+			this->btSaveSettings->Name = L"btSaveSettings";
+			this->btSaveSettings->Size = System::Drawing::Size(75, 23);
+			this->btSaveSettings->TabIndex = 46;
+			this->btSaveSettings->Text = L"Сохранить";
+			this->btSaveSettings->UseVisualStyleBackColor = true;
+			this->btSaveSettings->Click += gcnew System::EventHandler(this, &Form1::btSaveSettings_Click);
+			// 
+			// btLoadSettings
+			// 
+			this->btLoadSettings->Location = System::Drawing::Point(109, 476);
+			this->btLoadSettings->Name = L"btLoadSettings";
+			this->btLoadSettings->Size = System::Drawing::Size(75, 23);
+			this->btLoadSettings->TabIndex = 47;
+			this->btLoadSettings->Text = L"Загрузить";
+			this->btLoadSettings->UseVisualStyleBackColor = true;
+			// 
+			// label58
+			// 
+			this->label58->AutoSize = true;
+			this->label58->Location = System::Drawing::Point(15, 426);
+			this->label58->Name = L"label58";
+			this->label58->Size = System::Drawing::Size(155, 13);
+			this->label58->TabIndex = 48;
+			this->label58->Text = L"Работа с настройками блока";
+			// 
+			// tbSettingsFileName
+			// 
+			this->tbSettingsFileName->Location = System::Drawing::Point(84, 448);
+			this->tbSettingsFileName->Name = L"tbSettingsFileName";
+			this->tbSettingsFileName->ReadOnly = true;
+			this->tbSettingsFileName->Size = System::Drawing::Size(100, 20);
+			this->tbSettingsFileName->TabIndex = 49;
+			// 
+			// label59
+			// 
+			this->label59->AutoSize = true;
+			this->label59->Location = System::Drawing::Point(17, 451);
+			this->label59->Name = L"label59";
+			this->label59->Size = System::Drawing::Size(55, 13);
+			this->label59->TabIndex = 50;
+			this->label59->Text = L"Текущие:";
+			// 
+			// openSettings
+			// 
+			this->openSettings->FileName = L"openFileDialog1";
+			// 
 			// Form1
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->AutoScroll = true;
 			this->ClientSize = System::Drawing::Size(1175, 521);
+			this->Controls->Add(this->label59);
+			this->Controls->Add(this->tbSettingsFileName);
+			this->Controls->Add(this->label58);
+			this->Controls->Add(this->btLoadSettings);
+			this->Controls->Add(this->btSaveSettings);
 			this->Controls->Add(this->chkFloatInvert);
 			this->Controls->Add(this->logCheck);
 			this->Controls->Add(this->logFileName);
@@ -2073,17 +2190,17 @@ private: System::Void initializeMessageList()
 		canWrite(EC_PQUE, EC_G_N, EC_S_DTIME,0);		
 		canWrite(EC_PQUE, EC_G_QC, EC_S_QC_AN,0);		
 		canWrite(EC_PQUE, EC_G_QC, EC_S_QC,0);		
-		canWrite(EC_PQUE, EC_G_QC, EC_S_ADOP,0);		
+		//canWrite(EC_PQUE, EC_G_QC, EC_S_ADOP,0);		
 		canWrite(EC_PQUE, EC_P_VMT, 0,0);		
 		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT1,0);		
 		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT2,0);		
 		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD1,0);		
 		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);		
-		canWrite(EC_PQUE, EC_T_INJPHI, EC_S_NR,0);		
+		canWrite(EC_PQUE, EC_T_INJPHI, 0,0);		
 		canWrite(EC_PQUE, EC_T_INJZ, 0,0);		
 		canWrite(EC_PQUE, EC_T_INJN, 0,0);		
 		canWrite(EC_PQUE, EC_T_INJT, 0,0);		
-		canWrite(EC_PQUE, EC_T_INJCNT, 0,0);		
+		//canWrite(EC_PQUE, EC_T_INJCNT, 0,0);		
 		canWrite(EC_PQUE, EC_P_KP, 0,0);		
 		canWrite(EC_PQUE, EC_P_KI, 0,0);		
 		canWrite(EC_PQUE, EC_P_KD, 0,0);		
@@ -2099,6 +2216,8 @@ private: System::Void initializeMessageList()
 		canWrite(EC_PQUE, EC_P_M_QC, 0,0);		
 		canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);		
 		canWrite(EC_PQUE, EC_P_M_SENS, EC_S_D_PINJ,0);
+		canWrite(EC_PQUE, EC_P_M_SENS, EC_S_PV,0);
+		canWrite(EC_PQUE, EC_P_M_SENS, EC_S_TV,0);
 	}
 
 private: System::Void initButton_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -2530,20 +2649,6 @@ private: System::Void Form1_KeyDown(System::Object^  sender, System::Windows::Fo
 						canWrite(EC_P_PED, 0, 0, tmpf);
 					 }
 				 }
-			 }
-
-
-			 // переключение режима
-			 if (e->Shift)
-			 {
-				 // остановка -  Прекращение подачи
-				 if ((e->KeyValue == 13) || (e->KeyValue == 32))
-				 {
-					 SetStandbyMode();
-					 rbStandby->Checked = true;
-					 return;
-				 }
-
 				 if (e->KeyValue == 49)
 				 {
 					 SetStandbyMode();
@@ -2577,6 +2682,18 @@ private: System::Void Form1_KeyDown(System::Object^  sender, System::Windows::Fo
 				 }
 			 }
 
+			 // переключение режима
+			 if (e->Shift)
+			 {
+				 // остановка -  Прекращение подачи
+				 if ((e->KeyValue == 13) || (e->KeyValue == 32))
+				 {
+					 SetStandbyMode();
+					 rbStandby->Checked = true;
+					 return;
+				 }
+			 }
+
 			 // cброс на холостой ход 
 		 }
 private: System::Void UOVTManBox_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -2585,6 +2702,17 @@ private: System::Void UOVTManBox_ValueChanged(System::Object^  sender, System::E
 private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 			 canWrite(EC_P_M_UOVT, 0, 0, !cbManUovt->Checked);
 			 UOVTBox->ReadOnly = cbManUovt->Checked;
+		 }
+private: System::Void btSaveSettings_Click(System::Object^  sender, System::EventArgs^  e) {
+			 switch (saveSettings->ShowDialog())
+			 {
+			 case ::DialogResult::OK:
+			 case ::DialogResult::Yes:
+				 // TODO : дополнительно писать время создания файла и может ещё что-нибудь
+				 printSettingsToFile(&(SysToStd(saveSettings->FileName)));
+				 break;
+			 }
+			 tbSettingsFileName->Text = saveSettings->FileName;
 		 }
 };
 }

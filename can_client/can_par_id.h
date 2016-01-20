@@ -59,12 +59,14 @@ union EC_CAN_PAR_ID
 #define EC_TPROG		0xFC		// метка времени на новом цикле программы
 #define EC_P_MODE		0x01		// режим
 #define EC_G_N			0x02		// группа параметров частоты вращения
-#define 	EC_S_NR			0x00		// float частота вращения об/мин
-#define 	EC_S_NU			0x01		// float уставка частоты вращения об/мин
-#define 	EC_S_OMEGA		0x02		// float рад/с
-#define 	EC_S_DTIME		0x03		// float время между прерываниями по зубьями в с
+#define 	EC_S_NR				0x00	// float частота вращения об/мин
+#define 	EC_S_NU				0x01	// float уставка частоты вращения об/мин
+#define 	EC_S_OMEGA			0x02	// float рад/с
+#define 	EC_S_DTIME			0x03	// float время между прерываниями по зубьями в с
 #define		EC_S_NMIN			0x04	// минимальное значение частоты, ниже которого система перестаёт впрыскивать
 #define 	EC_S_NMAX			0x05	// верхнее ограничение частоты вращения
+#define		EC_S_NRESTR			0x06	// ограничение
+#define		EC_S_N_LOW			0x07	// частота вращения, ниже которой она считается "маленькой"
 
 #define EC_G_QC			0x03			// группа параметров подачи
 #define 	EC_S_QC_T			0x00	// int время импульса удержания в мкс
@@ -76,6 +78,8 @@ union EC_CAN_PAR_ID
 #define 	EC_S_QC_MIN			0x06	// минимальное значение подачи
 #define		EC_S_KQC			0x07	// переводной коэффициент кг/л -> мкс
 #define 	EC_S_START			0x08	// стартовое значение подачи в мм3/цикл
+#define		EC_S_QC_MAX_LOW		0x09	// верхнее ограничение подачи при низких частотах
+
 #define EC_P_NCYL		0x04			// int количество цилиндров
 #define EC_P_PED		0x05			// float положение педали
 #define 	EC_S_PEDST			0x01	// float кратность округления значений педали
@@ -122,11 +126,15 @@ union EC_CAN_PAR_ID
 	// Является таблицей. Подиндекс обозначает номер значения, считанного сразу после впрыска
 #define EC_P_M_LED		0x28				// флаг включение светодиодов
 #define EC_P_M_SENS		0x29				// данные от оцифровки датчиков
-#define 	EC_S_PK				0x01		// Pkompr
-#define		EC_S_TV				0x02		// Tvozd
+#define 	EC_S_D_PEDAL		0x01	// педаль
+#define 	EC_S_D_KEY			0x02	// ключ
+#define 	EC_S_PK				0x03		// Pkompr
 #define 	EC_S_D_PINJ			0x04		// Pinj давление впрыска
+#define		EC_S_TV				0x05		// Tvozd
 #define 	EC_S_D_PINJMAX		0x06	// верхнее ограничение давления масла
 #define 	EC_S_D_PINJMIN		0x07	// нижнее ограничение давления масла
+#define 	EC_S_D_PINJRESTR	0x08	// вкл/выкл ограничения по давлению масла
+#define 	EC_S_PV				0x09		// давление воздуха
 
 #define EC_T_UOVT		0x31	// таблица углов опережения впрыска
 #define EC_T_SPCHAR		0x32	// внешняя скоростная характеристика
@@ -139,9 +147,11 @@ union EC_CAN_PAR_ID
 #define EC_P_ERR		0x44	// float пропорциональная ошибка регулирования
 #define EC_P_ERRI		0x45	// float интегральная ошибка регулирования
 #define 	EC_S_ERRIMAX	0x01
+#define		EC_S_CILOW		0x02;
 #define EC_P_ERRD		0x46	// float дифференциальная ошибка регулирования
 
 #define EC_P_MUN		0x47	// float коэффициент темпа набора частоты
+#define		EC_S_MUN_LOW	0x01
 #define EC_P_DZONE		0x48	// float зона нечувствительности регулятора
 
 #define EC_P_PTIME		0x51	// int время выполнения основного тела программы в мкс
