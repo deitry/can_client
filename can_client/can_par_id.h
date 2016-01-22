@@ -79,6 +79,8 @@ union EC_CAN_PAR_ID
 #define		EC_S_KQC			0x07	// переводной коэффициент кг/л -> мкс
 #define 	EC_S_START			0x08	// стартовое значение подачи в мм3/цикл
 #define		EC_S_QC_MAX_LOW		0x09	// верхнее ограничение подачи при низких частотах
+#define		EC_S_SP_CHAR		0x0A	// включение/выключение скоростной характеристики
+#define 		EC_S_SP_CHAR_CNT	0x0B	// количество точек в скоростной характеристике
 
 #define EC_P_NCYL		0x04			// int количество цилиндров
 #define EC_P_PED		0x05			// float положение педали

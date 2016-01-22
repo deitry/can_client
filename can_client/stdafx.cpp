@@ -104,6 +104,7 @@ int isParFloat(CAN_DATA* data)
 	case EC_T_INJZ:
 	case EC_T_INJN:
 	case EC_T_INJT:
+	case EC_T_SPCHAR:
 	case EC_P_PTIME:
 	case EC_P_ITIME:
 	case EC_P_ITIME1:

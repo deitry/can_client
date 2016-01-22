@@ -125,6 +125,16 @@
     <units>мм3/цикл</units>
     <description>Верхнее ограничение подачи для низких частот вращения</description>
   </parameter>
+  
+  <parameter idp="0x03" ids1="10" ids2="0" ids3="0" isFloat="1">
+    <units>boolean</units>
+    <description>Вкл./выкл. ограничения подачи по скоростной характеристике</description>
+  </parameter>
+  
+  <parameter idp="0x03" ids1="11" ids2="0" ids3="0" isFloat="1">
+    <units>шт.</units>
+    <description>Количество точек на скоростной характеристике. (каким частотам они соответствуют в наст. время нельзя узнать)</description>
+  </parameter>
 
   <parameter idp="0x04" ids1="0" ids2="0" ids3="0" isFloat="0">
     <units>-</units>
@@ -343,7 +353,7 @@
 
   <parameter idp="0x32" ids1="0" ids2="0" ids3="0" isFloat="0">
     <units>boolean</units>
-    <description>(пока не передаётся) Таблица - Скоростная характеристика</description>
+    <description>Таблица - Скоростная характеристика. Чтобы узнать/задать точку, нужно ввести её номер</description>
   </parameter>
 
   <parameter idp="0x33" ids1="0" ids2="0" ids3="0" isFloat="0">
