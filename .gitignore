@@ -8,3 +8,7 @@
 **/*.suo
 **/*.ncb
 **/*.lnk
+/ipch/CAN_CLIENT-647c1a2f/CAN_CLIENT-a8247e9c.ipch
+/can_client.VC.db
+/can_client.VC.VC.opendb
+/UpgradeLog.htm

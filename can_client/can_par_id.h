@@ -92,6 +92,10 @@ union EC_CAN_PAR_ID
 #define 	EC_S_INJT2			0x01	// int продолжительность 
 #define 	EC_S_INJD1			0x02	// int скважность
 #define 	EC_S_INJD2			0x03	// int скважность
+#define		EC_S_CUR_MAX		0x04	// int значение ацп макс предел регулирования тока
+#define		EC_S_CUR_MIN		0x05	// int значение ацп мин предел регулирования тока
+#define		EC_S_ADC_THRESH		0x06	// int значение ацп пороговое значение для снятия значения с ацп
+#define		EC_S_ADC_VAL		0x07	// int значение ацп значение с АЦП
 
 // подиндекс - номер цилиндра 0..NCYL
 #define EC_T_INJPHI		0x11		// float углы, обозначающие момент впрыска

@@ -2195,7 +2195,9 @@ private: System::Void initializeMessageList()
 		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT1,0);		
 		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJT2,0);		
 		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD1,0);		
-		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);		
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);	
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_INJD2,0);	
+		canWrite(EC_PQUE, EC_G_INJ, EC_S_ADC_VAL,0);	
 		canWrite(EC_PQUE, EC_T_INJPHI, 0,0);		
 		canWrite(EC_PQUE, EC_T_INJZ, 0,0);		
 		canWrite(EC_PQUE, EC_T_INJN, 0,0);		
@@ -2214,7 +2216,8 @@ private: System::Void initializeMessageList()
 		canWrite(EC_PQUE, EC_P_M_UOVT, EC_S_M_UOVTMAN,0);
 		canWrite(EC_PQUE, EC_P_M_INJ, 0,0);		
 		canWrite(EC_PQUE, EC_P_M_QC, 0,0);		
-		canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);		
+		canWrite(EC_PQUE, EC_P_M_INJ, EC_S_M_IONCE,0);
+		canWrite(EC_PQUE, EC_TPROG, 0,0);
 		canWrite(EC_PQUE, EC_P_M_SENS, EC_S_D_PINJ,0);
 		canWrite(EC_PQUE, EC_P_M_SENS, EC_S_PV,0);
 		canWrite(EC_PQUE, EC_P_M_SENS, EC_S_TV,0);

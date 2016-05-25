@@ -176,6 +176,26 @@
     <description>Скважность удерживающего импульса</description>
   </parameter>
 
+  <parameter idp="0x10" ids1="4" ids2="0" ids3="0" isFloat="0">
+    <units>(А*204.75)|(A*80)</units>
+    <description>Верхний предел для регулирования силы тока в значении для АЦП (А*204.75)</description>
+  </parameter>
+
+  <parameter idp="0x10" ids1="5" ids2="0" ids3="0" isFloat="0">
+    <units>(А*204.75)|(A*80)</units>
+    <description>Нижний предел для регулирования силы тока в значении для АЦП (А*204.75)</description>
+  </parameter>
+
+  <parameter idp="0x10" ids1="6" ids2="0" ids3="0" isFloat="0">
+    <units>(А*204.75)|(A*80)</units>
+    <description>Пороговое значение для замера АЦП</description>
+  </parameter>
+
+  <parameter idp="0x10" ids1="7" ids2="0" ids3="0" isFloat="0">
+    <units>(А*204.75)|(A*80)</units>
+    <description>Последнее значение с АЦП, превышающее порог</description>
+  </parameter>
+
   <parameter idp="0x11" ids1="0..NCYL-1" ids2="0" ids3="0" isFloat="1">
     <units>градусы</units>
     <description>Угол поворота, соответствующего моменту начала впрыска в н-й цилиндр</description>
