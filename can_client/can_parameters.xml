@@ -75,6 +75,11 @@
     <units>об/мин</units>
     <description>Частота вращения, ниже которой она считается "низкой"</description>
   </parameter>
+
+  <parameter idp="0x02" ids1="8" ids2="0" ids3="0" isFloat="1">
+    <units>об/мин</units>
+    <description>Коэффициент сглаживания (фильтрации) частоты вращения (N = n_prev*mu + n_new*(mu-1))</description>
+  </parameter>
   
   <parameter idp="0x03" ids1="0" ids2="0" ids3="0" isFloat="0">
     <units>мкс</units>

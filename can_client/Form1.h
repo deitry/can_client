@@ -35,7 +35,7 @@ namespace can_client {
 			can_init();
 
 			// чтение таблицы из файла
-			String^ myXMLfile = "C:/workspace/can_client/can_client/can_parameters.xml";
+			String^ myXMLfile = "C:/workspace/can_client_new/can_client/can_parameters.xml";
 			DataSet^ ds = gcnew DataSet("can_parameters");
 			try
 			{
@@ -67,6 +67,7 @@ namespace can_client {
 			Kp = -1;
 			Ki = -1;
 			Kd = -1;
+			muPcyl = 0.985;
 		}
 
 	protected:
@@ -283,6 +284,10 @@ private: System::Windows::Forms::TextBox^  tbSettingsFileName;
 private: System::Windows::Forms::Label^  label59;
 private: System::Windows::Forms::SaveFileDialog^  saveSettings;
 private: System::Windows::Forms::OpenFileDialog^  openSettings;
+private: System::Windows::Forms::Label^  label60;
+private: System::Windows::Forms::NumericUpDown^  numMuPcyl;
+private: System::Windows::Forms::TextBox^  PMfilteredValue;
+
 
 
 
@@ -332,6 +337,9 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabControlPage = (gcnew System::Windows::Forms::TabPage());
 			this->InjectionTimeBox = (gcnew System::Windows::Forms::GroupBox());
+			this->PMfilteredValue = (gcnew System::Windows::Forms::TextBox());
+			this->label60 = (gcnew System::Windows::Forms::Label());
+			this->numMuPcyl = (gcnew System::Windows::Forms::NumericUpDown());
 			this->label57 = (gcnew System::Windows::Forms::Label());
 			this->TvCurrent = (gcnew System::Windows::Forms::TextBox());
 			this->label56 = (gcnew System::Windows::Forms::Label());
@@ -464,20 +472,21 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			this->label59 = (gcnew System::Windows::Forms::Label());
 			this->saveSettings = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->openSettings = (gcnew System::Windows::Forms::OpenFileDialog());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->canParametersDataSet))->BeginInit();
 			this->tabParameters->SuspendLayout();
 			this->panel1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ParametersDataGrid))->BeginInit();
 			this->tabControl1->SuspendLayout();
 			this->tabControlPage->SuspendLayout();
 			this->InjectionTimeBox->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmax))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmin))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmax))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmin))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmax))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmin))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numMuPcyl))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->QCmax))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->QCmin))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PMmax))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PMmin))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Nmax))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Nmin))->BeginInit();
 			this->groupBox3->SuspendLayout();
 			this->tctrlModeParameters->SuspendLayout();
 			this->tab1_Standby->SuspendLayout();
@@ -485,12 +494,12 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			this->tab3_TimeSet->SuspendLayout();
 			this->tab4_PID->SuspendLayout();
 			this->groupBox2->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->UOVTManBox))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->UOVTBox))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->VMTBox))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gDuty2Box))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gDuty1Box))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gStep1Box))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->UOVTManBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->UOVTBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VMTBox))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->gDuty2Box))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->gDuty1Box))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->gStep1Box))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -693,6 +702,9 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// 
 			// InjectionTimeBox
 			// 
+			this->InjectionTimeBox->Controls->Add(this->PMfilteredValue);
+			this->InjectionTimeBox->Controls->Add(this->label60);
+			this->InjectionTimeBox->Controls->Add(this->numMuPcyl);
 			this->InjectionTimeBox->Controls->Add(this->label57);
 			this->InjectionTimeBox->Controls->Add(this->TvCurrent);
 			this->InjectionTimeBox->Controls->Add(this->label56);
@@ -743,6 +755,37 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			this->InjectionTimeBox->TabIndex = 3;
 			this->InjectionTimeBox->TabStop = false;
 			this->InjectionTimeBox->Text = L"Графические индикаторы";
+			// 
+			// PMfilteredValue
+			// 
+			this->PMfilteredValue->Location = System::Drawing::Point(228, 69);
+			this->PMfilteredValue->Name = L"PMfilteredValue";
+			this->PMfilteredValue->ReadOnly = true;
+			this->PMfilteredValue->Size = System::Drawing::Size(47, 20);
+			this->PMfilteredValue->TabIndex = 47;
+			// 
+			// label60
+			// 
+			this->label60->AutoSize = true;
+			this->label60->Enabled = false;
+			this->label60->Location = System::Drawing::Point(408, 72);
+			this->label60->Name = L"label60";
+			this->label60->Size = System::Drawing::Size(75, 13);
+			this->label60->TabIndex = 46;
+			this->label60->Text = L"Сглаживание";
+			this->label60->Visible = false;
+			// 
+			// numMuPcyl
+			// 
+			this->numMuPcyl->DecimalPlaces = 5;
+			this->numMuPcyl->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 196608 });
+			this->numMuPcyl->Location = System::Drawing::Point(411, 89);
+			this->numMuPcyl->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			this->numMuPcyl->Name = L"numMuPcyl";
+			this->numMuPcyl->Size = System::Drawing::Size(52, 20);
+			this->numMuPcyl->TabIndex = 45;
+			this->numMuPcyl->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 985, 0, 0, 196608 });
+			this->numMuPcyl->ValueChanged += gcnew System::EventHandler(this, &Form1::numericUpDown1_ValueChanged);
 			// 
 			// label57
 			// 
@@ -833,7 +876,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// 
 			this->QCValueSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->QCValueSelect->FormattingEnabled = true;
-			this->QCValueSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(мм3/цикл)"});
+			this->QCValueSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"(мкс)", L"(градусы)", L"(мм3/цикл)" });
 			this->QCValueSelect->Location = System::Drawing::Point(240, 122);
 			this->QCValueSelect->Name = L"QCValueSelect";
 			this->QCValueSelect->Size = System::Drawing::Size(65, 21);
@@ -967,7 +1010,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(237, 73);
+			this->label8->Location = System::Drawing::Point(281, 70);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(31, 13);
 			this->label8->TabIndex = 19;
@@ -1015,7 +1058,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// 
 			// PMCurrentValue
 			// 
-			this->PMCurrentValue->Location = System::Drawing::Point(184, 68);
+			this->PMCurrentValue->Location = System::Drawing::Point(165, 69);
 			this->PMCurrentValue->Name = L"PMCurrentValue";
 			this->PMCurrentValue->ReadOnly = true;
 			this->PMCurrentValue->Size = System::Drawing::Size(47, 20);
@@ -1028,7 +1071,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			this->PMmax->Name = L"PMmax";
 			this->PMmax->Size = System::Drawing::Size(48, 20);
 			this->PMmax->TabIndex = 13;
-			this->PMmax->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {16, 0, 0, 0});
+			this->PMmax->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 16, 0, 0, 0 });
 			this->PMmax->ValueChanged += gcnew System::EventHandler(this, &Form1::PMmax_ValueChanged);
 			// 
 			// PMmin
@@ -1037,7 +1080,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			this->PMmin->Name = L"PMmin";
 			this->PMmin->Size = System::Drawing::Size(47, 20);
 			this->PMmin->TabIndex = 12;
-			this->PMmin->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {4, 0, 0, 0});
+			this->PMmin->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 4, 0, 0, 0 });
 			this->PMmin->ValueChanged += gcnew System::EventHandler(this, &Form1::PMmin_ValueChanged);
 			// 
 			// PMCurrentProgress
@@ -1121,21 +1164,21 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// Nmax
 			// 
 			this->Nmax->Location = System::Drawing::Point(311, 39);
-			this->Nmax->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {100000, 0, 0, 0});
+			this->Nmax->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100000, 0, 0, 0 });
 			this->Nmax->Name = L"Nmax";
 			this->Nmax->Size = System::Drawing::Size(48, 20);
 			this->Nmax->TabIndex = 3;
-			this->Nmax->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {1100, 0, 0, 0});
+			this->Nmax->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1100, 0, 0, 0 });
 			this->Nmax->ValueChanged += gcnew System::EventHandler(this, &Form1::Nmax_ValueChanged);
 			// 
 			// Nmin
 			// 
 			this->Nmin->Location = System::Drawing::Point(112, 38);
-			this->Nmin->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {1100, 0, 0, 0});
+			this->Nmin->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1100, 0, 0, 0 });
 			this->Nmin->Name = L"Nmin";
 			this->Nmin->Size = System::Drawing::Size(47, 20);
 			this->Nmin->TabIndex = 2;
-			this->Nmin->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) {10, 0, 0, 0});
+			this->Nmin->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			this->Nmin->ValueChanged += gcnew System::EventHandler(this, &Form1::Nmin_ValueChanged);
 			// 
 			// NCurrentProgress
@@ -1221,7 +1264,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			this->textBox4->Size = System::Drawing::Size(223, 128);
 			this->textBox4->TabIndex = 0;
 			this->textBox4->TabStop = false;
-			this->textBox4->Text = L"В режиме ожидания блок не осуществляет подачу импульсов на форсунки, однако отсле" 
+			this->textBox4->Text = L"В режиме ожидания блок не осуществляет подачу импульсов на форсунки, однако отсле"
 				L"живает все сигналы датчиков и выводит различную информацию.";
 			// 
 			// tab2_Period
@@ -1247,7 +1290,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// 
 			this->injPeriodSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->injPeriodSelect->FormattingEnabled = true;
-			this->injPeriodSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(сек)", L"(10 мс)", L"(100 мкс)"});
+			this->injPeriodSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"(сек)", L"(10 мс)", L"(100 мкс)" });
 			this->injPeriodSelect->Location = System::Drawing::Point(337, 88);
 			this->injPeriodSelect->Name = L"injPeriodSelect";
 			this->injPeriodSelect->Size = System::Drawing::Size(77, 21);
@@ -1257,7 +1300,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// 
 			this->injTimeSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->injTimeSelect->FormattingEnabled = true;
-			this->injTimeSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(мм3/цикл)"});
+			this->injTimeSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"(мкс)", L"(градусы)", L"(мм3/цикл)" });
 			this->injTimeSelect->Location = System::Drawing::Point(338, 38);
 			this->injTimeSelect->Name = L"injTimeSelect";
 			this->injTimeSelect->Size = System::Drawing::Size(75, 21);
@@ -1347,7 +1390,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// injTimeSetSelect
 			// 
 			this->injTimeSetSelect->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->injTimeSetSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"(мкс)", L"(градусы)", L"(мм3/цикл)"});
+			this->injTimeSetSelect->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"(мкс)", L"(градусы)", L"(мм3/цикл)" });
 			this->injTimeSetSelect->Location = System::Drawing::Point(338, 37);
 			this->injTimeSetSelect->Name = L"injTimeSetSelect";
 			this->injTimeSetSelect->Size = System::Drawing::Size(77, 21);
@@ -1694,10 +1737,10 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// UOVTManBox
 			// 
 			this->UOVTManBox->DecimalPlaces = 2;
-			this->UOVTManBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {5, 0, 0, 65536});
+			this->UOVTManBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 65536 });
 			this->UOVTManBox->Location = System::Drawing::Point(140, 170);
-			this->UOVTManBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, 0});
-			this->UOVTManBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, System::Int32::MinValue});
+			this->UOVTManBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 360, 0, 0, 0 });
+			this->UOVTManBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 360, 0, 0, System::Int32::MinValue });
 			this->UOVTManBox->Name = L"UOVTManBox";
 			this->UOVTManBox->Size = System::Drawing::Size(52, 20);
 			this->UOVTManBox->TabIndex = 21;
@@ -1822,10 +1865,10 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// UOVTBox
 			// 
 			this->UOVTBox->DecimalPlaces = 2;
-			this->UOVTBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {5, 0, 0, 65536});
+			this->UOVTBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 65536 });
 			this->UOVTBox->Location = System::Drawing::Point(140, 201);
-			this->UOVTBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, 0});
-			this->UOVTBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, System::Int32::MinValue});
+			this->UOVTBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 360, 0, 0, 0 });
+			this->UOVTBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 360, 0, 0, System::Int32::MinValue });
 			this->UOVTBox->Name = L"UOVTBox";
 			this->UOVTBox->ReadOnly = true;
 			this->UOVTBox->Size = System::Drawing::Size(52, 20);
@@ -1835,11 +1878,11 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// VMTBox
 			// 
 			this->VMTBox->DecimalPlaces = 2;
-			this->VMTBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {5, 0, 0, 65536});
+			this->VMTBox->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 5, 0, 0, 65536 });
 			this->VMTBox->InterceptArrowKeys = false;
 			this->VMTBox->Location = System::Drawing::Point(53, 143);
-			this->VMTBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, 0});
-			this->VMTBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) {360, 0, 0, System::Int32::MinValue});
+			this->VMTBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 360, 0, 0, 0 });
+			this->VMTBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 360, 0, 0, System::Int32::MinValue });
 			this->VMTBox->Name = L"VMTBox";
 			this->VMTBox->ReadOnly = true;
 			this->VMTBox->Size = System::Drawing::Size(56, 20);
@@ -1849,7 +1892,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// label19
 			// 
 			this->label19->AutoSize = true;
-			this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point, 
+			this->label19->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label19->Location = System::Drawing::Point(15, 83);
 			this->label19->Name = L"label19";
@@ -1868,7 +1911,7 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// label18
 			// 
 			this->label18->AutoSize = true;
-			this->label18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point, 
+			this->label18->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label18->Location = System::Drawing::Point(16, 20);
 			this->label18->Name = L"label18";
@@ -1887,9 +1930,9 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			// 
 			// gStep1Box
 			// 
-			this->gStep1Box->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) {100, 0, 0, 0});
+			this->gStep1Box->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100, 0, 0, 0 });
 			this->gStep1Box->Location = System::Drawing::Point(19, 55);
-			this->gStep1Box->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) {10000, 0, 0, 0});
+			this->gStep1Box->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10000, 0, 0, 0 });
 			this->gStep1Box->Name = L"gStep1Box";
 			this->gStep1Box->Size = System::Drawing::Size(75, 20);
 			this->gStep1Box->TabIndex = 0;
@@ -2085,22 +2128,23 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			this->Text = L"Form1";
 			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &Form1::form1_FormClosing);
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &Form1::Form1_KeyDown);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->bindingSource1))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->canParametersDataSet))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bindingSource1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->canParametersDataSet))->EndInit();
 			this->tabParameters->ResumeLayout(false);
 			this->tabParameters->PerformLayout();
 			this->panel1->ResumeLayout(false);
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->ParametersDataGrid))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ParametersDataGrid))->EndInit();
 			this->tabControl1->ResumeLayout(false);
 			this->tabControlPage->ResumeLayout(false);
 			this->InjectionTimeBox->ResumeLayout(false);
 			this->InjectionTimeBox->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmax))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->QCmin))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmax))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->PMmin))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmax))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->Nmin))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numMuPcyl))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->QCmax))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->QCmin))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PMmax))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->PMmin))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Nmax))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Nmin))->EndInit();
 			this->groupBox3->ResumeLayout(false);
 			this->tctrlModeParameters->ResumeLayout(false);
 			this->tab1_Standby->ResumeLayout(false);
@@ -2113,12 +2157,12 @@ private: System::Windows::Forms::OpenFileDialog^  openSettings;
 			this->tab4_PID->PerformLayout();
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox2->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->UOVTManBox))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->UOVTBox))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->VMTBox))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gDuty2Box))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gDuty1Box))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->gStep1Box))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->UOVTManBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->UOVTBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VMTBox))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->gDuty2Box))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->gDuty1Box))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->gStep1Box))->EndInit();
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
 			this->ResumeLayout(false);
@@ -2294,6 +2338,7 @@ private: System::Void textBox5_TextChanged(System::Object^  sender, System::Even
 			 int gDuty1;
 			 int gDuty2;
 			 float Kp, Ki, Kd;
+			 float muPcyl;
 
 	private: System::Void refreshMode()
 	{
@@ -2717,5 +2762,10 @@ private: System::Void btSaveSettings_Click(System::Object^  sender, System::Even
 			 }
 			 tbSettingsFileName->Text = saveSettings->FileName;
 		 }
+
+
+private: System::Void numericUpDown1_ValueChanged(System::Object^  sender, System::EventArgs^  e) {
+	muPcyl = System::Decimal::ToSingle(numMuPcyl->Value);
+}
 };
 }

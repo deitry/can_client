@@ -1,4 +1,5 @@
 **/*.txt
+**/*.xls*
 **/*vcproj*
 **/Debug/
 **/*.resx

@@ -8,6 +8,7 @@ tUcanHandle m_UcanHandle;
 unsigned char can_client::data[8] = {0};
 
 float fdbkData[30] = {0};
+float filteredPcyl = 0;
 
 static tCanMsgStruct can_client::TxCanMsg_l =
 {
@@ -369,7 +370,10 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 		switch (d.f.R1)
 		{
 		case EC_S_D_PINJ:
+			filteredPcyl = filteredPcyl*muPcyl + d.f.val.f*(1- muPcyl);
 			PMCurrentValue->Text = Convert::ToString(d.f.val.f);
+			PMfilteredValue->Text = Convert::ToString(filteredPcyl);
+			
 			if (d.f.val.f*100 > PMCurrentProgress->Maximum)
 			{
 				PMCurrentProgress->Value = PMCurrentProgress->Maximum;
@@ -386,6 +390,10 @@ void can_client::Form1::printMsg(tCanMsgStruct *pCanMsg_p)
 				PMmin->BackColor = Color::White;
 				PMmax->BackColor = Color::White;
 			}
+
+			// ! Подмена значения из блока отфильтрованным
+			//d.f.val.f = filteredPcyl;
+
 			break;
 		case EC_S_PV:
 			PvCurrent->Text = Convert::ToString(d.f.val.f);

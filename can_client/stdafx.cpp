@@ -37,6 +37,7 @@ int isParFloat(CAN_DATA* data)
 		case EC_S_NMIN:
 		case EC_S_NMAX:
 		case EC_S_N_LOW:
+		case EC_S_N_MU:
 			return 1;
 		}
 		break;
