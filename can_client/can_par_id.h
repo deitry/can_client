@@ -58,6 +58,7 @@ union EC_CAN_PAR_ID
 #define EC_TINJ			0xFD		// метка времени на момент впрыска
 #define EC_TPROG		0xFC		// метка времени на новом цикле программы
 #define EC_P_MODE		0x01		// режим
+#define		EC_S_FREQ			0x01	// подбираемая "актуальная" частота процессора
 #define EC_G_N			0x02		// группа параметров частоты вращения
 #define 	EC_S_NR				0x00	// float частота вращения об/мин
 #define 	EC_S_NU				0x01	// float уставка частоты вращения об/мин

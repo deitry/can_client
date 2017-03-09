@@ -27,6 +27,12 @@ int isParFloat(CAN_DATA* data)
 {
 	switch (data->f.PARID)
 	{
+	case EC_P_MODE:
+		switch (data->f.R1)
+		{
+		case EC_S_FREQ:
+			return 1;
+		}
 	case EC_G_N:
 		switch (data->f.R1)
 		{
